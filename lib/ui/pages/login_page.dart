@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sipera_app/routes/route_names.dart';
 import '../../shared/theme.dart';
 import '../widgets/custom_button.dart';
 
@@ -152,7 +153,9 @@ class LoginPage extends StatelessWidget {
           ),
           CustomButton(
             title: "Masuk",
-            onTap: () {},
+            onTap: () {
+              Get.offAllNamed(RouteName.homeAdmin);
+            },
           ),
           const SizedBox(
             height: 20,
@@ -163,7 +166,7 @@ class LoginPage extends StatelessWidget {
 
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.fromLTRB(22, 0, 22, 0),
+        padding: const EdgeInsets.fromLTRB(22, 20, 22, 0),
         child: ListView(
           physics: const BouncingScrollPhysics(),
           children: [
