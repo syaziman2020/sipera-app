@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:sipera_app/bindings/login_b.dart';
 import 'package:sipera_app/bindings/main_b.dart';
 import 'package:sipera_app/bindings/on_board_b.dart';
 import 'package:sipera_app/bindings/splash_b.dart';
@@ -37,7 +38,9 @@ class AppPage {
     GetPage(
       name: RouteName.loginPage,
       page: () => LoginPage(),
-      binding: OnBoardingB(),
+      bindings: [
+        OnBoardingB(),
+      ],
     ),
     GetPage(
       name: RouteName.mainPage,
@@ -60,10 +63,7 @@ class AppPage {
       name: RouteName.detailEvent,
       page: () => DetailEvent(),
     ),
-    GetPage(
-      name: RouteName.homeAdmin,
-      page: () => HomeAdmin(),
-    ),
+    GetPage(name: RouteName.homeAdmin, page: () => HomeAdmin(), bindings: []),
     GetPage(
       name: RouteName.statisticAtletAdmin,
       page: () => StatisticAtletAdmin(),

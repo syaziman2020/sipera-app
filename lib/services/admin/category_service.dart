@@ -24,8 +24,7 @@ class CategoryService {
         ),
       );
       if (response.statusCode == 200) {
-        atmin.AtletAdmin atletAdmin =
-            await atmin.AtletAdmin.fromJson(response.data);
+        atmin.AtletAdmin atletAdmin = atmin.AtletAdmin.fromJson(response.data);
 
         return atletAdmin;
       } else {
@@ -49,8 +48,7 @@ class CategoryService {
         ),
       );
       if (response.statusCode == 200) {
-        comin.CoachAdmin coachAdmin =
-            await comin.CoachAdmin.fromJson(response.data);
+        comin.CoachAdmin coachAdmin = comin.CoachAdmin.fromJson(response.data);
 
         return coachAdmin;
       } else {
@@ -75,7 +73,7 @@ class CategoryService {
       );
       if (response.statusCode == 200) {
         remin.RefereeAdmin refereeAdmin =
-            await remin.RefereeAdmin.fromJson(response.data);
+            remin.RefereeAdmin.fromJson(response.data);
 
         return refereeAdmin;
       } else {
@@ -100,7 +98,7 @@ class CategoryService {
       );
       if (response.statusCode == 200) {
         temin.TeacherAdmin teacherAdmin =
-            await temin.TeacherAdmin.fromJson(response.data);
+            temin.TeacherAdmin.fromJson(response.data);
 
         return teacherAdmin;
       } else {
@@ -125,7 +123,7 @@ class CategoryService {
       );
       if (response.statusCode == 200) {
         famin.FacilityAdmin facilityAdmin =
-            await famin.FacilityAdmin.fromJson(response.data);
+            famin.FacilityAdmin.fromJson(response.data);
         return facilityAdmin;
       } else {
         throw Exception(
@@ -149,7 +147,7 @@ class CategoryService {
       );
       if (response.statusCode == 200) {
         acmin.AchievementAdmin achievementAdmin =
-            await acmin.AchievementAdmin.fromJson(response.data);
+            acmin.AchievementAdmin.fromJson(response.data);
         return achievementAdmin;
       } else {
         throw Exception(

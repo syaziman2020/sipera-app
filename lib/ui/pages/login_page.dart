@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sipera_app/controllers/auth_controller.dart';
 import 'package:sipera_app/routes/route_names.dart';
 import '../../shared/theme.dart';
 import '../widgets/custom_button.dart';
@@ -9,6 +10,7 @@ class LoginPage extends StatelessWidget {
   final TextEditingController _emailController =
       TextEditingController(text: '');
   final TextEditingController _passController = TextEditingController(text: '');
+  final loginC = Get.put(AuthController());
 
   @override
   Widget build(BuildContext context) {
@@ -73,9 +75,8 @@ class LoginPage extends StatelessWidget {
               decoration: InputDecoration(
                 contentPadding: const EdgeInsets.all(15),
                 hintText: 'Masukkan email anda',
-                hintStyle: blackTextStyle.copyWith(
+                hintStyle: greyTextStyle.copyWith(
                   fontSize: 13,
-                  color: blackC.withOpacity(0.87),
                 ),
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(
@@ -110,41 +111,52 @@ class LoginPage extends StatelessWidget {
           const SizedBox(
             height: 5,
           ),
-          SizedBox(
-            width: double.infinity,
-            child: TextFormField(
-              controller: _passController,
-              obscureText: true,
-              keyboardType: TextInputType.visiblePassword,
-              cursorColor: greenCA,
-              decoration: InputDecoration(
-                contentPadding: const EdgeInsets.all(15),
-                hintText: 'Masukkan Password anda',
-                hintStyle: blackTextStyle.copyWith(
-                  fontSize: 13,
-                  color: blackC.withOpacity(0.87),
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(
-                    4,
-                  ),
-                  borderSide: BorderSide(color: greenCA),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(
-                    4,
-                  ),
-                  borderSide: BorderSide(color: greenCA),
-                ),
-                errorBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: greenCA),
-                  borderRadius: BorderRadius.circular(4),
-                ),
-                focusedErrorBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: greenCA,
+          Obx(
+            () => SizedBox(
+              width: double.infinity,
+              child: TextFormField(
+                controller: _passController,
+                obscureText: loginC.isObscure.value,
+                keyboardType: TextInputType.visiblePassword,
+                cursorColor: greenCA,
+                decoration: InputDecoration(
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      Icons.remove_red_eye_rounded,
+                      size: 23,
+                      color: greyC,
                     ),
-                    borderRadius: BorderRadius.circular(4)),
+                    onPressed: () {
+                      loginC.obscureStatus();
+                    },
+                  ),
+                  contentPadding: const EdgeInsets.all(15),
+                  hintText: 'Masukkan Password anda',
+                  hintStyle: greyTextStyle.copyWith(
+                    fontSize: 13,
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(
+                      4,
+                    ),
+                    borderSide: BorderSide(color: greenCA),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(
+                      4,
+                    ),
+                    borderSide: BorderSide(color: greenCA),
+                  ),
+                  errorBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: greenCA),
+                    borderRadius: BorderRadius.circular(4),
+                  ),
+                  focusedErrorBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: greenCA,
+                      ),
+                      borderRadius: BorderRadius.circular(4)),
+                ),
               ),
             ),
           ),
@@ -153,8 +165,69 @@ class LoginPage extends StatelessWidget {
           ),
           CustomButton(
             title: "Masuk",
-            onTap: () {
-              Get.offAllNamed(RouteName.homeAdmin);
+            onTap: () async {
+              Get.dialog(
+                Center(
+                  child: CircularProgressIndicator(
+                    color: greenCB,
+                  ),
+                ),
+                barrierDismissible: false,
+              );
+              await loginC.loginController(
+                  _emailController.text, _passController.text);
+              Get.back();
+              if (loginC.isLogin.isTrue) {
+                Get.offAllNamed(RouteName.homeAdmin);
+              } else {
+                Get.defaultDialog(
+                  barrierDismissible: false,
+                  title: 'Gagal!!',
+                  titleStyle: blackTextStyle.copyWith(
+                      fontWeight: semiBold, fontSize: 18),
+                  titlePadding: EdgeInsets.only(top: 15, bottom: 20),
+                  radius: 10,
+                  contentPadding: EdgeInsets.symmetric(horizontal: 22),
+                  content: Column(
+                    children: [
+                      Image.asset(
+                        'assets/failed.png',
+                        height: 120,
+                        fit: BoxFit.cover,
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Text(
+                        'Silakan cek kembali data yang anda masukkan',
+                        textAlign: TextAlign.center,
+                        style: greyTextStyle.copyWith(fontSize: 13),
+                      ),
+                    ],
+                  ),
+                  confirm: Container(
+                    margin: EdgeInsets.only(bottom: 15),
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Get.back();
+                      },
+                      style: buttonStyle().copyWith(
+                        padding: MaterialStateProperty.all(
+                          EdgeInsets.symmetric(vertical: 13),
+                        ),
+                      ),
+                      child: Text(
+                        'Oke!!',
+                        style: whiteTextStyle.copyWith(
+                          fontWeight: semiBold,
+                          fontSize: 13,
+                        ),
+                      ),
+                    ),
+                  ),
+                );
+              }
             },
           ),
           const SizedBox(

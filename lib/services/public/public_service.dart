@@ -16,7 +16,7 @@ class PublicService {
       );
       if (response.statusCode == 200) {
         sm.StatisticModel statisticModel =
-            await sm.StatisticModel.fromJson(response.data);
+            sm.StatisticModel.fromJson(response.data);
         return statisticModel;
       } else {
         throw Exception(
@@ -34,7 +34,7 @@ class PublicService {
       );
       if (response.statusCode == 200) {
         am.AchievementModel achievementModel =
-            await am.AchievementModel.fromJson(response.data);
+            am.AchievementModel.fromJson(response.data);
         return achievementModel;
       } else {
         throw Exception(
@@ -52,7 +52,7 @@ class PublicService {
       );
       if (response.statusCode == 200) {
         arm.ArticleModel articleModel =
-            await arm.ArticleModel.fromJson(response.data);
+            arm.ArticleModel.fromJson(response.data);
         return articleModel;
       } else {
         throw Exception(
@@ -69,7 +69,7 @@ class PublicService {
         "${_mainUrl.mainUrl}/event",
       );
       if (response.statusCode == 200) {
-        em.EventModel eventModel = await em.EventModel.fromJson(response.data);
+        em.EventModel eventModel = em.EventModel.fromJson(response.data);
         return eventModel;
       } else {
         throw Exception(

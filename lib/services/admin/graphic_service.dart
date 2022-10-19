@@ -23,7 +23,7 @@ class GraphicService {
       );
       if (response.statusCode == 200) {
         gatlet.GraphicAtlet graphicAtlet =
-            await gatlet.GraphicAtlet.fromJson(response.data);
+             gatlet.GraphicAtlet.fromJson(response.data);
 
         return graphicAtlet;
       } else {
@@ -48,7 +48,7 @@ class GraphicService {
       );
       if (response.statusCode == 200) {
         gachievement.GraphicAchievement graphicAchievement =
-            await gachievement.GraphicAchievement.fromJson(response.data);
+            gachievement.GraphicAchievement.fromJson(response.data);
 
         return graphicAchievement;
       } else {
@@ -73,7 +73,7 @@ class GraphicService {
       );
       if (response.statusCode == 200) {
         gsport.GraphicSportsman graphicSportsman =
-            await gsport.GraphicSportsman.fromJson(response.data);
+            gsport.GraphicSportsman.fromJson(response.data);
         return graphicSportsman;
       } else {
         throw Exception(

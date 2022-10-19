@@ -21,10 +21,12 @@ class AuthService {
       log(response.statusCode.toString());
       if (response.statusCode == 200) {
         login.LoginModel result = login.LoginModel.fromJson(response.data);
-        log(result.results!.token.toString());
-        _mainUrl.setToken(result.results!.token.toString());
+        if (result.status == 'ok') {
+          _mainUrl.setToken(result.results!.token.toString());
 
-        return result;
+          return result;
+        }
+        log(result.results!.token.toString());
       }
       if (_mainUrl.getToken().isEmpty) {
         throw Exception('token kosong');
@@ -39,7 +41,12 @@ class AuthService {
 
   Future<bool>? logout() async {
     try {
-      final response = await dio.post("${_mainUrl.mainUrl}/logout");
+      final response = await dio.post(
+        "${_mainUrl.mainUrl}/logout",
+        options: Options(
+          headers: {'Authorization': "Bearer ${_mainUrl.getToken()}"},
+        ),
+      );
 
       if (response.statusCode == 200) {
         return true;
@@ -64,7 +71,7 @@ class AuthService {
       );
       if (response.statusCode == 200) {
         profile.ProfileModel profileModel =
-            await profile.ProfileModel.fromJson(response.data);
+            profile.ProfileModel.fromJson(response.data);
 
         return profileModel;
       } else {

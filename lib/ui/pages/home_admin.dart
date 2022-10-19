@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sipera_app/controllers/auth_controller.dart';
 import 'package:sipera_app/routes/route_names.dart';
 import 'package:sipera_app/shared/theme.dart';
 import 'package:sipera_app/ui/widgets/card_home_admin.dart.dart';
 
 class HomeAdmin extends StatelessWidget {
-  const HomeAdmin({Key? key}) : super(key: key);
+  HomeAdmin({Key? key}) : super(key: key);
+
+  final authC = Get.find<AuthController>();
 
   @override
   Widget build(BuildContext context) {
@@ -32,41 +35,94 @@ class HomeAdmin extends StatelessWidget {
               splashRadius: 25,
               onPressed: () {
                 Get.defaultDialog(
-                  title: 'Log Out',
-                  titleStyle: blackTextStyle.copyWith(
-                    fontWeight: semiBold,
+                  radius: 10,
+                  titlePadding: EdgeInsets.all(0),
+                  contentPadding: EdgeInsets.symmetric(horizontal: 22),
+                  title: '',
+                  content: Column(
+                    children: [
+                      Icon(
+                        Icons.logout,
+                        size: 40,
+                        color: Color(0xffEB5757),
+                      ),
+                      SizedBox(height: 20),
+                      Text(
+                        'Logout dari Admin?',
+                        style: blackTextStyle.copyWith(
+                          fontWeight: bold,
+                          color: Color(0xffEB5757),
+                          fontSize: 16,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Text(
+                        'Anda harus login kembali untuk akses admin',
+                        textAlign: TextAlign.center,
+                        style: greyTextStyle.copyWith(fontSize: 13),
+                      ),
+                    ],
                   ),
-                  content: Text(
-                    'Anda yakin ingin keluar?',
-                    style: blackTextStyle,
-                  ),
-                  confirm: ElevatedButton(
-                    onPressed: () {
-                      Get.offAllNamed(RouteName.onBoarding);
-                    },
-                    style: buttonStyle().copyWith(
-                      padding: MaterialStateProperty.all(
-                        EdgeInsets.symmetric(horizontal: 10),
+                  confirm: Container(
+                    margin: EdgeInsets.only(bottom: 15),
+                    width: Get.width / 2 - 70,
+                    child: ElevatedButton(
+                      onPressed: () async {
+                        Get.dialog(
+                          Center(
+                            child: CircularProgressIndicator(
+                              color: greenCB,
+                            ),
+                          ),
+                          barrierDismissible: false,
+                        );
+                        final result = await authC.logoutController();
+                        Get.back();
+                        print('pppp');
+                        print(result);
+                        if (result == true) {
+                          Get.offAllNamed(RouteName.onBoarding);
+                        }
+                      },
+                      style: buttonStyle().copyWith(
+                        padding: MaterialStateProperty.all(
+                          EdgeInsets.symmetric(vertical: 12),
+                        ),
+                        backgroundColor: MaterialStateProperty.all(
+                          Color(0xffEB5757),
+                        ),
+                        elevation: MaterialStateProperty.all(0),
+                      ),
+                      child: Text(
+                        'Ya',
+                        style: whiteTextStyle.copyWith(
+                          fontSize: 13,
+                          fontWeight: semiBold,
+                        ),
                       ),
                     ),
-                    child: Text(
-                      'Ya',
-                      style: whiteTextStyle,
-                    ),
                   ),
-                  cancel: TextButton(
-                    onPressed: () {
-                      Get.back();
-                    },
-                    style: TextButton.styleFrom(
-                      side: BorderSide(color: greenCA),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
+                  cancel: Container(
+                    margin: EdgeInsets.only(bottom: 15),
+                    width: Get.width / 2 - 70,
+                    child: TextButton(
+                      onPressed: () {
+                        Get.back();
+                      },
+                      style: TextButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
                       ),
-                    ),
-                    child: Text(
-                      'Tidak',
-                      style: greenTextStyle,
+                      child: Text(
+                        'Tidak',
+                        style: greyTextStyle.copyWith(
+                          fontWeight: semiBold,
+                          fontSize: 13,
+                        ),
+                      ),
                     ),
                   ),
                 );
@@ -78,10 +134,15 @@ class HomeAdmin extends StatelessWidget {
             ),
           )
         ],
-        title: Text(
-          'Halo Admin',
-          style: blackTextStyle.copyWith(fontWeight: semiBold),
-        ),
+        title: Obx(() {
+          if (authC.userLogin?.value != null) {
+            return Text(
+              'Halo ${authC.userLogin?.value.results?.name}',
+              style: blackTextStyle.copyWith(fontWeight: semiBold),
+            );
+          }
+          return SizedBox();
+        }),
       ),
       body: SafeArea(
         child: SingleChildScrollView(

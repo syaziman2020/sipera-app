@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:sipera_app/routes/route_names.dart';
-import 'package:sipera_app/shared/theme.dart';
 import 'package:sipera_app/ui/widgets/form_search.dart';
 import 'package:sipera_app/ui/widgets/news_tile.dart';
 import 'package:get/get.dart';
