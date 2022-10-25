@@ -220,14 +220,14 @@ class HomeAdmin extends StatelessWidget {
                 childAspectRatio: 0.65,
                 children: [
                   CardHomeAdmin(
-                    onTap: () {
+                    onTap: () async {
                       Get.toNamed(RouteName.graphicAtlet);
                     },
                     imageUrl: 'assets/athlete.png',
                     title: 'Atlet',
                   ),
                   CardHomeAdmin(
-                    onTap: () {
+                    onTap: () async {
                       Get.toNamed(RouteName.graphicAchievement);
                     },
                     imageUrl: 'assets/trophyadmin.png',

@@ -29,8 +29,8 @@ class CardStatistic extends StatelessWidget {
               children: [
                 Container(
                   margin: EdgeInsets.only(right: 8),
-                  width: 32,
-                  height: 32,
+                  width: 24,
+                  height: 24,
                   padding: EdgeInsets.all(3.5),
                   decoration: BoxDecoration(
                     border: Border.all(
@@ -39,13 +39,16 @@ class CardStatistic extends StatelessWidget {
                     borderRadius: BorderRadius.circular(7),
                   ),
                   child: Center(
-                    child: Image.asset('assets/chart.png'),
+                    child: Image.asset(
+                      'assets/chart.png',
+                      width: 16,
+                    ),
                   ),
                 ),
                 Text(
                   '${total}',
                   style: whiteTextStyle.copyWith(
-                    fontSize: 32,
+                    fontSize: 18,
                     fontWeight: semiBold,
                   ),
                 )
@@ -54,7 +57,7 @@ class CardStatistic extends StatelessWidget {
             Text(
               category,
               style: whiteTextStyle.copyWith(
-                fontSize: 15,
+                fontSize: 12,
                 fontWeight: medium,
               ),
             ),

@@ -4,16 +4,15 @@ import '../../shared/theme.dart';
 
 class NewsTile extends StatelessWidget {
   final String date;
-  final String time;
-  final String category;
+  final int id;
+
   final String imageurl;
   final String title;
   final Function() onTap;
   NewsTile({
     Key? key,
     required this.date,
-    required this.time,
-    required this.category,
+    required this.id,
     required this.imageurl,
     required this.title,
     required this.onTap,
@@ -40,7 +39,7 @@ class NewsTile extends StatelessWidget {
               children: [
                 Expanded(
                   child: Container(
-                    height: 80,
+                    padding: EdgeInsets.only(bottom: 2),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -58,13 +57,13 @@ class NewsTile extends StatelessWidget {
                                   TextSpan(
                                     text: date,
                                   ),
-                                  TextSpan(text: ' | '),
-                                  TextSpan(text: time),
                                 ],
                               ),
                             ),
                             Text(
                               title,
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 3,
                               style: blackTextStyle.copyWith(
                                 fontSize: 14,
                                 fontWeight: medium,
@@ -72,26 +71,27 @@ class NewsTile extends StatelessWidget {
                             ),
                           ],
                         ),
-                        Text(
-                          category,
-                          style: greyTextStyle.copyWith(
-                            fontSize: 12,
-                            fontWeight: light,
-                          ),
-                        )
                       ],
                     ),
                   ),
                 ),
                 ClipRRect(
                   borderRadius: BorderRadius.circular(7),
-                  child: Image.network(
-                    imageurl,
-                    width: 100,
-                    height: 80,
-                    fit: BoxFit.cover,
-                  ),
-                )
+                  child: FadeInImage(
+                      height: 80,
+                      width: 100,
+                      fadeInCurve: Curves.easeInExpo,
+                      fadeOutCurve: Curves.easeOutExpo,
+                      placeholder: AssetImage("assets/no_image.png"),
+                      image: NetworkImage('${imageurl}'),
+                      imageErrorBuilder: (context, error, stackTrace) {
+                        return Image.asset(
+                          "assets/no_image.png",
+                          fit: BoxFit.cover,
+                        );
+                      },
+                      fit: BoxFit.cover),
+                ),
               ],
             ),
           ),

@@ -140,7 +140,7 @@ class CategoryService {
         throw Exception('Token kosong');
       }
       final response = await dio.get(
-        "${_mainUrl.mainUrl}/sarana-prasarana",
+        "${_mainUrl.mainUrl}/jumlah-prestasi",
         options: Options(
           headers: {'Authorization': "Bearer ${_mainUrl.getToken()}"},
         ),

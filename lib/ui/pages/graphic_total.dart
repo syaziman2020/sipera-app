@@ -1,11 +1,15 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sipera_app/controllers/auth_controller.dart';
+// import 'package:sipera_app/controllers/graphic_controller.dart';
 
 import '../../shared/theme.dart';
 
 class GraphicTotal extends StatelessWidget {
   GraphicTotal({Key? key}) : super(key: key);
+
+  final totalC = Get.find<AuthController>();
 
   @override
   Widget build(BuildContext context) {
@@ -17,50 +21,6 @@ class GraphicTotal extends StatelessWidget {
           fontWeight: semiBold,
         ),
       );
-    }
-
-    List<PieChartSectionData> _chartSections() {
-      final List<PieChartSectionData> list = [
-        PieChartSectionData(
-          value: 20,
-          color: Colors.blue,
-          radius: 80,
-          title: '20%',
-          titleStyle: whiteTextStyle.copyWith(fontWeight: semiBold),
-        ),
-        PieChartSectionData(
-          value: 40,
-          color: Colors.orange,
-          radius: 100,
-          title: '40%',
-          titleStyle: whiteTextStyle.copyWith(fontWeight: semiBold),
-        ),
-        PieChartSectionData(
-          value: 30,
-          color: Colors.red,
-          radius: 90,
-          title: '30%',
-          titleStyle: whiteTextStyle.copyWith(fontWeight: semiBold),
-        ),
-        PieChartSectionData(
-          value: 10,
-          color: Colors.green,
-          radius: 70,
-          title: '10%',
-          titleStyle: whiteTextStyle.copyWith(fontWeight: semiBold),
-        ),
-      ];
-      // for (var sector in sectors) {
-      //   const double radius = 40.0;
-      //   final data = PieChartSectionData(
-      //     color: sector.color,
-      //     value: sector.value,
-      //     radius: radius,
-      //     title: '',
-      //   );
-      //   list.add(data);
-      // }
-      return list;
     }
 
     return Scaffold(
@@ -94,112 +54,181 @@ class GraphicTotal extends StatelessWidget {
             ),
             AspectRatio(
               aspectRatio: 1.5,
-              child: PieChart(
-                PieChartData(
-                  sections: _chartSections(),
-                  centerSpaceRadius: 40,
-                  pieTouchData: PieTouchData(enabled: true),
-                ),
-              ),
+              child: Obx(() {
+                if (totalC.isLogin.isTrue) {
+                  return PieChart(
+                    PieChartData(
+                      sections: [
+                        PieChartSectionData(
+                          value: (totalC.graphicTotal!.value.results!.atlet! /
+                                  totalC.jumlah.value) *
+                              100,
+                          color: Colors.blue,
+                          radius: 50 +
+                              (totalC.graphicTotal!.value.results!.atlet! /
+                                      totalC.jumlah.value) *
+                                  100,
+                          title:
+                              '${((totalC.graphicTotal!.value.results!.atlet! / totalC.jumlah.value) * 100).toStringAsFixed(2)}%',
+                          titleStyle:
+                              whiteTextStyle.copyWith(fontWeight: semiBold),
+                        ),
+                        PieChartSectionData(
+                          value: (totalC.graphicTotal!.value.results!.pelatih! /
+                                  totalC.jumlah.value) *
+                              100,
+                          color: Colors.orange,
+                          radius: 50 +
+                              (totalC.graphicTotal!.value.results!.pelatih! /
+                                      totalC.jumlah.value) *
+                                  100,
+                          title:
+                              '${((totalC.graphicTotal!.value.results!.pelatih! / totalC.jumlah.value) * 100).toStringAsFixed(2)}%',
+                          titleStyle:
+                              whiteTextStyle.copyWith(fontWeight: semiBold),
+                        ),
+                        PieChartSectionData(
+                          value: (totalC.graphicTotal!.value.results!.wasit! /
+                                  totalC.jumlah.value) *
+                              100,
+                          color: Colors.red,
+                          radius: 50 +
+                              (totalC.graphicTotal!.value.results!.wasit! /
+                                      totalC.jumlah.value) *
+                                  100,
+                          title:
+                              '${((totalC.graphicTotal!.value.results!.wasit! / totalC.jumlah.value) * 100).toStringAsFixed(2)}%',
+                          titleStyle:
+                              whiteTextStyle.copyWith(fontWeight: semiBold),
+                        ),
+                        PieChartSectionData(
+                          value: (totalC.graphicTotal!.value.results!.guru! /
+                                  totalC.jumlah.value) *
+                              100,
+                          color: Colors.green,
+                          radius: 50 +
+                              (totalC.graphicTotal!.value.results!.guru! /
+                                      totalC.jumlah.value) *
+                                  100,
+                          title:
+                              '${((totalC.graphicTotal!.value.results!.guru! / totalC.jumlah.value) * 100).toStringAsFixed(2)}%',
+                          titleStyle:
+                              whiteTextStyle.copyWith(fontWeight: semiBold),
+                        ),
+                      ],
+                      centerSpaceRadius: 20,
+                      pieTouchData: PieTouchData(enabled: true),
+                    ),
+                  );
+                } else {
+                  return SizedBox();
+                }
+              }),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 30),
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 15),
-                    child: Row(
-                      children: [
-                        Container(
-                          margin: EdgeInsets.only(right: 10),
-                          width: 20,
-                          height: 20,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.blue,
-                          ),
+              child: Obx(() {
+                if (totalC.graphicTotal != null) {
+                  return Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 15),
+                        child: Row(
+                          children: [
+                            Container(
+                              margin: EdgeInsets.only(right: 10),
+                              width: 20,
+                              height: 20,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Colors.blue,
+                              ),
+                            ),
+                            Text(
+                              'Atlet = ${totalC.graphicTotal?.value.results?.atlet ?? 0}',
+                              style: blackTextStyle.copyWith(
+                                fontWeight: medium,
+                                fontSize: 14,
+                              ),
+                            )
+                          ],
                         ),
-                        Text(
-                          'Atlet',
-                          style: blackTextStyle.copyWith(
-                            fontWeight: medium,
-                            fontSize: 14,
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 15),
-                    child: Row(
-                      children: [
-                        Container(
-                          margin: EdgeInsets.only(right: 10),
-                          width: 20,
-                          height: 20,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.orange,
-                          ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 15),
+                        child: Row(
+                          children: [
+                            Container(
+                              margin: EdgeInsets.only(right: 10),
+                              width: 20,
+                              height: 20,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Colors.orange,
+                              ),
+                            ),
+                            Text(
+                              'Pelatih =  ${totalC.graphicTotal?.value.results?.pelatih ?? 0}',
+                              style: blackTextStyle.copyWith(
+                                fontWeight: medium,
+                                fontSize: 14,
+                              ),
+                            )
+                          ],
                         ),
-                        Text(
-                          'Pelatih',
-                          style: blackTextStyle.copyWith(
-                            fontWeight: medium,
-                            fontSize: 14,
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 15),
-                    child: Row(
-                      children: [
-                        Container(
-                          margin: EdgeInsets.only(right: 10),
-                          width: 20,
-                          height: 20,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.red,
-                          ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 15),
+                        child: Row(
+                          children: [
+                            Container(
+                              margin: EdgeInsets.only(right: 10),
+                              width: 20,
+                              height: 20,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Colors.red,
+                              ),
+                            ),
+                            Text(
+                              'Wasit =  ${totalC.graphicTotal?.value.results?.wasit ?? 0}',
+                              style: blackTextStyle.copyWith(
+                                fontWeight: medium,
+                                fontSize: 14,
+                              ),
+                            )
+                          ],
                         ),
-                        Text(
-                          'Wasit',
-                          style: blackTextStyle.copyWith(
-                            fontWeight: medium,
-                            fontSize: 14,
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 15),
-                    child: Row(
-                      children: [
-                        Container(
-                          margin: EdgeInsets.only(right: 10),
-                          width: 20,
-                          height: 20,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.green,
-                          ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 15),
+                        child: Row(
+                          children: [
+                            Container(
+                              margin: EdgeInsets.only(right: 10),
+                              width: 20,
+                              height: 20,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Colors.green,
+                              ),
+                            ),
+                            Text(
+                              'Guru Olahraga =  ${totalC.graphicTotal?.value.results?.guru ?? 0}',
+                              style: blackTextStyle.copyWith(
+                                fontWeight: medium,
+                                fontSize: 14,
+                              ),
+                            )
+                          ],
                         ),
-                        Text(
-                          'Guru Olahraga',
-                          style: blackTextStyle.copyWith(
-                            fontWeight: medium,
-                            fontSize: 14,
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                ],
-              ),
+                      ),
+                    ],
+                  );
+                } else {
+                  return SizedBox();
+                }
+              }),
             ),
           ],
         ),

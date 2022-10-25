@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sipera_app/controllers/on_boarding_controller.dart';
+import 'package:sipera_app/controllers/public_controller.dart';
 import 'package:sipera_app/routes/route_names.dart';
 import 'package:sipera_app/shared/theme.dart';
 
@@ -35,6 +36,7 @@ class OnBoardingPage extends StatelessWidget {
   CarouselController carouselController = CarouselController();
 
   final onBoardC = Get.find<OnBoardingController>();
+  final publicC = Get.find<PublicController>();
 
   @override
   Widget build(BuildContext context) {
@@ -121,7 +123,7 @@ class OnBoardingPage extends StatelessWidget {
                       children: [
                         CustomButton(
                           title: "Mulai Sekarang",
-                          onTap: () {
+                          onTap: () async {
                             Get.toNamed(RouteName.mainPage);
                           },
                         ),

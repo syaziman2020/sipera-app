@@ -20,7 +20,7 @@ class DetailEvent extends StatelessWidget {
               child: Container(
                 padding: EdgeInsets.only(top: 35, left: 20),
                 width: Get.width,
-                height: Get.height * 0.4,
+                height: Get.height * 0.85,
                 decoration: BoxDecoration(
                   image: DecorationImage(
                     fit: BoxFit.cover,
@@ -53,7 +53,7 @@ class DetailEvent extends StatelessWidget {
             ),
             Column(
               children: [
-                SizedBox(height: Get.height * 0.38),
+                SizedBox(height: Get.height * 0.82),
                 Container(
                   padding: EdgeInsets.all(22),
                   width: double.infinity,
@@ -136,20 +136,6 @@ class DetailEvent extends StatelessWidget {
                           ),
                         ],
                       ),
-                      Container(
-                        margin: EdgeInsets.symmetric(vertical: 13),
-                        height: 1,
-                        decoration: BoxDecoration(
-                          color: greyC.withOpacity(0.5),
-                        ),
-                      ),
-                      Text(
-                        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eu facilisi dolor ut felis, tincidunt ac. Elementum convallis arcu ullamcorper luctus nisi. Neque malesuada neque pretium dui amet, velit malesuada non. Lacus sed vitae amet arcu ornare eget sem scelerisque. Odio id non sed faucibus congue ante. Vestibulum, quis sed sed in laoreet maecenas ultricies viverra. Cras orci sed dignissim sit eget feugiat sit etiam. Arcu rhoncus non magna felis enim eget ridiculus fames suscipit. Egestas euismod odio egestas elit vulputate lorem in gravida. Mi sagittis, libero, pulvinar sed ut habitasse suspendisse. Nunc consectetur proin sed adipiscing amet molestie. Enim neque, diam ullamcorper massa at.us sem faucibus massa vitae. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eu facilisi dolor ut felis, tincidunt ac. Elementum convallis arcu ullamcorper luctus nisi. Neque malesuada neque pretium dui amet, velit malesuada non. Lacus sed vitae amet arcu ornare eget sem scelerisque. Odio id non sed faucibus congue ante. Vestibulum, quis sed sed in laoreet maecenas ultricies viverra. Cras orci sed dignissim sit eget feugiat sit etiam. Arcu rhoncus non magna felis enim eget ridiculus fames suscipit. Egestas euismod odio egestas elit vulputate lorem in gravida. Mi sagittis, libero, pulvinar sed ut habitasse suspendisse. Nunc consectetur proin sed adipiscing amet molestie. Enim neque, diam ullamcorper massa at.us sem faucibus massa vitae.',
-                        style: greyTextStyle.copyWith(
-                          fontSize: 14,
-                          color: Color(0xff333333),
-                        ),
-                      )
                     ],
                   ),
                 ),

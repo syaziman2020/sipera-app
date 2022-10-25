@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:sipera_app/controllers/auth_controller.dart';
+import 'package:sipera_app/controllers/public_controller.dart';
+
 import 'package:sipera_app/routes/app_page.dart';
 import 'package:get/get.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  MyApp({Key? key}) : super(key: key);
 
+  final authC = Get.put(AuthController());
+  final publicC = Get.put(PublicController());
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(

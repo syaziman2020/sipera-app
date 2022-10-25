@@ -17,29 +17,15 @@ class EventPage extends StatelessWidget {
         child: Column(
           children: [
             SearchForm(controller: searchController),
-            SingleChildScrollView(
-              padding: EdgeInsets.only(left: 22, bottom: 10),
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: [
-                  ButtonFilter(
-                    title: 'Semua',
-                    status: true,
-                  ),
-                  ButtonFilter(
-                    title: 'Bulu Tangkis',
-                  ),
-                  ButtonFilter(
-                    title: 'Sepak Bola',
-                  ),
-                  ButtonFilter(
-                    title: 'Voli',
-                  ),
-                ],
-              ),
+            SizedBox(
+              height: 15,
             ),
-            const SizedBox(
-              height: 10,
+            Divider(
+              color: Color(0xffE0E0E0),
+              thickness: 1,
+            ),
+            SizedBox(
+              height: 5,
             ),
             EventTile(
               onTap: () {

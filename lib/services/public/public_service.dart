@@ -30,7 +30,7 @@ class PublicService {
   Future<am.AchievementModel?> getAchievementData(String? search) async {
     try {
       final response = await dio.get(
-        "${_mainUrl.mainUrl}/prestasi?cp=${search}",
+        "${_mainUrl.mainUrl}/prestasi?cp=${search ?? ''}",
       );
       if (response.statusCode == 200) {
         am.AchievementModel achievementModel =
@@ -45,10 +45,10 @@ class PublicService {
     }
   }
 
-  Future<arm.ArticleModel?> getArticleData(String? search) async {
+  Future<arm.ArticleModel?> getArticleData(String? search, String? page) async {
     try {
       final response = await dio.get(
-        "${_mainUrl.mainUrl}/artikel?judul=${search}",
+        "${_mainUrl.mainUrl}/artikel?page=${page ?? ''}&judul=${search ?? ''}",
       );
       if (response.statusCode == 200) {
         arm.ArticleModel articleModel =

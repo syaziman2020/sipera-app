@@ -3,10 +3,27 @@ import 'package:sipera_app/controllers/splash_controller.dart';
 import 'package:sipera_app/shared/theme.dart';
 import 'package:get/get.dart';
 
-class SplashPage extends StatelessWidget {
+import '../../controllers/public_controller.dart';
+import '../../routes/route_names.dart';
+
+class SplashPage extends StatefulWidget {
   SplashPage({Key? key}) : super(key: key);
 
-  final splashC = Get.find<SplashController>();
+  @override
+  State<SplashPage> createState() => _SplashPageState();
+}
+
+class _SplashPageState extends State<SplashPage> {
+  final publicC = Get.find<PublicController>();
+
+  @override
+  void initState() {
+    publicC.fetchAllData().then((value) {
+      Future.delayed(Duration(seconds: 1));
+      Get.offNamed(RouteName.onBoarding);
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

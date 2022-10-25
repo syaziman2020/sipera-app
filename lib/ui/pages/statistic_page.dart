@@ -29,7 +29,7 @@ class StatisticPage extends StatelessWidget {
           right: 22,
         ),
         crossAxisSpacing: 15,
-        crossAxisCount: 2,
+        crossAxisCount: 3,
         mainAxisSpacing: 15,
         childAspectRatio: 1.6,
         children: [

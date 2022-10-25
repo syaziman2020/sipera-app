@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:sipera_app/controllers/auth_controller.dart';
 
 import '../../shared/theme.dart';
 import '../widgets/card_statistic.dart';
 
 class StatisticAdminPrestasi extends StatelessWidget {
-  const StatisticAdminPrestasi({Key? key}) : super(key: key);
+  StatisticAdminPrestasi({Key? key}) : super(key: key);
+  final achievementC = Get.find<AuthController>();
 
   @override
   Widget build(BuildContext context) {
@@ -23,27 +26,40 @@ class StatisticAdminPrestasi extends StatelessWidget {
         centerTitle: true,
         elevation: 0,
       ),
-      body: GridView.count(
-        padding: const EdgeInsets.only(
-          top: 15,
-          left: 22,
-          right: 22,
-        ),
-        crossAxisSpacing: 15,
-        crossAxisCount: 2,
-        mainAxisSpacing: 15,
-        childAspectRatio: 1.6,
-        children: [
-          CardStatistic(
-            category: 'Bulu Tangkis',
-            total: 42,
-          ),
-          CardStatistic(
-            category: 'Bulu Tangkis',
-            total: 42,
-          ),
-        ],
-      ),
+      body: Obx(() {
+        if (achievementC.achievementAdmin != null) {
+          return GridView.count(
+            padding: const EdgeInsets.only(
+              top: 15,
+              left: 22,
+              right: 22,
+            ),
+            crossAxisSpacing: 15,
+            crossAxisCount: 3,
+            mainAxisSpacing: 15,
+            childAspectRatio: 1.6,
+            children: [
+              CardStatistic(
+                category: 'Total',
+                total: achievementC
+                        .achievementAdmin?.value.results?.totalPrestasi ??
+                    0,
+                color: Colors.blue,
+              ),
+              CardStatistic(
+                category: 'Tahun Ini',
+                total: achievementC.achievementAdmin?.value.results
+                        ?.totalPrestasiTahunIni ??
+                    0,
+              ),
+            ],
+          );
+        } else {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+      }),
     );
   }
 }
