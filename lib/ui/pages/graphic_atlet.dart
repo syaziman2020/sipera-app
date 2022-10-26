@@ -3,24 +3,12 @@ import 'package:get/get.dart';
 import 'package:sipera_app/controllers/auth_controller.dart';
 import '../../shared/theme.dart';
 import 'package:fl_chart/fl_chart.dart';
+import 'package:collection/collection.dart';
 
 class GraphicAtlet extends StatelessWidget {
   GraphicAtlet({Key? key}) : super(key: key);
 
   final authC = Get.find<AuthController>();
-
-  Widget bottomTitles(double value, TitleMeta meta) {
-    final titles = <String>['Mn', 'Te', 'Wd', 'Tu', 'Fr', 'St', 'Su'];
-
-    final Widget text = Text(authC.listGraphAtlet![value.toInt() - 1].tahun!,
-        style: blackTextStyle);
-
-    return SideTitleWidget(
-      axisSide: meta.axisSide,
-      //margin top
-      child: text,
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -321,23 +309,18 @@ class GraphicAtlet extends StatelessWidget {
                             ),
                           ),
                           sideTitles: SideTitles(
-                            showTitles: true,
-                            getTitlesWidget: (value, meta) {
-                              if (value.toInt() ==
-                                  authC.listGraphAtlet!
-                                      .indexOf(value.toInt())) {
-                                return Text('');
-                              }
-                              return SizedBox();
-                            },
-                          ),
+                              showTitles: true,
+                              getTitlesWidget: (value, meta) {
+                                return Text(
+                                    '${authC.listGraphAtlet![value.toInt()].tahun}');
+                              }),
                         ),
                       ),
                       barGroups: [
-                        ...authC.listGraphAtlet!.map(
-                          (element) {
+                        ...authC.listGraphAtlet!.mapIndexed(
+                          (index, element) {
                             return BarChartGroupData(
-                              x: 1,
+                              x: index,
                               barRods: [
                                 BarChartRodData(
                                   toY: double.parse(element.total!),
@@ -346,7 +329,7 @@ class GraphicAtlet extends StatelessWidget {
                               ],
                             );
                           },
-                        ),
+                        ).toList(),
                       ],
                     ),
                   ),

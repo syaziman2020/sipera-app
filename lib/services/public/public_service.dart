@@ -27,10 +27,11 @@ class PublicService {
     }
   }
 
-  Future<am.AchievementModel?> getAchievementData(String? search) async {
+  Future<am.AchievementModel?> getAchievementData(
+      String? search, String? page) async {
     try {
       final response = await dio.get(
-        "${_mainUrl.mainUrl}/prestasi?cp=${search ?? ''}",
+        "${_mainUrl.mainUrl}/prestasi?page=${page}&cp=${search ?? ''}",
       );
       if (response.statusCode == 200) {
         am.AchievementModel achievementModel =
@@ -63,10 +64,10 @@ class PublicService {
     }
   }
 
-  Future<em.EventModel> getEventData(String? search) async {
+  Future<em.EventModel> getEventData(String? search, String? page) async {
     try {
       final response = await dio.get(
-        "${_mainUrl.mainUrl}/event",
+        "${_mainUrl.mainUrl}/event?page=${page ?? ''}&judul=${search ?? ''}",
       );
       if (response.statusCode == 200) {
         em.EventModel eventModel = em.EventModel.fromJson(response.data);

@@ -46,7 +46,7 @@ class CardStatistic extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  '${total}',
+                  '$total',
                   style: whiteTextStyle.copyWith(
                     fontSize: 18,
                     fontWeight: semiBold,

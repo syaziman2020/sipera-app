@@ -83,7 +83,7 @@ class NewsTile extends StatelessWidget {
                       fadeInCurve: Curves.easeInExpo,
                       fadeOutCurve: Curves.easeOutExpo,
                       placeholder: AssetImage("assets/no_image.png"),
-                      image: NetworkImage('${imageurl}'),
+                      image: NetworkImage(imageurl),
                       imageErrorBuilder: (context, error, stackTrace) {
                         return Image.asset(
                           "assets/no_image.png",

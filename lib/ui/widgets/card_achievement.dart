@@ -30,13 +30,21 @@ class CardAchievement extends StatelessWidget {
         child: Row(
           children: [
             ClipRRect(
-              borderRadius: BorderRadius.circular(9),
-              child: Image.network(
-                imageUrl,
-                height: 56,
-                width: 52,
-                fit: BoxFit.cover,
-              ),
+              borderRadius: BorderRadius.circular(6),
+              child: FadeInImage(
+                  width: 52,
+                  height: 56,
+                  fadeInCurve: Curves.easeInExpo,
+                  fadeOutCurve: Curves.easeOutExpo,
+                  placeholder: AssetImage("assets/no_image.png"),
+                  image: NetworkImage('${imageUrl}'),
+                  imageErrorBuilder: (context, error, stackTrace) {
+                    return Image.asset(
+                      "assets/no_image.png",
+                      fit: BoxFit.cover,
+                    );
+                  },
+                  fit: BoxFit.cover),
             ),
             const SizedBox(
               width: 10,

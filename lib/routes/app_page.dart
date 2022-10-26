@@ -19,7 +19,7 @@ import 'package:sipera_app/ui/pages/statistic_pelatih_admin.dart';
 import 'package:sipera_app/ui/pages/statistic_prestasi_admin.dart';
 import '../ui/pages/login_page.dart';
 import '../ui/pages/statistic_guru_admin.dart';
-import '../ui/pages/statistic_page.dart';
+
 import '../ui/pages/statistic_wasit_admin.dart';
 
 class AppPage {
@@ -44,18 +44,6 @@ class AppPage {
       name: RouteName.mainPage,
       page: () => MainPage(),
       binding: MainB(),
-    ),
-    GetPage(
-      name: RouteName.statisticPage,
-      page: () => StatisticPage(),
-    ),
-    GetPage(
-      name: RouteName.detailAchievement,
-      page: () => DetailAchievement(),
-    ),
-    GetPage(
-      name: RouteName.detailEvent,
-      page: () => DetailEvent(),
     ),
     GetPage(
       name: RouteName.homeAdmin,

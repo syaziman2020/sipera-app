@@ -49,6 +49,7 @@ class AuthController extends GetxController {
   Rx<achmin.AchievementAdmin>? achievementAdmin = achmin.AchievementAdmin().obs;
 
   RxList<gralet.PerTahun>? listGraphAtlet = <gralet.PerTahun>[].obs;
+  RxList<grasi.PerTahun>? listGraphAchievement = <grasi.PerTahun>[].obs;
 
   RxDouble jumlah = 0.0.obs;
   RxDouble jumlahUmur = 0.0.obs;
@@ -349,6 +350,11 @@ class AuthController extends GetxController {
           for (var prestasi in listDesPrestasi) {
             jumlahDesPrestasi += int.parse(prestasi.total!);
           }
+        }
+
+        if (graphicAchievementModel.results!.perTahun!.isNotEmpty) {
+          listGraphAchievement!.value =
+              graphicAchievementModel.results!.perTahun!;
         }
       }
     } catch (e) {

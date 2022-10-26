@@ -4,7 +4,24 @@ import 'package:get/get.dart';
 import 'package:sipera_app/ui/widgets/achievement_tile.dart';
 
 class DetailAchievement extends StatelessWidget {
-  const DetailAchievement({Key? key}) : super(key: key);
+  DetailAchievement({
+    Key? key,
+    required this.achieveName,
+    required this.bornPlace,
+    required this.category,
+    required this.date,
+    required this.imageUrlAchieve,
+    required this.imageUrlAtlet,
+    required this.name,
+  }) : super(key: key);
+
+  final String imageUrlAchieve;
+  final String imageUrlAtlet;
+  final String achieveName;
+  final String name;
+  final String category;
+  final String date;
+  final String bornPlace;
 
   @override
   Widget build(BuildContext context) {
@@ -16,50 +33,63 @@ class DetailAchievement extends StatelessWidget {
             Container(
               width: Get.width,
               height: Get.height * 0.4,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image: NetworkImage(
-                      'https://akcdn.detik.net.id/community/media/visual/2021/07/31/sprinter-lalu-muhammad-zohri.jpeg?w=700&q=90'),
-                ),
-              ),
-              child: Align(
-                alignment: Alignment.bottomCenter,
-                child: Container(
-                  padding: EdgeInsets.only(top: Get.height * 0.04, left: 22),
-                  width: double.infinity,
-                  margin: EdgeInsets.only(top: Get.height * 0.26),
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [
-                        Colors.black.withOpacity(0.0),
-                        Colors.black.withOpacity(0.5),
-                        Colors.black.withOpacity(0.95),
-                      ],
-                    ),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Ferdy Sambo',
-                        style: whiteTextStyle.copyWith(
-                          fontSize: 20,
-                          fontWeight: semiBold,
+              child: Stack(
+                children: [
+                  FadeInImage(
+                      width: Get.width,
+                      height: Get.height * 0.4,
+                      fadeInCurve: Curves.easeInExpo,
+                      fadeOutCurve: Curves.easeOutExpo,
+                      placeholder: AssetImage("assets/noimage_portrait.png"),
+                      image: NetworkImage('${imageUrlAchieve}'),
+                      imageErrorBuilder: (context, error, stackTrace) {
+                        return Image.asset(
+                          "assets/noimage_portrait.png",
+                          fit: BoxFit.cover,
+                        );
+                      },
+                      fit: BoxFit.cover),
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Container(
+                      padding:
+                          EdgeInsets.only(top: Get.height * 0.04, left: 22),
+                      width: double.infinity,
+                      margin: EdgeInsets.only(top: Get.height * 0.26),
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [
+                            Colors.black.withOpacity(0.0),
+                            Colors.black.withOpacity(0.5),
+                            Colors.black.withOpacity(0.95),
+                          ],
                         ),
                       ),
-                      const SizedBox(
-                        height: 3,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Text(
+                            '${achieveName}',
+                            style: whiteTextStyle.copyWith(
+                              fontSize: 20,
+                              fontWeight: semiBold,
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 3,
+                          ),
+                          Text(
+                            '${category}',
+                            style: whiteTextStyle,
+                          )
+                        ],
                       ),
-                      Text(
-                        'Bulu Tangkis',
-                        style: whiteTextStyle,
-                      )
-                    ],
+                    ),
                   ),
-                ),
+                ],
               ),
             ),
             Padding(
@@ -104,7 +134,7 @@ class DetailAchievement extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Prestasi',
+                        'Atlet Berprestasi',
                         style: blackTextStyle.copyWith(
                           fontSize: 20,
                           fontWeight: semiBold,
@@ -112,20 +142,9 @@ class DetailAchievement extends StatelessWidget {
                       ),
                       const SizedBox(height: 15),
                       AchievementTile(
-                        title: 'Juara 1 lomba badminton',
-                        level: 'Tingkat Desa',
-                      ),
-                      AchievementTile(
-                        title: 'Juara 1 lomba badminton',
-                        level: 'Tingkat Desa',
-                      ),
-                      AchievementTile(
-                        title: 'Juara 1 lomba badminton',
-                        level: 'Tingkat Desa',
-                      ),
-                      AchievementTile(
-                        title: 'Juara 1 lomba badminton',
-                        level: 'Tingkat Desa',
+                        title: '${name}',
+                        born: '${bornPlace}, ${date}',
+                        imagePeople: '${imageUrlAtlet}',
                       ),
                     ],
                   ),

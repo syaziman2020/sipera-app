@@ -33,12 +33,20 @@ class EventTile extends StatelessWidget {
               children: [
                 ClipRRect(
                   borderRadius: BorderRadius.circular(8),
-                  child: Image.network(
-                    imageurl,
-                    width: 100,
-                    height: 120,
-                    fit: BoxFit.cover,
-                  ),
+                  child: FadeInImage(
+                      width: 100,
+                      height: 120,
+                      fadeInCurve: Curves.easeInExpo,
+                      fadeOutCurve: Curves.easeOutExpo,
+                      placeholder: AssetImage("assets/noimage_portrait.png"),
+                      image: NetworkImage(imageurl),
+                      imageErrorBuilder: (context, error, stackTrace) {
+                        return Image.asset(
+                          "assets/noimage_portrait.png",
+                          fit: BoxFit.cover,
+                        );
+                      },
+                      fit: BoxFit.cover),
                 ),
                 const SizedBox(
                   width: 10,
@@ -56,6 +64,8 @@ class EventTile extends StatelessWidget {
                           children: [
                             Text(
                               title,
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
                               style: blackTextStyle.copyWith(
                                   fontWeight: medium, fontSize: 16),
                             ),
@@ -81,6 +91,8 @@ class EventTile extends StatelessWidget {
                         ),
                         Text(
                           location,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
                           style: blackTextStyle.copyWith(
                               fontWeight: light, fontSize: 14),
                         )

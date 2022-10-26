@@ -18,7 +18,7 @@ class MainPage extends StatelessWidget {
     Widget content(int index) {
       switch (index) {
         case 0:
-          return const HomePage();
+          return HomePage();
         case 1:
           return AchievementPage();
         case 2:
@@ -26,7 +26,7 @@ class MainPage extends StatelessWidget {
         case 3:
           return EventPage();
         default:
-          return const HomePage();
+          return HomePage();
       }
     }
 

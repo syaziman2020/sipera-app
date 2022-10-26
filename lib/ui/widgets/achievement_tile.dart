@@ -3,18 +3,23 @@ import 'package:sipera_app/shared/theme.dart';
 
 class AchievementTile extends StatelessWidget {
   final String title;
-  final String level;
-  AchievementTile({Key? key, required this.title, required this.level})
-      : super(key: key);
+  final String born;
+  final String imagePeople;
+  AchievementTile({
+    Key? key,
+    required this.title,
+    required this.born,
+    required this.imagePeople,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(bottom: 15),
       width: double.infinity,
-      padding: EdgeInsets.all(8),
+      padding: EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: Color(0xffEDEDED),
+        color: whiteC,
         borderRadius: BorderRadius.circular(10),
         boxShadow: [
           BoxShadow(
@@ -27,23 +32,30 @@ class AchievementTile extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Container(
-            margin: EdgeInsets.only(right: 14),
-            padding: EdgeInsets.all(7),
-            decoration: BoxDecoration(
-              color: whiteC,
-              borderRadius: BorderRadius.circular(8),
-            ),
-            child: Center(
-              child: Image.asset(
-                'assets/trophy.png',
-                width: 50,
-              ),
-            ),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(7),
+            child: FadeInImage(
+                width: 90,
+                height: 111,
+                fadeInCurve: Curves.easeInExpo,
+                fadeOutCurve: Curves.easeOutExpo,
+                placeholder: AssetImage("assets/noimage_portrait.png"),
+                image: NetworkImage('${imagePeople}'),
+                imageErrorBuilder: (context, error, stackTrace) {
+                  return Image.asset(
+                    "assets/noimage_portrait.png",
+                    fit: BoxFit.cover,
+                  );
+                },
+                fit: BoxFit.cover),
+          ),
+          SizedBox(
+            width: 10,
           ),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Text(
                   title,
@@ -53,10 +65,10 @@ class AchievementTile extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: 6,
+                  height: 5,
                 ),
                 Text(
-                  level,
+                  born,
                   style: greyTextStyle.copyWith(
                     fontWeight: light,
                   ),

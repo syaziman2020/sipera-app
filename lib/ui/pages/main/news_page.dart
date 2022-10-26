@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:sipera_app/controllers/public_controller.dart';
-import 'package:sipera_app/routes/route_names.dart';
 import 'package:sipera_app/shared/theme.dart';
 import 'package:sipera_app/ui/pages/detail_news_page.dart';
-import 'package:sipera_app/ui/widgets/form_search.dart';
+
 import 'package:sipera_app/ui/widgets/news_tile.dart';
 import 'package:get/get.dart';
 
@@ -21,8 +20,6 @@ class _NewsPageState extends State<NewsPage> {
   final publicC = Get.find<PublicController>();
 
   final _scrollController = ScrollController();
-
-  final _scrollAntrianController = ScrollController();
 
   bool onLoad = false;
 
@@ -115,6 +112,7 @@ class _NewsPageState extends State<NewsPage> {
                         displacement: 5,
                         color: greenCB,
                         onRefresh: () async {
+                          searchController.clear();
                           await publicC.getArticleData('', '1');
                         },
                         child: SingleChildScrollView(
@@ -128,7 +126,7 @@ class _NewsPageState extends State<NewsPage> {
                                     (e) => NewsTile(
                                       onTap: () {
                                         Get.to(
-                                          DetailNews(
+                                          () => DetailNews(
                                               date:
                                                   '${DateFormat("d MMMM yyyy").format(DateTime.parse(e.tanggal!))}',
                                               id: e.id!,
@@ -212,6 +210,7 @@ class _NewsPageState extends State<NewsPage> {
             // Set More Loading = false
 
             setState(() {
+              searchController.clear();
               onLoad = false;
             });
           },

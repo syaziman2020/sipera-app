@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:sipera_app/controllers/splash_controller.dart';
 import 'package:sipera_app/shared/theme.dart';
 import 'package:get/get.dart';
 
@@ -19,7 +18,6 @@ class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
     publicC.fetchAllData().then((value) {
-      Future.delayed(Duration(seconds: 1));
       Get.offNamed(RouteName.onBoarding);
     });
     super.initState();

@@ -4,7 +4,22 @@ import 'package:get/get.dart';
 import '../../shared/theme.dart';
 
 class DetailEvent extends StatelessWidget {
-  const DetailEvent({Key? key}) : super(key: key);
+  final String title;
+  final String date;
+  final String timeBegin;
+  final String timeEnd;
+  final String location;
+  final String imageUrl;
+
+  DetailEvent({
+    Key? key,
+    required this.title,
+    required this.date,
+    required this.imageUrl,
+    required this.location,
+    required this.timeBegin,
+    required this.timeEnd,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,42 +28,57 @@ class DetailEvent extends StatelessWidget {
       body: SingleChildScrollView(
         child: Stack(
           children: [
-            InkWell(
-              onTap: () {
-                Get.back();
-              },
-              child: Container(
-                padding: EdgeInsets.only(top: 35, left: 20),
-                width: Get.width,
-                height: Get.height * 0.85,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: NetworkImage(
-                        'https://akcdn.detik.net.id/community/media/visual/2021/07/31/sprinter-lalu-muhammad-zohri.jpeg?w=700&q=90'),
+            Container(
+              width: Get.width,
+              height: Get.height * 0.85,
+              decoration: BoxDecoration(),
+              child: Stack(
+                children: [
+                  SizedBox(
+                    height: Get.height * 0.85,
+                    child: FadeInImage(
+                        fadeInCurve: Curves.easeInExpo,
+                        fadeOutCurve: Curves.easeOutExpo,
+                        placeholder: AssetImage("assets/noimage_portrait.png"),
+                        image: NetworkImage('${imageUrl}'),
+                        imageErrorBuilder: (context, error, stackTrace) {
+                          return Image.asset(
+                            "assets/noimage_portrait.png",
+                            fit: BoxFit.cover,
+                          );
+                        },
+                        fit: BoxFit.cover),
                   ),
-                ),
-                child: Align(
-                  alignment: Alignment.topLeft,
-                  child: Container(
-                    width: 40,
-                    height: 40,
-                    decoration: BoxDecoration(
-                      color: whiteC.withOpacity(0.7),
-                      shape: BoxShape.circle,
-                      boxShadow: [
-                        BoxShadow(
-                            color: blackC.withOpacity(0.25),
-                            offset: Offset(1, 1),
-                            spreadRadius: 1,
-                            blurRadius: 1),
-                      ],
-                    ),
-                    child: const Center(
-                      child: Icon(Icons.arrow_back),
+                  Padding(
+                    padding: EdgeInsets.only(top: 35, left: 20),
+                    child: Align(
+                      alignment: Alignment.topLeft,
+                      child: GestureDetector(
+                        onTap: () {
+                          Get.back();
+                        },
+                        child: Container(
+                          width: 40,
+                          height: 40,
+                          decoration: BoxDecoration(
+                            color: whiteC.withOpacity(0.7),
+                            shape: BoxShape.circle,
+                            boxShadow: [
+                              BoxShadow(
+                                  color: blackC.withOpacity(0.25),
+                                  offset: Offset(1, 1),
+                                  spreadRadius: 1,
+                                  blurRadius: 1),
+                            ],
+                          ),
+                          child: const Center(
+                            child: Icon(Icons.arrow_back),
+                          ),
+                        ),
+                      ),
                     ),
                   ),
-                ),
+                ],
               ),
             ),
             Column(
@@ -68,19 +98,33 @@ class DetailEvent extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Siskom Cup 2022',
+                        '${title}',
                         style: blackTextStyle.copyWith(
                           fontSize: 20,
                           fontWeight: medium,
                         ),
                       ),
                       const SizedBox(height: 2),
-                      Text(
-                        'Futsal',
-                        style: greenTextStyle.copyWith(
-                          fontSize: 16,
-                          fontWeight: medium,
-                        ),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Icon(
+                            Icons.location_pin,
+                            color: greenCB,
+                            size: 20,
+                          ),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          Text(
+                            '${location}',
+                            style: greenTextStyle.copyWith(
+                              fontSize: 16,
+                              fontWeight: medium,
+                            ),
+                          ),
+                        ],
                       ),
                       const SizedBox(height: 24),
                       Row(
@@ -94,7 +138,7 @@ class DetailEvent extends StatelessWidget {
                               ),
                               const SizedBox(width: 5),
                               Text(
-                                '21:00',
+                                '${timeBegin} WIB - ${timeEnd} WIB',
                                 style: greyTextStyle.copyWith(
                                   fontSize: 13,
                                   color: Color(0xff4F4F4F),
@@ -110,23 +154,7 @@ class DetailEvent extends StatelessWidget {
                               ),
                               const SizedBox(width: 5),
                               Text(
-                                '18/09/2022',
-                                style: greyTextStyle.copyWith(
-                                  fontSize: 13,
-                                  color: Color(0xff4F4F4F),
-                                ),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              Icon(
-                                Icons.place_outlined,
-                                size: 20,
-                              ),
-                              const SizedBox(width: 5),
-                              Text(
-                                'Gor Pangsuma',
+                                '${date}',
                                 style: greyTextStyle.copyWith(
                                   fontSize: 13,
                                   color: Color(0xff4F4F4F),

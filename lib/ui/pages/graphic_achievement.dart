@@ -2,7 +2,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sipera_app/controllers/auth_controller.dart';
-
+import 'package:collection/collection.dart';
 import '../../shared/theme.dart';
 
 class GraphicAchievement extends StatelessWidget {
@@ -298,7 +298,7 @@ class GraphicAchievement extends StatelessWidget {
                         ),
                       ),
                       alignment: BarChartAlignment.spaceAround,
-                      minY: 5,
+                      minY: 1,
                       titlesData: FlTitlesData(
                         rightTitles: AxisTitles(drawBehindEverything: false),
                         topTitles: AxisTitles(drawBehindEverything: false),
@@ -312,86 +312,26 @@ class GraphicAchievement extends StatelessWidget {
                           sideTitles: SideTitles(
                             showTitles: true,
                             getTitlesWidget: (value, meta) {
-                              switch (value.toInt()) {
-                                case 0:
-                                  return Text(
-                                    '2019',
-                                    style: blackTextStyle,
-                                  );
-                                case 1:
-                                  return Text(
-                                    '2020',
-                                    style: blackTextStyle,
-                                  );
-                                case 2:
-                                  return Text(
-                                    '2021',
-                                    style: blackTextStyle,
-                                  );
-                                case 3:
-                                  return Text(
-                                    '2022',
-                                    style: blackTextStyle,
-                                  );
-                                case 4:
-                                  return Text(
-                                    '2023',
-                                    style: blackTextStyle,
-                                  );
-
-                                default:
-                              }
-                              return SizedBox();
+                              return Text(
+                                  '${authC.listGraphAchievement![value.toInt()].year}');
                             },
                           ),
                         ),
                       ),
                       barGroups: [
-                        BarChartGroupData(
-                          x: 0,
-                          barRods: [
-                            BarChartRodData(
-                              toY: 100,
-                              color: greenCB,
-                            )
-                          ],
-                        ),
-                        BarChartGroupData(
-                          x: 1,
-                          barRods: [
-                            BarChartRodData(
-                              toY: 100,
-                              color: greenCB,
-                            )
-                          ],
-                        ),
-                        BarChartGroupData(
-                          x: 2,
-                          barRods: [
-                            BarChartRodData(
-                              toY: 40,
-                              color: greenCB,
-                            )
-                          ],
-                        ),
-                        BarChartGroupData(
-                          x: 3,
-                          barRods: [
-                            BarChartRodData(
-                              toY: 60,
-                              color: greenCB,
-                            )
-                          ],
-                        ),
-                        BarChartGroupData(
-                          x: 4,
-                          barRods: [
-                            BarChartRodData(
-                              toY: 20,
-                              color: greenCB,
-                            )
-                          ],
-                        ),
+                        ...authC.listGraphAchievement!.mapIndexed(
+                          (index, element) {
+                            return BarChartGroupData(
+                              x: index,
+                              barRods: [
+                                BarChartRodData(
+                                  toY: double.parse(element.total!),
+                                  color: greenCB,
+                                )
+                              ],
+                            );
+                          },
+                        ).toList(),
                       ],
                     ),
                   ),
