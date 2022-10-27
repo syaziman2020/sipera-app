@@ -1,11 +1,12 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sipera_app/controllers/auth_controller.dart';
 import 'package:sipera_app/controllers/on_boarding_controller.dart';
 import 'package:sipera_app/controllers/public_controller.dart';
 import 'package:sipera_app/routes/route_names.dart';
 import 'package:sipera_app/shared/theme.dart';
-
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import '../widgets/custom_button.dart';
 
 class OnBoardingPage extends StatelessWidget {
@@ -32,11 +33,14 @@ class OnBoardingPage extends StatelessWidget {
     ]
   ];
 
+  final storage = new FlutterSecureStorage();
+
   int index = -1;
   CarouselController carouselController = CarouselController();
 
   final onBoardC = Get.find<OnBoardingController>();
   final publicC = Get.find<PublicController>();
+  final authC = Get.find<AuthController>();
 
   @override
   Widget build(BuildContext context) {
@@ -133,8 +137,13 @@ class OnBoardingPage extends StatelessWidget {
                         InkWell(
                           overlayColor:
                               MaterialStateProperty.all(Colors.transparent),
-                          onTap: () {
-                            Get.toNamed(RouteName.loginPage);
+                          onTap: () async {
+                            String? value = await storage.read(key: 'save');
+                            if (value != null) {
+                              Get.offAllNamed(RouteName.homeAdmin);
+                            } else {
+                              Get.toNamed(RouteName.loginPage);
+                            }
                           },
                           child: Text(
                             'Masuk Sebagai Admin',

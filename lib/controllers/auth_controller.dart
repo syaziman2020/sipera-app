@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 
 import 'package:sipera_app/models/admin/login_model.dart' as login;
+import 'package:sipera_app/models/admin/profile_model.dart' as promin;
 import 'package:sipera_app/services/admin/auth_service.dart';
 import 'package:sipera_app/models/admin/graphic_achievement.dart' as grasi;
 import 'package:sipera_app/models/admin/graphic_atlet.dart' as gralet;
@@ -52,6 +53,7 @@ class AuthController extends GetxController {
   RxList<gralet.PerTahun>? listGraphAtlet = <gralet.PerTahun>[].obs;
   RxList<grasi.PerTahun>? listGraphAchievement = <grasi.PerTahun>[].obs;
 
+  Rx<promin.ProfileModel>? profileAdmin = promin.ProfileModel().obs;
   RxDouble jumlah = 0.0.obs;
   RxDouble jumlahUmur = 0.0.obs;
 
@@ -108,6 +110,7 @@ class AuthController extends GetxController {
         if (kDebugMode) {
           print(userLogin!.value.results!.name);
         }
+        await getProfileAdmin();
         await getGraphicTotal();
         await getGraphicAchievement();
         await getGraphicAtlet();
@@ -124,7 +127,29 @@ class AuthController extends GetxController {
     }
   }
 
+  Future<bool> fetchSave() async {
+    try {
+      isLogin.value = false;
+      await getProfileAdmin();
+      await getGraphicTotal();
+      await getGraphicAchievement();
+      await getGraphicAtlet();
+      await getAtletAdmin();
+      await getCoachAdmin();
+      await getAchievementAdmin();
+      await getFacilityAdmin();
+      await getTeacherAdmin();
+      await getRefereeAdmin();
+      isLogin.value = true;
+      return isLogin.value;
+    } catch (e) {
+      isLogin.value = false;
+      return isLogin.value;
+    }
+  }
+
   Future<bool>? logoutController() {
+    isLogin.value = false;
     return AuthService().logout();
   }
 
@@ -486,6 +511,20 @@ class AuthController extends GetxController {
         return;
       } else {
         achievementAdmin?.value = achievementModel;
+      }
+    } catch (e) {
+      errorMessage('Terjadi kesalahan, silakan periksa koneksi internet anda');
+      rethrow;
+    }
+  }
+
+  Future getProfileAdmin() async {
+    try {
+      promin.ProfileModel? profileModel = await AuthService().getProfile();
+      if (profileModel == null) {
+        return;
+      } else {
+        profileAdmin?.value = profileModel;
       }
     } catch (e) {
       errorMessage('Terjadi kesalahan, silakan periksa koneksi internet anda');

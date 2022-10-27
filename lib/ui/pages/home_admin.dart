@@ -5,10 +5,90 @@ import 'package:sipera_app/routes/route_names.dart';
 import 'package:sipera_app/shared/theme.dart';
 import 'package:sipera_app/ui/widgets/card_home_admin.dart.dart';
 
-class HomeAdmin extends StatelessWidget {
+class HomeAdmin extends StatefulWidget {
   HomeAdmin({Key? key}) : super(key: key);
 
+  @override
+  State<HomeAdmin> createState() => _HomeAdminState();
+}
+
+class _HomeAdminState extends State<HomeAdmin> {
   final authC = Get.find<AuthController>();
+
+  @override
+  void didChangeDependencies() async {
+    super.didChangeDependencies();
+    authC.isLogin.value = false;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _init();
+    });
+
+    super.setState(() {}); // to update widget data
+    /// new
+  }
+
+  Future<void> _init() async {
+    Get.dialog(
+      Center(
+        child: CircularProgressIndicator(
+          color: greenCB,
+        ),
+      ),
+      barrierDismissible: false,
+    );
+    await authC.fetchSave();
+    Get.back();
+    if (authC.isLogin.isTrue) {
+      print('sukses');
+    } else {
+      Get.defaultDialog(
+        barrierDismissible: false,
+        title: 'Gagal!!',
+        titleStyle: blackTextStyle.copyWith(fontWeight: semiBold, fontSize: 18),
+        titlePadding: const EdgeInsets.only(top: 15, bottom: 20),
+        radius: 10,
+        contentPadding: const EdgeInsets.symmetric(horizontal: 22),
+        content: Column(
+          children: [
+            Image.asset(
+              'assets/failed.png',
+              height: 120,
+              fit: BoxFit.cover,
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Text(
+              '${authC.errorMessage}',
+              textAlign: TextAlign.center,
+              style: greyTextStyle.copyWith(fontSize: 13),
+            ),
+          ],
+        ),
+        confirm: Container(
+          margin: const EdgeInsets.only(bottom: 15),
+          width: double.infinity,
+          child: ElevatedButton(
+            onPressed: () {
+              Get.back();
+            },
+            style: buttonStyle().copyWith(
+              padding: MaterialStateProperty.all(
+                const EdgeInsets.symmetric(vertical: 13),
+              ),
+            ),
+            child: Text(
+              'Oke!!',
+              style: whiteTextStyle.copyWith(
+                fontWeight: semiBold,
+                fontSize: 13,
+              ),
+            ),
+          ),
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -84,6 +164,7 @@ class HomeAdmin extends StatelessWidget {
                         if (result == true) {
                           Get.offAllNamed(RouteName.onBoarding);
                         }
+                        Get.offAllNamed(RouteName.onBoarding);
                       },
                       style: buttonStyle().copyWith(
                         padding: MaterialStateProperty.all(
@@ -134,9 +215,9 @@ class HomeAdmin extends StatelessWidget {
           )
         ],
         title: Obx(() {
-          if (authC.userLogin?.value != null) {
+          if (authC.profileAdmin?.value != null) {
             return Text(
-              'Halo ${authC.userLogin?.value.results?.name}',
+              'Halo ${authC.profileAdmin!.value.results?.users?.name ?? ''}',
               style: blackTextStyle.copyWith(fontWeight: semiBold),
             );
           }

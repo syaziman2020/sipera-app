@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:sipera_app/models/admin/achievement_admin.dart' as acmin;
 import 'package:sipera_app/models/admin/atlet_admin.dart' as atmin;
 import 'package:sipera_app/models/admin/coach_admin.dart' as comin;
@@ -11,16 +12,18 @@ import '../main_url.dart';
 class CategoryService {
   final MainUrl _mainUrl = MainUrl();
   Dio dio = Dio();
+  final storage = new FlutterSecureStorage();
 
   Future<atmin.AtletAdmin?> getAtletAdmin() async {
     try {
       if (_mainUrl.getToken().isEmpty) {
         throw Exception('Token kosong');
       }
+      String? value = await storage.read(key: 'save');
       final response = await dio.get(
         "${_mainUrl.mainUrl}/atlet",
         options: Options(
-          headers: {'Authorization': "Bearer ${_mainUrl.getToken()}"},
+          headers: {'Authorization': "Bearer ${value}"},
         ),
       );
       if (response.statusCode == 200) {
@@ -41,10 +44,11 @@ class CategoryService {
       if (_mainUrl.getToken().isEmpty) {
         throw Exception('Token kosong');
       }
+      String? value = await storage.read(key: 'save');
       final response = await dio.get(
         "${_mainUrl.mainUrl}/pelatih",
         options: Options(
-          headers: {'Authorization': "Bearer ${_mainUrl.getToken()}"},
+          headers: {'Authorization': "Bearer ${value}"},
         ),
       );
       if (response.statusCode == 200) {
@@ -65,10 +69,12 @@ class CategoryService {
       if (_mainUrl.getToken().isEmpty) {
         throw Exception('Token kosong');
       }
+
+      String? value = await storage.read(key: 'save');
       final response = await dio.get(
         "${_mainUrl.mainUrl}/wasit",
         options: Options(
-          headers: {'Authorization': "Bearer ${_mainUrl.getToken()}"},
+          headers: {'Authorization': "Bearer ${value}"},
         ),
       );
       if (response.statusCode == 200) {
@@ -90,10 +96,11 @@ class CategoryService {
       if (_mainUrl.getToken().isEmpty) {
         throw Exception('Token kosong');
       }
+      String? value = await storage.read(key: 'save');
       final response = await dio.get(
         "${_mainUrl.mainUrl}/guru-olahraga",
         options: Options(
-          headers: {'Authorization': "Bearer ${_mainUrl.getToken()}"},
+          headers: {'Authorization': "Bearer ${value}"},
         ),
       );
       if (response.statusCode == 200) {
@@ -115,10 +122,11 @@ class CategoryService {
       if (_mainUrl.getToken().isEmpty) {
         throw Exception('Token kosong');
       }
+      String? value = await storage.read(key: 'save');
       final response = await dio.get(
         "${_mainUrl.mainUrl}/sarana-prasarana",
         options: Options(
-          headers: {'Authorization': "Bearer ${_mainUrl.getToken()}"},
+          headers: {'Authorization': "Bearer ${value}"},
         ),
       );
       if (response.statusCode == 200) {
@@ -139,10 +147,11 @@ class CategoryService {
       if (_mainUrl.getToken().isEmpty) {
         throw Exception('Token kosong');
       }
+      String? value = await storage.read(key: 'save');
       final response = await dio.get(
         "${_mainUrl.mainUrl}/jumlah-prestasi",
         options: Options(
-          headers: {'Authorization': "Bearer ${_mainUrl.getToken()}"},
+          headers: {'Authorization': "Bearer ${value}"},
         ),
       );
       if (response.statusCode == 200) {
