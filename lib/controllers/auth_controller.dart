@@ -110,16 +110,7 @@ class AuthController extends GetxController {
         if (kDebugMode) {
           print(userLogin!.value.results!.name);
         }
-        await getProfileAdmin();
-        await getGraphicTotal();
-        await getGraphicAchievement();
-        await getGraphicAtlet();
-        await getAtletAdmin();
-        await getCoachAdmin();
-        await getAchievementAdmin();
-        await getFacilityAdmin();
-        await getTeacherAdmin();
-        await getRefereeAdmin();
+
         isLogin.value = true;
       }
     } catch (e) {

@@ -225,104 +225,111 @@ class _HomeAdminState extends State<HomeAdmin> {
         }),
       ),
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.fromLTRB(22, 26, 22, 10),
-                child: title('Statistik'),
-              ),
-              GridView.count(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                padding: const EdgeInsets.symmetric(horizontal: 22),
-                crossAxisCount: 3,
-                crossAxisSpacing: 21,
-                mainAxisSpacing: 2,
-                childAspectRatio: 0.65,
-                children: [
-                  CardHomeAdmin(
-                    imageUrl: 'assets/athlete.png',
-                    title: 'Atlet',
-                    onTap: () {
-                      Get.toNamed(RouteName.statisticAtletAdmin);
-                    },
-                  ),
-                  CardHomeAdmin(
-                    onTap: () {
-                      Get.toNamed(RouteName.statisticPelatihAdmin);
-                    },
-                    imageUrl: 'assets/pelatih.png',
-                    title: 'Pelatih',
-                  ),
-                  CardHomeAdmin(
-                    onTap: () {
-                      Get.toNamed(RouteName.statisticWasitAdmin);
-                    },
-                    imageUrl: 'assets/wasit.png',
-                    title: 'Wasit',
-                  ),
-                  CardHomeAdmin(
-                    onTap: () {
-                      Get.toNamed(RouteName.statisticGuruAdmin);
-                    },
-                    imageUrl: 'assets/guru.png',
-                    title: 'Guru Olahraga',
-                  ),
-                  CardHomeAdmin(
-                    onTap: () {
-                      Get.toNamed(RouteName.statisticFasilitasAdmin);
-                    },
-                    imageUrl: 'assets/facilities.png',
-                    title: 'Fasilitas Olahraga',
-                  ),
-                  CardHomeAdmin(
-                    onTap: () {
-                      Get.toNamed(RouteName.statisticPrestasiAdmin);
-                    },
-                    imageUrl: 'assets/trophyadmin.png',
-                    title: 'Prestasi',
-                  ),
-                ],
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(22, 26, 22, 10),
-                child: title('Grafik'),
-              ),
-              GridView.count(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                padding: const EdgeInsets.symmetric(horizontal: 22),
-                crossAxisCount: 3,
-                crossAxisSpacing: 21,
-                mainAxisSpacing: 10,
-                childAspectRatio: 0.65,
-                children: [
-                  CardHomeAdmin(
-                    onTap: () async {
-                      Get.toNamed(RouteName.graphicAtlet);
-                    },
-                    imageUrl: 'assets/athlete.png',
-                    title: 'Atlet',
-                  ),
-                  CardHomeAdmin(
-                    onTap: () async {
-                      Get.toNamed(RouteName.graphicAchievement);
-                    },
-                    imageUrl: 'assets/trophyadmin.png',
-                    title: 'Prestasi',
-                  ),
-                  CardHomeAdmin(
-                    onTap: () {
-                      Get.toNamed(RouteName.graphicTotal);
-                    },
-                    imageUrl: 'assets/total.png',
-                    title: 'Total',
-                  ),
-                ],
-              )
-            ],
+        child: RefreshIndicator(
+          color: greenCB,
+          onRefresh: () async {
+            _init();
+          },
+          child: SingleChildScrollView(
+            physics: AlwaysScrollableScrollPhysics(),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(22, 26, 22, 10),
+                  child: title('Statistik'),
+                ),
+                GridView.count(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  padding: const EdgeInsets.symmetric(horizontal: 22),
+                  crossAxisCount: 3,
+                  crossAxisSpacing: 21,
+                  mainAxisSpacing: 2,
+                  childAspectRatio: 0.65,
+                  children: [
+                    CardHomeAdmin(
+                      imageUrl: 'assets/athlete.png',
+                      title: 'Atlet',
+                      onTap: () {
+                        Get.toNamed(RouteName.statisticAtletAdmin);
+                      },
+                    ),
+                    CardHomeAdmin(
+                      onTap: () {
+                        Get.toNamed(RouteName.statisticPelatihAdmin);
+                      },
+                      imageUrl: 'assets/pelatih.png',
+                      title: 'Pelatih',
+                    ),
+                    CardHomeAdmin(
+                      onTap: () {
+                        Get.toNamed(RouteName.statisticWasitAdmin);
+                      },
+                      imageUrl: 'assets/wasit.png',
+                      title: 'Wasit',
+                    ),
+                    CardHomeAdmin(
+                      onTap: () {
+                        Get.toNamed(RouteName.statisticGuruAdmin);
+                      },
+                      imageUrl: 'assets/guru.png',
+                      title: 'Guru Olahraga',
+                    ),
+                    CardHomeAdmin(
+                      onTap: () {
+                        Get.toNamed(RouteName.statisticFasilitasAdmin);
+                      },
+                      imageUrl: 'assets/facilities.png',
+                      title: 'Fasilitas Olahraga',
+                    ),
+                    CardHomeAdmin(
+                      onTap: () {
+                        Get.toNamed(RouteName.statisticPrestasiAdmin);
+                      },
+                      imageUrl: 'assets/trophyadmin.png',
+                      title: 'Prestasi',
+                    ),
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(22, 26, 22, 10),
+                  child: title('Grafik'),
+                ),
+                GridView.count(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  padding: const EdgeInsets.symmetric(horizontal: 22),
+                  crossAxisCount: 3,
+                  crossAxisSpacing: 21,
+                  mainAxisSpacing: 10,
+                  childAspectRatio: 0.65,
+                  children: [
+                    CardHomeAdmin(
+                      onTap: () async {
+                        Get.toNamed(RouteName.graphicAtlet);
+                      },
+                      imageUrl: 'assets/athlete.png',
+                      title: 'Atlet',
+                    ),
+                    CardHomeAdmin(
+                      onTap: () async {
+                        Get.toNamed(RouteName.graphicAchievement);
+                      },
+                      imageUrl: 'assets/trophyadmin.png',
+                      title: 'Prestasi',
+                    ),
+                    CardHomeAdmin(
+                      onTap: () {
+                        Get.toNamed(RouteName.graphicTotal);
+                      },
+                      imageUrl: 'assets/total.png',
+                      title: 'Total',
+                    ),
+                  ],
+                )
+              ],
+            ),
           ),
         ),
       ),
