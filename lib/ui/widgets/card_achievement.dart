@@ -20,12 +20,12 @@ class CardAchievement extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        margin: EdgeInsets.fromLTRB(22, 0, 22, 10),
-        padding: EdgeInsets.all(9),
+        margin: const EdgeInsets.fromLTRB(22, 0, 22, 10),
+        padding: const EdgeInsets.all(9),
         width: double.infinity,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          border: Border.all(color: Color(0xffE0E0E0), width: 1),
+          border: Border.all(color: const Color(0xffE0E0E0), width: 1),
         ),
         child: Row(
           children: [
@@ -36,8 +36,9 @@ class CardAchievement extends StatelessWidget {
                   height: 56,
                   fadeInCurve: Curves.easeInExpo,
                   fadeOutCurve: Curves.easeOutExpo,
-                  placeholder: AssetImage("assets/no_image_available.webp"),
-                  image: NetworkImage('${imageUrl}'),
+                  placeholder:
+                      const AssetImage("assets/no_image_available.webp"),
+                  image: NetworkImage('$imageUrl'),
                   imageErrorBuilder: (context, error, stackTrace) {
                     return Image.asset(
                       "assets/no_image_available.webp",

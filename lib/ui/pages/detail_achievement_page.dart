@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get_connect/http/src/status/http_status.dart';
 import 'package:sipera_app/controllers/public_controller.dart';
 import 'package:sipera_app/shared/theme.dart';
 import 'package:get/get.dart';
@@ -34,7 +33,7 @@ class DetailAchievement extends StatelessWidget {
       body: SingleChildScrollView(
         child: Stack(
           children: [
-            Container(
+            SizedBox(
               width: Get.width,
               height: Get.height * 0.4,
               child: Stack(
@@ -44,10 +43,11 @@ class DetailAchievement extends StatelessWidget {
                       height: Get.height * 0.4,
                       fadeInCurve: Curves.easeInExpo,
                       fadeOutCurve: Curves.easeOutExpo,
-                      placeholder: AssetImage("assets/noimage_portrait.png"),
-                      image: NetworkImage('${imageUrlAchieve}'),
+                      placeholder:
+                          const AssetImage("assets/noimage_portrait.png"),
+                      image: NetworkImage('$imageUrlAchieve'),
                       imageErrorBuilder: (context, error, stackTrace) {
-                        return Image.asset(
+                        return Image.network(
                           "assets/noimage_portrait.png",
                           fit: BoxFit.cover,
                         );
@@ -76,7 +76,7 @@ class DetailAchievement extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Text(
-                            '${achieveName}',
+                            '$achieveName',
                             style: whiteTextStyle.copyWith(
                               fontSize: 20,
                               fontWeight: semiBold,
@@ -86,7 +86,7 @@ class DetailAchievement extends StatelessWidget {
                             height: 3,
                           ),
                           Text(
-                            '${category}',
+                            '$category',
                             style: whiteTextStyle,
                           )
                         ],
@@ -97,7 +97,7 @@ class DetailAchievement extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(left: 22, top: 32),
+              padding: const EdgeInsets.only(left: 22, top: 32),
               child: Align(
                 alignment: Alignment.topLeft,
                 child: InkWell(
@@ -113,7 +113,7 @@ class DetailAchievement extends StatelessWidget {
                       boxShadow: [
                         BoxShadow(
                             color: blackC.withOpacity(0.25),
-                            offset: Offset(1, 1),
+                            offset: const Offset(1, 1),
                             spreadRadius: 1,
                             blurRadius: 1),
                       ],
@@ -130,7 +130,7 @@ class DetailAchievement extends StatelessWidget {
               children: [
                 SizedBox(height: Get.height * 0.38),
                 Container(
-                  padding: EdgeInsets.all(22),
+                  padding: const EdgeInsets.all(22),
                   width: double.infinity,
                   decoration: BoxDecoration(
                     color: whiteC,
@@ -148,9 +148,9 @@ class DetailAchievement extends StatelessWidget {
                       ),
                       const SizedBox(height: 15),
                       AchievementTile(
-                        title: '${name}',
+                        title: '$name',
                         born: '${bornPlace}, ${date}',
-                        imagePeople: '${imageUrlAtlet}',
+                        imagePeople: '$imageUrlAtlet',
                       ),
                     ],
                   ),

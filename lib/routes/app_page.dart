@@ -1,11 +1,6 @@
 import 'package:get/get.dart';
-import 'package:sipera_app/bindings/main_b.dart';
 import 'package:sipera_app/bindings/on_board_b.dart';
-import 'package:sipera_app/bindings/splash_b.dart';
 import 'package:sipera_app/routes/route_names.dart';
-import 'package:sipera_app/ui/pages/detail_achievement_page.dart';
-import 'package:sipera_app/ui/pages/detail_event_page.dart';
-import 'package:sipera_app/ui/pages/detail_news_page.dart';
 import 'package:sipera_app/ui/pages/graphic_achievement.dart';
 import 'package:sipera_app/ui/pages/graphic_atlet.dart';
 import 'package:sipera_app/ui/pages/graphic_total.dart';
@@ -26,7 +21,7 @@ class AppPage {
   static final listPage = [
     GetPage(
       name: RouteName.splashPage,
-      page: () => SplashPage(),
+      page: () => const SplashPage(),
     ),
     GetPage(
       name: RouteName.onBoarding,

@@ -1,5 +1,3 @@
-import 'package:sipera_app/ui/pages/detail_achievement_page.dart';
-
 abstract class RouteName {
   static const splashPage = '/';
   static const onBoarding = '/on-boarding';

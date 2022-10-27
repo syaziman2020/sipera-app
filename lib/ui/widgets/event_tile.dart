@@ -9,7 +9,7 @@ class EventTile extends StatelessWidget {
   final String location;
   final String title;
   final Function() onTap;
-  EventTile({
+  const EventTile({
     Key? key,
     required this.imageurl,
     required this.date,
@@ -38,7 +38,8 @@ class EventTile extends StatelessWidget {
                       height: 120,
                       fadeInCurve: Curves.easeInExpo,
                       fadeOutCurve: Curves.easeOutExpo,
-                      placeholder: AssetImage("assets/noimage_portrait.png"),
+                      placeholder:
+                          const AssetImage("assets/noimage_portrait.png"),
                       image: NetworkImage(imageurl),
                       imageErrorBuilder: (context, error, stackTrace) {
                         return Image.asset(
@@ -53,7 +54,7 @@ class EventTile extends StatelessWidget {
                 ),
                 Expanded(
                   child: Container(
-                    padding: EdgeInsets.only(right: 22),
+                    padding: const EdgeInsets.only(right: 22),
                     height: 112,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -82,7 +83,7 @@ class EventTile extends StatelessWidget {
                                   TextSpan(
                                     text: date,
                                   ),
-                                  TextSpan(text: ' - '),
+                                  const TextSpan(text: ' - '),
                                   TextSpan(text: time),
                                 ],
                               ),
@@ -104,9 +105,9 @@ class EventTile extends StatelessWidget {
             ),
           ),
           Container(
-            margin: EdgeInsets.only(top: 12, bottom: 12),
+            margin: const EdgeInsets.only(top: 12, bottom: 12),
             width: double.infinity,
-            color: Color(0xffE0E0E0),
+            color: const Color(0xffE0E0E0),
             height: 1,
           ),
         ],

@@ -152,7 +152,7 @@ class GraphicAtlet extends StatelessWidget {
 
                                   default:
                                 }
-                                return SizedBox();
+                                return const SizedBox();
                               },
                             ),
                           ),
@@ -283,7 +283,7 @@ class GraphicAtlet extends StatelessWidget {
               AspectRatio(
                 aspectRatio: 0.8,
                 child: Padding(
-                  padding: EdgeInsets.only(right: 22),
+                  padding: const EdgeInsets.only(right: 22),
                   child: BarChart(
                     BarChartData(
                       gridData: FlGridData(
@@ -401,7 +401,7 @@ class GraphicAtlet extends StatelessWidget {
                         ),
                       );
                     } else {
-                      return SizedBox();
+                      return const SizedBox();
                     }
                   },
                 ),
@@ -416,10 +416,10 @@ class GraphicAtlet extends StatelessWidget {
                       child: Row(
                         children: [
                           Container(
-                            margin: EdgeInsets.only(right: 10),
+                            margin: const EdgeInsets.only(right: 10),
                             width: 20,
                             height: 20,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                               shape: BoxShape.circle,
                               color: Colors.blue,
                             ),
@@ -439,10 +439,10 @@ class GraphicAtlet extends StatelessWidget {
                       child: Row(
                         children: [
                           Container(
-                            margin: EdgeInsets.only(right: 10),
+                            margin: const EdgeInsets.only(right: 10),
                             width: 20,
                             height: 20,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                               shape: BoxShape.circle,
                               color: Colors.orange,
                             ),
@@ -462,10 +462,10 @@ class GraphicAtlet extends StatelessWidget {
                       child: Row(
                         children: [
                           Container(
-                            margin: EdgeInsets.only(right: 10),
+                            margin: const EdgeInsets.only(right: 10),
                             width: 20,
                             height: 20,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                               shape: BoxShape.circle,
                               color: Colors.red,
                             ),

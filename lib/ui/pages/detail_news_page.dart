@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import '../../shared/theme.dart';
 
 class DetailNews extends StatelessWidget {
-  DetailNews(
+  const DetailNews(
       {Key? key,
       required this.date,
       required this.id,
@@ -20,18 +20,19 @@ class DetailNews extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffFAFAFA),
+      backgroundColor: const Color(0xffFAFAFA),
       body: SingleChildScrollView(
         child: Stack(
           children: [
-            Container(
+            SizedBox(
               width: Get.width,
               child: Stack(children: [
                 FadeInImage(
                     fadeInCurve: Curves.easeInExpo,
                     fadeOutCurve: Curves.easeOutExpo,
-                    placeholder: AssetImage("assets/no_image_available.webp"),
-                    image: NetworkImage('${imageUrl}'),
+                    placeholder:
+                        const AssetImage("assets/no_image_available.webp"),
+                    image: NetworkImage('$imageUrl'),
                     imageErrorBuilder: (context, error, stackTrace) {
                       return Image.asset(
                         "assets/no_image_available.webp",
@@ -40,7 +41,7 @@ class DetailNews extends StatelessWidget {
                     },
                     fit: BoxFit.cover),
                 Padding(
-                  padding: EdgeInsets.only(top: 35, left: 20),
+                  padding: const EdgeInsets.only(top: 35, left: 20),
                   child: Align(
                     alignment: Alignment.topLeft,
                     child: GestureDetector(
@@ -56,7 +57,7 @@ class DetailNews extends StatelessWidget {
                           boxShadow: [
                             BoxShadow(
                                 color: blackC.withOpacity(0.25),
-                                offset: Offset(1, 1),
+                                offset: const Offset(1, 1),
                                 spreadRadius: 1,
                                 blurRadius: 1),
                           ],
@@ -74,44 +75,42 @@ class DetailNews extends StatelessWidget {
               children: [
                 SizedBox(height: Get.height * 0.37),
                 Padding(
-                  padding: EdgeInsets.fromLTRB(22, 13, 22, 22),
+                  padding: const EdgeInsets.fromLTRB(22, 13, 22, 22),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
-                        padding: EdgeInsets.all(5),
+                        padding: const EdgeInsets.all(5),
                         decoration: BoxDecoration(
-                            color: Color(0xff8DEEB5),
+                            color: const Color(0xff8DEEB5),
                             borderRadius: BorderRadius.circular(7)),
-                        child: Container(
-                          child: Center(
-                            child: Text(
-                              '${date}',
-                              style: greenTextStyle.copyWith(
-                                fontSize: 13,
-                              ),
+                        child: Center(
+                          child: Text(
+                            '$date',
+                            style: greenTextStyle.copyWith(
+                              fontSize: 13,
                             ),
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 15,
                       ),
                       Text(
-                        '${title}',
+                        '$title',
                         style: blackTextStyle.copyWith(
                           fontSize: 20,
                           fontWeight: medium,
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 15,
                       ),
                       Text(
-                        '${description}',
+                        '$description',
                         style: greyTextStyle.copyWith(
                           fontSize: 14,
-                          color: Color(0xff333333),
+                          color: const Color(0xff333333),
                         ),
                       )
                     ],

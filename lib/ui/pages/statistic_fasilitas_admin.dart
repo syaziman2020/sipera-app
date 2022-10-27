@@ -31,7 +31,7 @@ class StatisticFasilitasAdmin extends StatelessWidget {
         () {
           if (facilityC.facilityAdmin?.value != null) {
             return GridView.count(
-              padding: EdgeInsets.only(
+              padding: const EdgeInsets.only(
                 top: 15,
                 left: 22,
                 right: 22,
@@ -57,7 +57,7 @@ class StatisticFasilitasAdmin extends StatelessWidget {
               ],
             );
           } else {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           }

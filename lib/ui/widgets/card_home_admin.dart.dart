@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../shared/theme.dart';
 
 class CardHomeAdmin extends StatelessWidget {
-  CardHomeAdmin({
+  const CardHomeAdmin({
     Key? key,
     required this.onTap,
     required this.imageUrl,
@@ -21,12 +21,12 @@ class CardHomeAdmin extends StatelessWidget {
       child: Column(
         children: [
           Container(
-            padding: EdgeInsets.all(17),
-            margin: EdgeInsets.only(bottom: 7),
+            padding: const EdgeInsets.all(17),
+            margin: const EdgeInsets.only(bottom: 7),
             decoration: BoxDecoration(
               color: whiteC,
               borderRadius: BorderRadius.circular(10),
-              border: Border.all(color: Color(0xffC5C5C5), width: 1),
+              border: Border.all(color: const Color(0xffC5C5C5), width: 1),
             ),
             child: Center(
               child: Image.asset(

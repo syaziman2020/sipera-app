@@ -29,7 +29,7 @@ class StatisticAtletAdmin extends StatelessWidget {
         () {
           if (atletC.atletAdmin?.value != null) {
             return GridView.count(
-              padding: EdgeInsets.only(
+              padding: const EdgeInsets.only(
                 top: 15,
                 left: 22,
                 right: 22,
@@ -67,7 +67,7 @@ class StatisticAtletAdmin extends StatelessWidget {
               ],
             );
           } else {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           }

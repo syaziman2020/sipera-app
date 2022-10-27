@@ -32,11 +32,12 @@ BoxDecoration cardShadow() {
   return BoxDecoration(
     color: whiteC,
     borderRadius: BorderRadius.circular(13),
-    border: Border.all(color: Color(0xffC4C4C4).withOpacity(0.25), width: 1),
+    border:
+        Border.all(color: const Color(0xffC4C4C4).withOpacity(0.25), width: 1),
     boxShadow: [
       BoxShadow(
         color: blackC.withOpacity(0.1),
-        offset: Offset(0, 4),
+        offset: const Offset(0, 4),
         blurRadius: 4,
         spreadRadius: 0,
       )

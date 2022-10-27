@@ -6,7 +6,7 @@ import '../../controllers/public_controller.dart';
 import '../../routes/route_names.dart';
 
 class SplashPage extends StatefulWidget {
-  SplashPage({Key? key}) : super(key: key);
+  const SplashPage({Key? key}) : super(key: key);
 
   @override
   State<SplashPage> createState() => _SplashPageState();
@@ -25,9 +25,9 @@ class _SplashPageState extends State<SplashPage> {
           title: 'Gagal!!',
           titleStyle:
               blackTextStyle.copyWith(fontWeight: semiBold, fontSize: 18),
-          titlePadding: EdgeInsets.only(top: 15, bottom: 20),
+          titlePadding: const EdgeInsets.only(top: 15, bottom: 20),
           radius: 10,
-          contentPadding: EdgeInsets.symmetric(horizontal: 22),
+          contentPadding: const EdgeInsets.symmetric(horizontal: 22),
           content: Column(
             children: [
               Image.asset(
@@ -46,7 +46,7 @@ class _SplashPageState extends State<SplashPage> {
             ],
           ),
           confirm: Container(
-            margin: EdgeInsets.only(bottom: 15),
+            margin: const EdgeInsets.only(bottom: 15),
             width: double.infinity,
             child: ElevatedButton(
               onPressed: () {
@@ -54,7 +54,7 @@ class _SplashPageState extends State<SplashPage> {
               },
               style: buttonStyle().copyWith(
                 padding: MaterialStateProperty.all(
-                  EdgeInsets.symmetric(vertical: 13),
+                  const EdgeInsets.symmetric(vertical: 13),
                 ),
               ),
               child: Text(

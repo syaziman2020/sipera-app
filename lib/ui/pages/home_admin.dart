@@ -5,8 +5,6 @@ import 'package:sipera_app/routes/route_names.dart';
 import 'package:sipera_app/shared/theme.dart';
 import 'package:sipera_app/ui/widgets/card_home_admin.dart.dart';
 
-import '../../controllers/on_boarding_controller.dart';
-
 class HomeAdmin extends StatelessWidget {
   HomeAdmin({Key? key}) : super(key: key);
 
@@ -38,26 +36,26 @@ class HomeAdmin extends StatelessWidget {
               onPressed: () {
                 Get.defaultDialog(
                   radius: 10,
-                  titlePadding: EdgeInsets.all(0),
-                  contentPadding: EdgeInsets.symmetric(horizontal: 22),
+                  titlePadding: const EdgeInsets.all(0),
+                  contentPadding: const EdgeInsets.symmetric(horizontal: 22),
                   title: '',
                   content: Column(
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.logout,
                         size: 40,
                         color: Color(0xffEB5757),
                       ),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       Text(
                         'Logout dari Admin?',
                         style: blackTextStyle.copyWith(
                           fontWeight: bold,
-                          color: Color(0xffEB5757),
+                          color: const Color(0xffEB5757),
                           fontSize: 16,
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       Text(
@@ -68,7 +66,7 @@ class HomeAdmin extends StatelessWidget {
                     ],
                   ),
                   confirm: Container(
-                    margin: EdgeInsets.only(bottom: 15),
+                    margin: const EdgeInsets.only(bottom: 15),
                     width: Get.width / 2 - 70,
                     child: ElevatedButton(
                       onPressed: () async {
@@ -82,18 +80,17 @@ class HomeAdmin extends StatelessWidget {
                         );
                         final result = await authC.logoutController();
                         Get.back();
-                        print('pppp');
-                        print(result);
+
                         if (result == true) {
                           Get.offAllNamed(RouteName.onBoarding);
                         }
                       },
                       style: buttonStyle().copyWith(
                         padding: MaterialStateProperty.all(
-                          EdgeInsets.symmetric(vertical: 12),
+                          const EdgeInsets.symmetric(vertical: 12),
                         ),
                         backgroundColor: MaterialStateProperty.all(
-                          Color(0xffEB5757),
+                          const Color(0xffEB5757),
                         ),
                         elevation: MaterialStateProperty.all(0),
                       ),
@@ -107,7 +104,7 @@ class HomeAdmin extends StatelessWidget {
                     ),
                   ),
                   cancel: Container(
-                    margin: EdgeInsets.only(bottom: 15),
+                    margin: const EdgeInsets.only(bottom: 15),
                     width: Get.width / 2 - 70,
                     child: TextButton(
                       onPressed: () {
@@ -143,7 +140,7 @@ class HomeAdmin extends StatelessWidget {
               style: blackTextStyle.copyWith(fontWeight: semiBold),
             );
           }
-          return SizedBox();
+          return const SizedBox();
         }),
       ),
       body: SafeArea(
@@ -157,8 +154,8 @@ class HomeAdmin extends StatelessWidget {
               ),
               GridView.count(
                 shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                padding: EdgeInsets.symmetric(horizontal: 22),
+                physics: const NeverScrollableScrollPhysics(),
+                padding: const EdgeInsets.symmetric(horizontal: 22),
                 crossAxisCount: 3,
                 crossAxisSpacing: 21,
                 mainAxisSpacing: 2,
@@ -214,8 +211,8 @@ class HomeAdmin extends StatelessWidget {
               ),
               GridView.count(
                 shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                padding: EdgeInsets.symmetric(horizontal: 22),
+                physics: const NeverScrollableScrollPhysics(),
+                padding: const EdgeInsets.symmetric(horizontal: 22),
                 crossAxisCount: 3,
                 crossAxisSpacing: 21,
                 mainAxisSpacing: 10,

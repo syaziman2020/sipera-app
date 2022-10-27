@@ -8,7 +8,7 @@ import 'package:sipera_app/ui/widgets/news_tile.dart';
 import 'package:get/get.dart';
 
 class NewsPage extends StatefulWidget {
-  NewsPage({Key? key}) : super(key: key);
+  const NewsPage({Key? key}) : super(key: key);
 
   @override
   State<NewsPage> createState() => _NewsPageState();
@@ -29,7 +29,7 @@ class _NewsPageState extends State<NewsPage> {
       child: Column(
         children: [
           Container(
-            margin: EdgeInsets.fromLTRB(22, 15, 22, 10),
+            margin: const EdgeInsets.fromLTRB(22, 15, 22, 10),
             child: TextFormField(
               controller: searchController,
               cursorColor: greenCA,
@@ -53,7 +53,7 @@ class _NewsPageState extends State<NewsPage> {
                         height: 24,
                       ),
                       Container(
-                        margin: EdgeInsets.only(left: 10, right: 5),
+                        margin: const EdgeInsets.only(left: 10, right: 5),
                         height: 24,
                         width: 1,
                         color: greenCA,
@@ -157,7 +157,7 @@ class _NewsPageState extends State<NewsPage> {
                                       ),
                                     )
                                   : const SizedBox.shrink(),
-                              SizedBox(
+                              const SizedBox(
                                 height: 15,
                               )
                             ],

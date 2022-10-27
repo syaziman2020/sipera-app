@@ -31,7 +31,7 @@ class PublicService {
       String? search, String? page) async {
     try {
       final response = await dio.get(
-        "${_mainUrl.mainUrl}/prestasi?page=${page}&cp=${search ?? ''}",
+        "${_mainUrl.mainUrl}/prestasi?page=$page&cp=${search ?? ''}",
       );
       if (response.statusCode == 200) {
         am.AchievementModel achievementModel =

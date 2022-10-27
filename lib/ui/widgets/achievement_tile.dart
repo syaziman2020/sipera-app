@@ -5,7 +5,7 @@ class AchievementTile extends StatelessWidget {
   final String title;
   final String born;
   final String imagePeople;
-  AchievementTile({
+  const AchievementTile({
     Key? key,
     required this.title,
     required this.born,
@@ -15,16 +15,16 @@ class AchievementTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(bottom: 15),
+      margin: const EdgeInsets.only(bottom: 15),
       width: double.infinity,
-      padding: EdgeInsets.all(12),
+      padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
         color: whiteC,
         borderRadius: BorderRadius.circular(10),
         boxShadow: [
           BoxShadow(
             color: blackC.withOpacity(0.25),
-            offset: Offset(1, 1),
+            offset: const Offset(1, 1),
             spreadRadius: 1,
             blurRadius: 4,
           ),
@@ -41,8 +41,8 @@ class AchievementTile extends StatelessWidget {
                 height: 111,
                 fadeInCurve: Curves.easeInExpo,
                 fadeOutCurve: Curves.easeOutExpo,
-                placeholder: AssetImage("assets/noimage_portrait.png"),
-                image: NetworkImage('${imagePeople}'),
+                placeholder: const AssetImage("assets/noimage_portrait.png"),
+                image: NetworkImage('$imagePeople'),
                 imageErrorBuilder: (context, error, stackTrace) {
                   return Image.asset(
                     "assets/noimage_portrait.png",
@@ -51,7 +51,7 @@ class AchievementTile extends StatelessWidget {
                 },
                 fit: BoxFit.cover),
           ),
-          SizedBox(
+          const SizedBox(
             width: 10,
           ),
           Expanded(
@@ -66,7 +66,7 @@ class AchievementTile extends StatelessWidget {
                     fontSize: 15,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 5,
                 ),
                 Text(

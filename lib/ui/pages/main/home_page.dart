@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:sipera_app/controllers/public_controller.dart';
-import 'package:sipera_app/routes/route_names.dart';
 import 'package:sipera_app/shared/theme.dart';
 import 'package:sipera_app/ui/widgets/card_achievement.dart';
 import 'package:sipera_app/ui/widgets/card_news.dart';
@@ -16,7 +16,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Widget iconHeader({required String total, required String title}) {
-      return Container(
+      return SizedBox(
         width: 50,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -27,11 +27,11 @@ class HomePage extends StatelessWidget {
               decoration: BoxDecoration(
                 color: whiteC,
                 borderRadius: BorderRadius.circular(10),
-                border: Border.all(color: Color(0xffC4C4C4), width: 1),
+                border: Border.all(color: const Color(0xffC4C4C4), width: 1),
               ),
               child: Center(
                 child: Text(
-                  '${total}',
+                  '$total',
                   style: blackTextStyle.copyWith(
                     fontWeight: semiBold,
                   ),
@@ -76,8 +76,8 @@ class HomePage extends StatelessWidget {
           ),
           title('Statistik'),
           Container(
-            margin: EdgeInsets.fromLTRB(22, 0, 22, 0),
-            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 12),
+            margin: const EdgeInsets.fromLTRB(22, 0, 22, 0),
+            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 12),
             width: double.infinity,
             decoration: cardShadow().copyWith(color: whiteC),
             child: Obx(
@@ -111,21 +111,21 @@ class HomePage extends StatelessWidget {
                       ],
                     );
                   } else {
-                    return SizedBox();
+                    return const SizedBox();
                   }
                 } else {
                   return Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Container(
+                      SizedBox(
                         width: 50,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Shimmer.fromColors(
                               highlightColor: whiteC,
-                              baseColor: Color(0xffE1E1E1),
+                              baseColor: const Color(0xffE1E1E1),
                               child: Container(
                                 width: 50,
                                 height: 50,
@@ -133,7 +133,7 @@ class HomePage extends StatelessWidget {
                                   color: whiteC,
                                   borderRadius: BorderRadius.circular(10),
                                   border: Border.all(
-                                      color: Color(0xffC4C4C4), width: 1),
+                                      color: const Color(0xffC4C4C4), width: 1),
                                 ),
                               ),
                             ),
@@ -141,25 +141,25 @@ class HomePage extends StatelessWidget {
                               height: 4,
                             ),
                             Shimmer.fromColors(
-                              baseColor: Color(0xffE1E1E1),
+                              baseColor: const Color(0xffE1E1E1),
                               highlightColor: whiteC,
                               child: Container(
                                 width: 30,
                                 height: 10,
-                                color: Color(0xffE1E1E1),
+                                color: const Color(0xffE1E1E1),
                               ),
                             )
                           ],
                         ),
                       ),
-                      Container(
+                      SizedBox(
                         width: 50,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Shimmer.fromColors(
                               highlightColor: whiteC,
-                              baseColor: Color(0xffE1E1E1),
+                              baseColor: const Color(0xffE1E1E1),
                               child: Container(
                                 width: 50,
                                 height: 50,
@@ -167,7 +167,7 @@ class HomePage extends StatelessWidget {
                                   color: whiteC,
                                   borderRadius: BorderRadius.circular(10),
                                   border: Border.all(
-                                      color: Color(0xffC4C4C4), width: 1),
+                                      color: const Color(0xffC4C4C4), width: 1),
                                 ),
                               ),
                             ),
@@ -175,25 +175,25 @@ class HomePage extends StatelessWidget {
                               height: 4,
                             ),
                             Shimmer.fromColors(
-                              baseColor: Color(0xffE1E1E1),
+                              baseColor: const Color(0xffE1E1E1),
                               highlightColor: whiteC,
                               child: Container(
                                 width: 30,
                                 height: 10,
-                                color: Color(0xffE1E1E1),
+                                color: const Color(0xffE1E1E1),
                               ),
                             )
                           ],
                         ),
                       ),
-                      Container(
+                      SizedBox(
                         width: 50,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Shimmer.fromColors(
                               highlightColor: whiteC,
-                              baseColor: Color(0xffE1E1E1),
+                              baseColor: const Color(0xffE1E1E1),
                               child: Container(
                                 width: 50,
                                 height: 50,
@@ -201,7 +201,7 @@ class HomePage extends StatelessWidget {
                                   color: whiteC,
                                   borderRadius: BorderRadius.circular(10),
                                   border: Border.all(
-                                      color: Color(0xffC4C4C4), width: 1),
+                                      color: const Color(0xffC4C4C4), width: 1),
                                 ),
                               ),
                             ),
@@ -209,25 +209,25 @@ class HomePage extends StatelessWidget {
                               height: 4,
                             ),
                             Shimmer.fromColors(
-                              baseColor: Color(0xffE1E1E1),
+                              baseColor: const Color(0xffE1E1E1),
                               highlightColor: whiteC,
                               child: Container(
                                 width: 30,
                                 height: 10,
-                                color: Color(0xffE1E1E1),
+                                color: const Color(0xffE1E1E1),
                               ),
                             )
                           ],
                         ),
                       ),
-                      Container(
+                      SizedBox(
                         width: 50,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Shimmer.fromColors(
                               highlightColor: whiteC,
-                              baseColor: Color(0xffE1E1E1),
+                              baseColor: const Color(0xffE1E1E1),
                               child: Container(
                                 width: 50,
                                 height: 50,
@@ -235,7 +235,7 @@ class HomePage extends StatelessWidget {
                                   color: whiteC,
                                   borderRadius: BorderRadius.circular(10),
                                   border: Border.all(
-                                      color: Color(0xffC4C4C4), width: 1),
+                                      color: const Color(0xffC4C4C4), width: 1),
                                 ),
                               ),
                             ),
@@ -243,12 +243,12 @@ class HomePage extends StatelessWidget {
                               height: 4,
                             ),
                             Shimmer.fromColors(
-                              baseColor: Color(0xffE1E1E1),
+                              baseColor: const Color(0xffE1E1E1),
                               highlightColor: whiteC,
                               child: Container(
                                 width: 30,
                                 height: 10,
-                                color: Color(0xffE1E1E1),
+                                color: const Color(0xffE1E1E1),
                               ),
                             )
                           ],
@@ -279,8 +279,9 @@ class HomePage extends StatelessWidget {
                     constraints:
                         BoxConstraints(maxHeight: 300, maxWidth: Get.width),
                     child: ListView.builder(
-                      physics: ClampingScrollPhysics(),
-                      padding: EdgeInsets.only(left: 22, top: 4, bottom: 5),
+                      physics: const ClampingScrollPhysics(),
+                      padding:
+                          const EdgeInsets.only(left: 22, top: 4, bottom: 5),
                       scrollDirection: Axis.horizontal,
                       shrinkWrap: true,
                       itemCount: 5,
@@ -290,7 +291,7 @@ class HomePage extends StatelessWidget {
                             Get.to(
                               () => DetailNews(
                                   date:
-                                      '${publicC.listArticle![index].tanggal!.split('-').reversed.join('/')}}',
+                                      '${DateFormat("d MMMM yyyy").format(DateTime.parse(publicC.listArticle![index].tanggal!))}',
                                   id: publicC.listArticle![index].id!,
                                   description:
                                       '${publicC.listArticle![index].isiArtikel}',
@@ -300,8 +301,10 @@ class HomePage extends StatelessWidget {
                                       '${publicC.listArticle![index].judul}'),
                             );
                           },
-                          imageUrl: '${publicC.listArticle![index].imgArtikel}',
-                          date: '${publicC.listArticle![index].tanggal}',
+                          imageUrl:
+                              '${(publicC.listArticle![index].imgArtikel)}',
+                          date:
+                              '${publicC.listArticle![index].tanggal!.split('-').reversed.join('/')}',
                           title: '${publicC.listArticle![index].judul}',
                         );
                       },
@@ -323,22 +326,22 @@ class HomePage extends StatelessWidget {
                   constraints:
                       BoxConstraints(maxHeight: 300, maxWidth: Get.width),
                   child: SingleChildScrollView(
-                    padding: EdgeInsets.only(left: 22, top: 4, bottom: 5),
+                    padding: const EdgeInsets.only(left: 22, top: 4, bottom: 5),
                     scrollDirection: Axis.horizontal,
-                    physics: NeverScrollableScrollPhysics(),
+                    physics: const NeverScrollableScrollPhysics(),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
                           width: 250,
                           height: 295,
-                          margin: EdgeInsets.only(right: 20),
-                          padding: EdgeInsets.all(10),
+                          margin: const EdgeInsets.only(right: 20),
+                          padding: const EdgeInsets.all(10),
                           decoration: cardShadow().copyWith(
                             boxShadow: [
                               BoxShadow(
                                 color: blackC.withOpacity(0.25),
-                                offset: Offset(1, 1),
+                                offset: const Offset(1, 1),
                                 blurRadius: 4,
                                 spreadRadius: 1,
                               )
@@ -348,13 +351,13 @@ class HomePage extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Shimmer.fromColors(
-                                baseColor: Color(0xffe1e1e1),
+                                baseColor: const Color(0xffe1e1e1),
                                 highlightColor: whiteC,
                                 child: Container(
                                   height: 163,
                                   width: double.infinity,
                                   decoration: BoxDecoration(
-                                    color: Color(0xffe1e1e1),
+                                    color: const Color(0xffe1e1e1),
                                     borderRadius: BorderRadius.circular(9),
                                   ),
                                 ),
@@ -363,49 +366,49 @@ class HomePage extends StatelessWidget {
                                 height: 5,
                               ),
                               Shimmer.fromColors(
-                                baseColor: Color(0xffE1E1E1),
+                                baseColor: const Color(0xffE1E1E1),
                                 highlightColor: whiteC,
                                 child: Container(
                                   width: 60,
                                   height: 14,
-                                  color: Color(0xffE1E1E1),
+                                  color: const Color(0xffE1E1E1),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 4,
                               ),
                               Shimmer.fromColors(
-                                baseColor: Color(0xffE1E1E1),
+                                baseColor: const Color(0xffE1E1E1),
                                 highlightColor: whiteC,
                                 child: Container(
                                   width: 100,
                                   height: 14,
-                                  color: Color(0xffE1E1E1),
+                                  color: const Color(0xffE1E1E1),
                                 ),
                               ),
-                              Spacer(),
+                              const Spacer(),
                               Row(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Shimmer.fromColors(
-                                    baseColor: Color(0xffE1E1E1),
+                                    baseColor: const Color(0xffE1E1E1),
                                     highlightColor: whiteC,
                                     child: Container(
                                       width: 14,
                                       height: 14,
-                                      color: Color(0xffE1E1E1),
+                                      color: const Color(0xffE1E1E1),
                                     ),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 5,
                                   ),
                                   Shimmer.fromColors(
-                                    baseColor: Color(0xffE1E1E1),
+                                    baseColor: const Color(0xffE1E1E1),
                                     highlightColor: whiteC,
                                     child: Container(
                                       width: 60,
                                       height: 12,
-                                      color: Color(0xffE1E1E1),
+                                      color: const Color(0xffE1E1E1),
                                     ),
                                   )
                                 ],
@@ -416,13 +419,13 @@ class HomePage extends StatelessWidget {
                         Container(
                           width: 250,
                           height: 295,
-                          margin: EdgeInsets.only(right: 20),
-                          padding: EdgeInsets.all(10),
+                          margin: const EdgeInsets.only(right: 20),
+                          padding: const EdgeInsets.all(10),
                           decoration: cardShadow().copyWith(
                             boxShadow: [
                               BoxShadow(
                                 color: blackC.withOpacity(0.25),
-                                offset: Offset(1, 1),
+                                offset: const Offset(1, 1),
                                 blurRadius: 4,
                                 spreadRadius: 1,
                               )
@@ -432,13 +435,13 @@ class HomePage extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Shimmer.fromColors(
-                                baseColor: Color(0xffe1e1e1),
+                                baseColor: const Color(0xffe1e1e1),
                                 highlightColor: whiteC,
                                 child: Container(
                                   height: 163,
                                   width: double.infinity,
                                   decoration: BoxDecoration(
-                                    color: Color(0xffe1e1e1),
+                                    color: const Color(0xffe1e1e1),
                                     borderRadius: BorderRadius.circular(9),
                                   ),
                                 ),
@@ -447,49 +450,49 @@ class HomePage extends StatelessWidget {
                                 height: 5,
                               ),
                               Shimmer.fromColors(
-                                baseColor: Color(0xffE1E1E1),
+                                baseColor: const Color(0xffE1E1E1),
                                 highlightColor: whiteC,
                                 child: Container(
                                   width: 60,
                                   height: 14,
-                                  color: Color(0xffE1E1E1),
+                                  color: const Color(0xffE1E1E1),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 4,
                               ),
                               Shimmer.fromColors(
-                                baseColor: Color(0xffE1E1E1),
+                                baseColor: const Color(0xffE1E1E1),
                                 highlightColor: whiteC,
                                 child: Container(
                                   width: 80,
                                   height: 14,
-                                  color: Color(0xffE1E1E1),
+                                  color: const Color(0xffE1E1E1),
                                 ),
                               ),
-                              Spacer(),
+                              const Spacer(),
                               Row(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Shimmer.fromColors(
-                                    baseColor: Color(0xffE1E1E1),
+                                    baseColor: const Color(0xffE1E1E1),
                                     highlightColor: whiteC,
                                     child: Container(
                                       width: 14,
                                       height: 14,
-                                      color: Color(0xffE1E1E1),
+                                      color: const Color(0xffE1E1E1),
                                     ),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 5,
                                   ),
                                   Shimmer.fromColors(
-                                    baseColor: Color(0xffE1E1E1),
+                                    baseColor: const Color(0xffE1E1E1),
                                     highlightColor: whiteC,
                                     child: Container(
                                       width: 60,
                                       height: 12,
-                                      color: Color(0xffE1E1E1),
+                                      color: const Color(0xffE1E1E1),
                                     ),
                                   )
                                 ],
@@ -523,7 +526,7 @@ class HomePage extends StatelessWidget {
               if (publicC.achievementResult!.value.results!.prestasi!.data!
                   .isNotEmpty) {
                 return ListView.builder(
-                  physics: NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   scrollDirection: Axis.vertical,
                   shrinkWrap: true,
                   itemCount: 5,
@@ -569,18 +572,19 @@ class HomePage extends StatelessWidget {
               }
             } else {
               return ListView.builder(
-                  physics: NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   scrollDirection: Axis.vertical,
                   shrinkWrap: true,
                   itemCount: 5,
                   itemBuilder: (context, index) {
                     return Container(
-                      margin: EdgeInsets.fromLTRB(22, 0, 22, 10),
-                      padding: EdgeInsets.all(9),
+                      margin: const EdgeInsets.fromLTRB(22, 0, 22, 10),
+                      padding: const EdgeInsets.all(9),
                       width: double.infinity,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
-                        border: Border.all(color: Color(0xffE0E0E0), width: 1),
+                        border: Border.all(
+                            color: const Color(0xffE0E0E0), width: 1),
                       ),
                       child: Row(
                         children: [
@@ -588,7 +592,7 @@ class HomePage extends StatelessWidget {
                             width: 52,
                             height: 56,
                             decoration: BoxDecoration(
-                              color: Color(0xffe1e1e1),
+                              color: const Color(0xffe1e1e1),
                               borderRadius: BorderRadius.circular(6),
                             ),
                           ),
@@ -599,24 +603,24 @@ class HomePage extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Shimmer.fromColors(
-                                baseColor: Color(0xffE1E1E1),
+                                baseColor: const Color(0xffE1E1E1),
                                 highlightColor: whiteC,
                                 child: Container(
                                   width: 120,
                                   height: 12,
-                                  color: Color(0xffE1E1E1),
+                                  color: const Color(0xffE1E1E1),
                                 ),
                               ),
                               const SizedBox(
                                 height: 6,
                               ),
                               Shimmer.fromColors(
-                                baseColor: Color(0xffE1E1E1),
+                                baseColor: const Color(0xffE1E1E1),
                                 highlightColor: whiteC,
                                 child: Container(
                                   width: 60,
                                   height: 10,
-                                  color: Color(0xffE1E1E1),
+                                  color: const Color(0xffE1E1E1),
                                 ),
                               ),
                             ],
@@ -652,9 +656,9 @@ class HomePage extends StatelessWidget {
               title: 'Gagal!!',
               titleStyle:
                   blackTextStyle.copyWith(fontWeight: semiBold, fontSize: 18),
-              titlePadding: EdgeInsets.only(top: 15, bottom: 20),
+              titlePadding: const EdgeInsets.only(top: 15, bottom: 20),
               radius: 10,
-              contentPadding: EdgeInsets.symmetric(horizontal: 22),
+              contentPadding: const EdgeInsets.symmetric(horizontal: 22),
               content: Column(
                 children: [
                   Image.asset(
@@ -673,7 +677,7 @@ class HomePage extends StatelessWidget {
                 ],
               ),
               confirm: Container(
-                margin: EdgeInsets.only(bottom: 15),
+                margin: const EdgeInsets.only(bottom: 15),
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
@@ -681,7 +685,7 @@ class HomePage extends StatelessWidget {
                   },
                   style: buttonStyle().copyWith(
                     padding: MaterialStateProperty.all(
-                      EdgeInsets.symmetric(vertical: 13),
+                      const EdgeInsets.symmetric(vertical: 13),
                     ),
                   ),
                   child: Text(
@@ -698,8 +702,8 @@ class HomePage extends StatelessWidget {
         },
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
-          physics: AlwaysScrollableScrollPhysics(),
-          padding: EdgeInsets.only(bottom: 10),
+          physics: const AlwaysScrollableScrollPhysics(),
+          padding: const EdgeInsets.only(bottom: 10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

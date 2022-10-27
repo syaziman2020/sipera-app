@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 
 import 'package:sipera_app/models/admin/login_model.dart' as login;
@@ -54,6 +55,8 @@ class AuthController extends GetxController {
   RxDouble jumlah = 0.0.obs;
   RxDouble jumlahUmur = 0.0.obs;
 
+  RxString errorMessage = ''.obs;
+
   RxInt jumlahJanAtlet = 0.obs;
   RxInt jumlahFebAtlet = 0.obs;
   RxInt jumlahMarAtlet = 0.obs;
@@ -87,6 +90,8 @@ class AuthController extends GetxController {
   loginController(String email, String pass) async {
     try {
       if (email == "" || pass == "") {
+        errorMessage(
+            'Terjadi kesalahan, silakan periksa kembali email dan password anda');
         return;
       }
       login.LoginModel? loginModel =
@@ -97,8 +102,12 @@ class AuthController extends GetxController {
       } else {
         userLogin?.value = loginModel;
 
-        print('xx');
-        print(userLogin!.value.results!.name);
+        if (kDebugMode) {
+          print('xx');
+        }
+        if (kDebugMode) {
+          print(userLogin!.value.results!.name);
+        }
         await getGraphicTotal();
         await getGraphicAchievement();
         await getGraphicAtlet();
@@ -136,17 +145,22 @@ class AuthController extends GetxController {
                 graphicTotalModel.results!.guru!)
             .toDouble();
 
-        print(jumlah);
+        if (kDebugMode) {
+          print(jumlah);
+        }
         // graphicTotalSuccess.value = true;
       }
     } catch (e) {
+      errorMessage('Terjadi kesalahan, silakan periksa koneksi internet anda');
       rethrow;
     }
   }
 
   Future getGraphicAtlet() async {
     try {
-      print('lllll');
+      if (kDebugMode) {
+        print('lllll');
+      }
       gralet.GraphicAtlet? graphicAtletModel =
           await GraphicService().getGraphicAtlet();
 
@@ -188,7 +202,9 @@ class AuthController extends GetxController {
           for (var atlet in listMeiAtlet) {
             jumlahMayAtlet += int.parse(atlet.total!);
           }
-          print(jumlahMayAtlet);
+          if (kDebugMode) {
+            print(jumlahMayAtlet);
+          }
         }
         if (graphicAtletModel.results!.jun!.isNotEmpty) {
           RxList<gralet.Jun>? listJunAtlet = <gralet.Jun>[].obs;
@@ -210,7 +226,9 @@ class AuthController extends GetxController {
           for (var atlet in listAugAtlet) {
             jumlahAugAtlet += int.parse(atlet.total!);
           }
-          print(jumlahAugAtlet);
+          if (kDebugMode) {
+            print(jumlahAugAtlet);
+          }
         }
         if (graphicAtletModel.results!.sep!.isNotEmpty) {
           RxList<gralet.Sep>? listSepAtlet = <gralet.Sep>[].obs;
@@ -218,7 +236,9 @@ class AuthController extends GetxController {
           for (var atlet in listSepAtlet) {
             jumlahSepAtlet += int.parse(atlet.total!);
           }
-          print(jumlahSepAtlet);
+          if (kDebugMode) {
+            print(jumlahSepAtlet);
+          }
         }
         if (graphicAtletModel.results!.okt!.isNotEmpty) {
           RxList<gralet.Okt>? listOctAtlet = <gralet.Okt>[].obs;
@@ -247,12 +267,10 @@ class AuthController extends GetxController {
             .toDouble();
         if (graphicAtletModel.results!.perTahun!.isNotEmpty) {
           listGraphAtlet!.value = graphicAtletModel.results!.perTahun!;
-          print('============');
-          print(listGraphAtlet!.value.first.tahun);
-          print(listGraphAtlet!.value.length);
         }
       }
     } catch (e) {
+      errorMessage('Terjadi kesalahan, silakan periksa koneksi internet anda');
       rethrow;
     }
   }
@@ -358,6 +376,7 @@ class AuthController extends GetxController {
         }
       }
     } catch (e) {
+      errorMessage('Terjadi kesalahan, silakan periksa koneksi internet anda');
       rethrow;
     }
   }
@@ -373,10 +392,12 @@ class AuthController extends GetxController {
           listCabor?.value = atletModel.results!.totalAtletPerCabor!;
         }
 
-        print('yy');
-        print(atletAdmin!.value.status);
+        if (kDebugMode) {
+          print(atletAdmin!.value.status);
+        }
       }
     } catch (e) {
+      errorMessage('Terjadi kesalahan, silakan periksa koneksi internet anda');
       rethrow;
     }
   }
@@ -394,6 +415,7 @@ class AuthController extends GetxController {
         }
       }
     } catch (e) {
+      errorMessage('Terjadi kesalahan, silakan periksa koneksi internet anda');
       rethrow;
     }
   }
@@ -412,6 +434,7 @@ class AuthController extends GetxController {
         }
       }
     } catch (e) {
+      errorMessage('Terjadi kesalahan, silakan periksa koneksi internet anda');
       rethrow;
     }
   }
@@ -430,6 +453,7 @@ class AuthController extends GetxController {
         }
       }
     } catch (e) {
+      errorMessage('Terjadi kesalahan, silakan periksa koneksi internet anda');
       rethrow;
     }
   }
@@ -448,6 +472,7 @@ class AuthController extends GetxController {
         }
       }
     } catch (e) {
+      errorMessage('Terjadi kesalahan, silakan periksa koneksi internet anda');
       rethrow;
     }
   }
@@ -461,11 +486,9 @@ class AuthController extends GetxController {
         return;
       } else {
         achievementAdmin?.value = achievementModel;
-        print(achievementModel.results!.totalPrestasi);
-        print('000');
-        print(achievementAdmin!.value.results!.totalPrestasi);
       }
     } catch (e) {
+      errorMessage('Terjadi kesalahan, silakan periksa koneksi internet anda');
       rethrow;
     }
   }

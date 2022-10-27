@@ -150,7 +150,7 @@ class GraphicAchievement extends StatelessWidget {
 
                                     default:
                                   }
-                                  return SizedBox();
+                                  return const SizedBox();
                                 },
                               ),
                             ),
@@ -268,7 +268,7 @@ class GraphicAchievement extends StatelessWidget {
                         ),
                       );
                     } else {
-                      return SizedBox();
+                      return const SizedBox();
                     }
                   }),
                 ),
@@ -284,7 +284,7 @@ class GraphicAchievement extends StatelessWidget {
               AspectRatio(
                 aspectRatio: 0.8,
                 child: Padding(
-                  padding: EdgeInsets.only(right: 22),
+                  padding: const EdgeInsets.only(right: 22),
                   child: BarChart(
                     BarChartData(
                       gridData: FlGridData(

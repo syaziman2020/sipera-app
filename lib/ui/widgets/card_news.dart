@@ -23,13 +23,13 @@ class CardNews extends StatelessWidget {
       child: Container(
         width: 250,
         height: 295,
-        margin: EdgeInsets.only(right: 20),
-        padding: EdgeInsets.all(10),
+        margin: const EdgeInsets.only(right: 20),
+        padding: const EdgeInsets.all(10),
         decoration: cardShadow().copyWith(
           boxShadow: [
             BoxShadow(
               color: blackC.withOpacity(0.25),
-              offset: Offset(1, 1),
+              offset: const Offset(1, 1),
               blurRadius: 4,
               spreadRadius: 1,
             )
@@ -45,8 +45,9 @@ class CardNews extends StatelessWidget {
                   width: double.infinity,
                   fadeInCurve: Curves.easeInExpo,
                   fadeOutCurve: Curves.easeOutExpo,
-                  placeholder: AssetImage("assets/no_image_available.webp"),
-                  image: NetworkImage('${imageUrl}'),
+                  placeholder:
+                      const AssetImage("assets/no_image_available.webp"),
+                  image: NetworkImage('$imageUrl'),
                   imageErrorBuilder: (context, error, stackTrace) {
                     return Image.asset(
                       "assets/no_image_available.webp",
@@ -70,15 +71,15 @@ class CardNews extends StatelessWidget {
                 fontWeight: medium,
               ),
             ),
-            Spacer(),
+            const Spacer(),
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Icon(
+                const Icon(
                   Icons.calendar_month_rounded,
                   size: 20,
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 5,
                 ),
                 Text(

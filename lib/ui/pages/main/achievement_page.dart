@@ -8,7 +8,7 @@ import '../../../shared/theme.dart';
 import '../../widgets/card_achievement.dart';
 
 class AchievementPage extends StatefulWidget {
-  AchievementPage({Key? key}) : super(key: key);
+  const AchievementPage({Key? key}) : super(key: key);
 
   @override
   State<AchievementPage> createState() => _AchievementPageState();
@@ -21,8 +21,6 @@ class _AchievementPageState extends State<AchievementPage> {
 
   final _scrollController = ScrollController();
 
-  final _scrollAntrianController = ScrollController();
-
   bool onLoad = false;
 
   @override
@@ -32,7 +30,7 @@ class _AchievementPageState extends State<AchievementPage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            margin: EdgeInsets.fromLTRB(22, 15, 22, 10),
+            margin: const EdgeInsets.fromLTRB(22, 15, 22, 10),
             child: TextFormField(
               controller: searchController,
               cursorColor: greenCA,
@@ -56,7 +54,7 @@ class _AchievementPageState extends State<AchievementPage> {
                         height: 24,
                       ),
                       Container(
-                        margin: EdgeInsets.only(left: 10, right: 5),
+                        margin: const EdgeInsets.only(left: 10, right: 5),
                         height: 24,
                         width: 1,
                         color: greenCA,
@@ -94,14 +92,14 @@ class _AchievementPageState extends State<AchievementPage> {
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 15,
           ),
-          Divider(
+          const Divider(
             color: Color(0xffE0E0E0),
             thickness: 1,
           ),
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
           Expanded(
@@ -125,13 +123,10 @@ class _AchievementPageState extends State<AchievementPage> {
                           searchController.clear();
                           onLoad = false;
                           await publicC.getAchievementData('', '1');
-                          print('gggg');
-                          print(
-                              '${publicC.achievementResult!.value.results!.prestasi!.data![0].atlet!.foto!.substring(57, publicC.achievementResult!.value.results!.prestasi!.data![0].atlet!.foto!.length)}');
                         },
                         child: SingleChildScrollView(
                           controller: _scrollController,
-                          physics: AlwaysScrollableScrollPhysics(),
+                          physics: const AlwaysScrollableScrollPhysics(),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -149,8 +144,7 @@ class _AchievementPageState extends State<AchievementPage> {
                                                 '${e.atlet!.tempatLahir}',
                                             name: '${e.atlet!.nama}',
                                             imageUrlAchieve: '${e.foto}',
-                                            imageUrlAtlet:
-                                                '${e.atlet!.foto!.substring(57, e.atlet!.foto!.length)}',
+                                            imageUrlAtlet: '${e.atlet!.foto}',
                                             date:
                                                 '${e.atlet!.tanggalLahir!.split('-').reversed.join('/')}',
                                             category: '${e.cabor!.namaCabor}',
@@ -173,7 +167,7 @@ class _AchievementPageState extends State<AchievementPage> {
                                       ),
                                     )
                                   : const SizedBox.shrink(),
-                              SizedBox(
+                              const SizedBox(
                                 height: 15,
                               )
                             ],

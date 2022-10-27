@@ -6,7 +6,7 @@ class CardStatistic extends StatelessWidget {
   final int total;
   final String category;
   final Color color;
-  CardStatistic(
+  const CardStatistic(
       {Key? key,
       required this.category,
       this.total = 0,
@@ -28,10 +28,10 @@ class CardStatistic extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
-                  margin: EdgeInsets.only(right: 8),
+                  margin: const EdgeInsets.only(right: 8),
                   width: 24,
                   height: 24,
-                  padding: EdgeInsets.all(3.5),
+                  padding: const EdgeInsets.all(3.5),
                   decoration: BoxDecoration(
                     border: Border.all(
                       color: whiteC,

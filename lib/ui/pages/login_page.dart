@@ -186,9 +186,9 @@ class LoginPage extends StatelessWidget {
                   title: 'Gagal!!',
                   titleStyle: blackTextStyle.copyWith(
                       fontWeight: semiBold, fontSize: 18),
-                  titlePadding: EdgeInsets.only(top: 15, bottom: 20),
+                  titlePadding: const EdgeInsets.only(top: 15, bottom: 20),
                   radius: 10,
-                  contentPadding: EdgeInsets.symmetric(horizontal: 22),
+                  contentPadding: const EdgeInsets.symmetric(horizontal: 22),
                   content: Column(
                     children: [
                       Image.asset(
@@ -200,14 +200,14 @@ class LoginPage extends StatelessWidget {
                         height: 20,
                       ),
                       Text(
-                        'Silakan cek kembali data yang anda masukkan',
+                        '${loginC.errorMessage}',
                         textAlign: TextAlign.center,
                         style: greyTextStyle.copyWith(fontSize: 13),
                       ),
                     ],
                   ),
                   confirm: Container(
-                    margin: EdgeInsets.only(bottom: 15),
+                    margin: const EdgeInsets.only(bottom: 15),
                     width: double.infinity,
                     child: ElevatedButton(
                       onPressed: () {
@@ -215,7 +215,7 @@ class LoginPage extends StatelessWidget {
                       },
                       style: buttonStyle().copyWith(
                         padding: MaterialStateProperty.all(
-                          EdgeInsets.symmetric(vertical: 13),
+                          const EdgeInsets.symmetric(vertical: 13),
                         ),
                       ),
                       child: Text(

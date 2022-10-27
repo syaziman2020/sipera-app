@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:sipera_app/models/public/achievement_model.dart' as am;
 import 'package:sipera_app/models/public/article_model.dart' as arm;
@@ -30,11 +31,17 @@ class PublicController extends GetxController {
       isDone = false.obs;
       await getStatisticSports();
       await getArticleData('', '1');
-      print('berhasil 1');
+      if (kDebugMode) {
+        print('berhasil 1');
+      }
       await getEventData('', '1');
-      print('berhasil 2');
+      if (kDebugMode) {
+        print('berhasil 2');
+      }
       await getAchievementData('', '1');
-      print('berhasil finish');
+      if (kDebugMode) {
+        print('berhasil finish');
+      }
       isDone = true.obs;
     } catch (e) {
       isDone = false.obs;
@@ -54,7 +61,7 @@ class PublicController extends GetxController {
         statisticStatus.value = true;
       }
     } catch (e) {
-      rethrow;
+      statisticStatus.value = false;
     }
   }
 
@@ -73,7 +80,7 @@ class PublicController extends GetxController {
         articleStatus.value = true;
       }
     } catch (e) {
-      rethrow;
+      articleStatus.value = false;
     }
   }
 
@@ -92,7 +99,7 @@ class PublicController extends GetxController {
         eventStatus.value = true;
       }
     } catch (e) {
-      rethrow;
+      eventStatus.value = false;
     }
   }
 
@@ -117,7 +124,7 @@ class PublicController extends GetxController {
         }
       }
     } catch (e) {
-      rethrow;
+      articleFetchStatus.value = false;
     }
   }
 
@@ -136,8 +143,7 @@ class PublicController extends GetxController {
           currentPage.value = eventModel.results!.event!.currentPage!;
           lastPage.value = eventModel.results!.event!.lastPage!;
 
-          RxList<em.Data>? listNewEvent =
-              listEvent! + eventModel.results!.event!.data!;
+          listEvent = listEvent! + eventModel.results!.event!.data!;
 
           eventFetchStatus.value = true;
         }

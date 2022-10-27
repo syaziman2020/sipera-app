@@ -11,7 +11,7 @@ class DetailEvent extends StatelessWidget {
   final String location;
   final String imageUrl;
 
-  DetailEvent({
+  const DetailEvent({
     Key? key,
     required this.title,
     required this.date,
@@ -31,7 +31,7 @@ class DetailEvent extends StatelessWidget {
             Container(
               width: Get.width,
               height: Get.height * 0.85,
-              decoration: BoxDecoration(),
+              decoration: const BoxDecoration(),
               child: Stack(
                 children: [
                   SizedBox(
@@ -39,8 +39,9 @@ class DetailEvent extends StatelessWidget {
                     child: FadeInImage(
                         fadeInCurve: Curves.easeInExpo,
                         fadeOutCurve: Curves.easeOutExpo,
-                        placeholder: AssetImage("assets/noimage_portrait.png"),
-                        image: NetworkImage('${imageUrl}'),
+                        placeholder:
+                            const AssetImage("assets/noimage_portrait.png"),
+                        image: NetworkImage('$imageUrl'),
                         imageErrorBuilder: (context, error, stackTrace) {
                           return Image.asset(
                             "assets/noimage_portrait.png",
@@ -50,7 +51,7 @@ class DetailEvent extends StatelessWidget {
                         fit: BoxFit.cover),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(top: 35, left: 20),
+                    padding: const EdgeInsets.only(top: 35, left: 20),
                     child: Align(
                       alignment: Alignment.topLeft,
                       child: GestureDetector(
@@ -66,7 +67,7 @@ class DetailEvent extends StatelessWidget {
                             boxShadow: [
                               BoxShadow(
                                   color: blackC.withOpacity(0.25),
-                                  offset: Offset(1, 1),
+                                  offset: const Offset(1, 1),
                                   spreadRadius: 1,
                                   blurRadius: 1),
                             ],
@@ -85,7 +86,7 @@ class DetailEvent extends StatelessWidget {
               children: [
                 SizedBox(height: Get.height * 0.82),
                 Container(
-                  padding: EdgeInsets.all(22),
+                  padding: const EdgeInsets.all(22),
                   width: double.infinity,
                   decoration: BoxDecoration(
                     color: whiteC,
@@ -98,7 +99,7 @@ class DetailEvent extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        '${title}',
+                        '$title',
                         style: blackTextStyle.copyWith(
                           fontSize: 20,
                           fontWeight: medium,
@@ -114,11 +115,11 @@ class DetailEvent extends StatelessWidget {
                             color: greenCB,
                             size: 20,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 5,
                           ),
                           Text(
-                            '${location}',
+                            '$location',
                             style: greenTextStyle.copyWith(
                               fontSize: 16,
                               fontWeight: medium,
@@ -132,7 +133,7 @@ class DetailEvent extends StatelessWidget {
                         children: [
                           Row(
                             children: [
-                              Icon(
+                              const Icon(
                                 Icons.schedule,
                                 size: 20,
                               ),
@@ -141,23 +142,23 @@ class DetailEvent extends StatelessWidget {
                                 '${timeBegin} WIB - ${timeEnd} WIB',
                                 style: greyTextStyle.copyWith(
                                   fontSize: 13,
-                                  color: Color(0xff4F4F4F),
+                                  color: const Color(0xff4F4F4F),
                                 ),
                               ),
                             ],
                           ),
                           Row(
                             children: [
-                              Icon(
+                              const Icon(
                                 Icons.calendar_month,
                                 size: 20,
                               ),
                               const SizedBox(width: 5),
                               Text(
-                                '${date}',
+                                '$date',
                                 style: greyTextStyle.copyWith(
                                   fontSize: 13,
-                                  color: Color(0xff4F4F4F),
+                                  color: const Color(0xff4F4F4F),
                                 ),
                               ),
                             ],

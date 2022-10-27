@@ -20,11 +20,11 @@ class MainPage extends StatelessWidget {
         case 0:
           return HomePage();
         case 1:
-          return AchievementPage();
+          return const AchievementPage();
         case 2:
-          return NewsPage();
+          return const NewsPage();
         case 3:
-          return EventPage();
+          return const EventPage();
         default:
           return HomePage();
       }

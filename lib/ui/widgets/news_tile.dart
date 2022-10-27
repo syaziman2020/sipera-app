@@ -9,7 +9,7 @@ class NewsTile extends StatelessWidget {
   final String imageurl;
   final String title;
   final Function() onTap;
-  NewsTile({
+  const NewsTile({
     Key? key,
     required this.date,
     required this.id,
@@ -24,9 +24,9 @@ class NewsTile extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          margin: EdgeInsets.only(top: 12, bottom: 12),
+          margin: const EdgeInsets.only(top: 12, bottom: 12),
           width: double.infinity,
-          color: Color(0xffE0E0E0),
+          color: const Color(0xffE0E0E0),
           height: 1,
         ),
         InkWell(
@@ -39,7 +39,7 @@ class NewsTile extends StatelessWidget {
               children: [
                 Expanded(
                   child: Container(
-                    padding: EdgeInsets.only(bottom: 2),
+                    padding: const EdgeInsets.only(bottom: 2),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -82,7 +82,8 @@ class NewsTile extends StatelessWidget {
                       width: 100,
                       fadeInCurve: Curves.easeInExpo,
                       fadeOutCurve: Curves.easeOutExpo,
-                      placeholder: AssetImage("assets/no_image_available.webp"),
+                      placeholder:
+                          const AssetImage("assets/no_image_available.webp"),
                       image: NetworkImage(imageurl),
                       imageErrorBuilder: (context, error, stackTrace) {
                         return Image.asset(

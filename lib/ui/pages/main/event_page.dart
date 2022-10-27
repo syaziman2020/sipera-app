@@ -1,17 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:sipera_app/controllers/public_controller.dart';
-import 'package:sipera_app/routes/route_names.dart';
 import 'package:sipera_app/shared/theme.dart';
 import 'package:sipera_app/ui/pages/detail_event_page.dart';
 import 'package:sipera_app/ui/widgets/event_tile.dart';
 
 import 'package:get/get.dart';
-import '../../widgets/button_filter.dart';
-import 'package:get/get.dart';
 
 class EventPage extends StatefulWidget {
-  EventPage({Key? key}) : super(key: key);
+  const EventPage({Key? key}) : super(key: key);
 
   @override
   State<EventPage> createState() => _EventPageState();
@@ -24,8 +20,6 @@ class _EventPageState extends State<EventPage> {
 
   final _scrollController = ScrollController();
 
-  final _scrollAntrianController = ScrollController();
-
   bool onLoad = false;
 
   @override
@@ -34,7 +28,7 @@ class _EventPageState extends State<EventPage> {
       child: Column(
         children: [
           Container(
-            margin: EdgeInsets.fromLTRB(22, 15, 22, 10),
+            margin: const EdgeInsets.fromLTRB(22, 15, 22, 10),
             child: TextFormField(
               controller: searchController,
               cursorColor: greenCA,
@@ -58,7 +52,7 @@ class _EventPageState extends State<EventPage> {
                         height: 24,
                       ),
                       Container(
-                        margin: EdgeInsets.only(left: 10, right: 5),
+                        margin: const EdgeInsets.only(left: 10, right: 5),
                         height: 24,
                         width: 1,
                         color: greenCA,
@@ -96,14 +90,14 @@ class _EventPageState extends State<EventPage> {
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 15,
           ),
-          Divider(
+          const Divider(
             color: Color(0xffE0E0E0),
             thickness: 1,
           ),
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
           Expanded(
@@ -174,7 +168,7 @@ class _EventPageState extends State<EventPage> {
                                     ),
                                   )
                                 : const SizedBox.shrink(),
-                            SizedBox(
+                            const SizedBox(
                               height: 15,
                             ),
                           ],
