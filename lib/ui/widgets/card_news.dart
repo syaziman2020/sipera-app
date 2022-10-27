@@ -40,12 +40,20 @@ class CardNews extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(9),
-              child: Image.network(
-                imageUrl,
-                width: double.infinity,
-                fit: BoxFit.cover,
-                height: 163,
-              ),
+              child: FadeInImage(
+                  height: 163,
+                  width: double.infinity,
+                  fadeInCurve: Curves.easeInExpo,
+                  fadeOutCurve: Curves.easeOutExpo,
+                  placeholder: AssetImage("assets/no_image_available.webp"),
+                  image: NetworkImage('${imageUrl}'),
+                  imageErrorBuilder: (context, error, stackTrace) {
+                    return Image.asset(
+                      "assets/no_image_available.webp",
+                      fit: BoxFit.cover,
+                    );
+                  },
+                  fit: BoxFit.cover),
             ),
             const SizedBox(
               height: 5,

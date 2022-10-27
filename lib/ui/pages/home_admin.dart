@@ -5,6 +5,8 @@ import 'package:sipera_app/routes/route_names.dart';
 import 'package:sipera_app/shared/theme.dart';
 import 'package:sipera_app/ui/widgets/card_home_admin.dart.dart';
 
+import '../../controllers/on_boarding_controller.dart';
+
 class HomeAdmin extends StatelessWidget {
   HomeAdmin({Key? key}) : super(key: key);
 

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_connect/http/src/status/http_status.dart';
+import 'package:sipera_app/controllers/public_controller.dart';
 import 'package:sipera_app/shared/theme.dart';
 import 'package:get/get.dart';
 import 'package:sipera_app/ui/widgets/achievement_tile.dart';
@@ -22,6 +24,8 @@ class DetailAchievement extends StatelessWidget {
   final String category;
   final String date;
   final String bornPlace;
+
+  final publicC = Get.find<PublicController>();
 
   @override
   Widget build(BuildContext context) {
@@ -122,6 +126,7 @@ class DetailAchievement extends StatelessWidget {
               ),
             ),
             Column(
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 SizedBox(height: Get.height * 0.38),
                 Container(
@@ -131,6 +136,7 @@ class DetailAchievement extends StatelessWidget {
                     color: whiteC,
                   ),
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(

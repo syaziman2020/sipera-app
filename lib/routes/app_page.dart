@@ -43,7 +43,6 @@ class AppPage {
     GetPage(
       name: RouteName.mainPage,
       page: () => MainPage(),
-      binding: MainB(),
     ),
     GetPage(
       name: RouteName.homeAdmin,

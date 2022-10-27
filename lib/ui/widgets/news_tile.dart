@@ -82,11 +82,11 @@ class NewsTile extends StatelessWidget {
                       width: 100,
                       fadeInCurve: Curves.easeInExpo,
                       fadeOutCurve: Curves.easeOutExpo,
-                      placeholder: AssetImage("assets/no_image.png"),
+                      placeholder: AssetImage("assets/no_image_available.webp"),
                       image: NetworkImage(imageurl),
                       imageErrorBuilder: (context, error, stackTrace) {
                         return Image.asset(
-                          "assets/no_image.png",
+                          "assets/no_image_available.webp",
                           fit: BoxFit.cover,
                         );
                       },

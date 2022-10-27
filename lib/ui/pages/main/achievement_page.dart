@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:sipera_app/controllers/public_controller.dart';
-import 'package:sipera_app/routes/route_names.dart';
 
 import 'package:get/get.dart';
 import 'package:sipera_app/ui/pages/detail_achievement_page.dart';
@@ -124,9 +123,15 @@ class _AchievementPageState extends State<AchievementPage> {
                         color: greenCB,
                         onRefresh: () async {
                           searchController.clear();
+                          onLoad = false;
                           await publicC.getAchievementData('', '1');
+                          print('gggg');
+                          print(
+                              '${publicC.achievementResult!.value.results!.prestasi!.data![0].atlet!.foto!.substring(57, publicC.achievementResult!.value.results!.prestasi!.data![0].atlet!.foto!.length)}');
                         },
                         child: SingleChildScrollView(
+                          controller: _scrollController,
+                          physics: AlwaysScrollableScrollPhysics(),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -144,7 +149,8 @@ class _AchievementPageState extends State<AchievementPage> {
                                                 '${e.atlet!.tempatLahir}',
                                             name: '${e.atlet!.nama}',
                                             imageUrlAchieve: '${e.foto}',
-                                            imageUrlAtlet: '${e.atlet!.foto}',
+                                            imageUrlAtlet:
+                                                '${e.atlet!.foto!.substring(57, e.atlet!.foto!.length)}',
                                             date:
                                                 '${e.atlet!.tanggalLahir!.split('-').reversed.join('/')}',
                                             category: '${e.cabor!.namaCabor}',
@@ -207,8 +213,7 @@ class _AchievementPageState extends State<AchievementPage> {
   }) {
     // Check Scroll Position
     if (scrollNotification is ScrollEndNotification &&
-        _scrollController.position.maxScrollExtent ==
-            _scrollController.offset) {
+        _scrollController.position.extentAfter == _scrollController.offset) {
       // Set More Loading = true
       if (onLoad == true) {
         return false;

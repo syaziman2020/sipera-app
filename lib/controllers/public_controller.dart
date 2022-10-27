@@ -37,7 +37,7 @@ class PublicController extends GetxController {
       print('berhasil finish');
       isDone = true.obs;
     } catch (e) {
-      rethrow;
+      isDone = false.obs;
     }
   }
 
@@ -169,7 +169,7 @@ class PublicController extends GetxController {
         }
       }
     } catch (e) {
-      rethrow;
+      achievementStatus(false);
     }
   }
 
@@ -188,7 +188,7 @@ class PublicController extends GetxController {
         achievementStatus.value = true;
       }
     } catch (e) {
-      rethrow;
+      achievementFetchStatus(false);
     }
   }
 }

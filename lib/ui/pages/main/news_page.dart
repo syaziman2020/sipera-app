@@ -113,6 +113,7 @@ class _NewsPageState extends State<NewsPage> {
                         color: greenCB,
                         onRefresh: () async {
                           searchController.clear();
+                          onLoad = false;
                           await publicC.getArticleData('', '1');
                         },
                         child: SingleChildScrollView(

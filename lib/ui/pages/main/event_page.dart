@@ -124,6 +124,7 @@ class _EventPageState extends State<EventPage> {
                       color: greenCB,
                       onRefresh: () async {
                         searchController.clear();
+                        onLoad = false;
                         await publicC.getEventData('', '1');
                       },
                       child: SingleChildScrollView(
@@ -175,7 +176,7 @@ class _EventPageState extends State<EventPage> {
                                 : const SizedBox.shrink(),
                             SizedBox(
                               height: 15,
-                            )
+                            ),
                           ],
                         ),
                       ),
