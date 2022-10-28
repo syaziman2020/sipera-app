@@ -166,10 +166,12 @@ class _NewsPageState extends State<NewsPage> {
                       ),
                     );
                   } else {
-                    return Text(
-                      'Tidak Ada yang bisa ditampilkan',
-                      style: blackTextStyle.copyWith(
-                        fontSize: 20,
+                    return Center(
+                      child: Text(
+                        'Data tidak ditemukan',
+                        style: blackTextStyle.copyWith(
+                          fontSize: 20,
+                        ),
                       ),
                     );
                   }

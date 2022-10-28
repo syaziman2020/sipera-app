@@ -145,7 +145,7 @@ class _EventPageState extends State<EventPage> {
                                         ),
                                       );
                                     },
-                                    title: '${e.judul} yyffytfffhfhhff fggffgf',
+                                    title: '${e.judul}',
                                     location: '${e.lokasi}',
                                     date:
                                         '${e.tanggal!.split('-').reversed.join('/')}',
