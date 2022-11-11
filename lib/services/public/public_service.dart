@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:sipera_app/models/public/achievement_model.dart' as am;
 import 'package:sipera_app/models/public/article_model.dart' as arm;
 import 'package:sipera_app/models/public/event_model.dart' as em;
+import 'package:sipera_app/models/public/slider_model.dart' as slm;
 import 'package:sipera_app/models/public/statistic_model.dart' as sm;
 
 import '../main_url.dart';
@@ -37,6 +38,23 @@ class PublicService {
         am.AchievementModel achievementModel =
             am.AchievementModel.fromJson(response.data);
         return achievementModel;
+      } else {
+        throw Exception(
+            'Get tidak berhasil dengan code ${response.statusCode}');
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<slm.SliderModel?> getSliderData() async {
+    try {
+      final response = await dio.get(
+        "${_mainUrl.mainUrl}/slider",
+      );
+      if (response.statusCode == 200) {
+        slm.SliderModel sliderModel = slm.SliderModel.fromJson(response.data);
+        return sliderModel;
       } else {
         throw Exception(
             'Get tidak berhasil dengan code ${response.statusCode}');

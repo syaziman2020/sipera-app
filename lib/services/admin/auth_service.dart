@@ -9,7 +9,7 @@ import 'package:sipera_app/services/main_url.dart';
 class AuthService {
   final MainUrl _mainUrl = MainUrl();
   Dio dio = Dio();
-  final storage = new FlutterSecureStorage();
+  final storage = FlutterSecureStorage();
 
   Future<login.LoginModel?> loginProfile(
       {required String email, required String password}) async {

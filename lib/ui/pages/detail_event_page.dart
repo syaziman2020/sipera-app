@@ -6,6 +6,7 @@ import '../../shared/theme.dart';
 class DetailEvent extends StatelessWidget {
   final String title;
   final String date;
+  final String dueDate;
   final String timeBegin;
   final String timeEnd;
   final String location;
@@ -15,6 +16,7 @@ class DetailEvent extends StatelessWidget {
     Key? key,
     required this.title,
     required this.date,
+    required this.dueDate,
     required this.imageUrl,
     required this.location,
     required this.timeBegin,
@@ -30,12 +32,12 @@ class DetailEvent extends StatelessWidget {
           children: [
             Container(
               width: Get.width,
-              height: Get.height * 0.85,
+              height: Get.height * 0.812,
               decoration: const BoxDecoration(),
               child: Stack(
                 children: [
                   SizedBox(
-                    height: Get.height * 0.85,
+                    height: Get.height * 0.812,
                     child: FadeInImage(
                         fadeInCurve: Curves.easeInExpo,
                         fadeOutCurve: Curves.easeOutExpo,
@@ -84,7 +86,7 @@ class DetailEvent extends StatelessWidget {
             ),
             Column(
               children: [
-                SizedBox(height: Get.height * 0.82),
+                SizedBox(height: Get.height * 0.795),
                 Container(
                   padding: const EdgeInsets.all(22),
                   width: double.infinity,
@@ -128,9 +130,28 @@ class DetailEvent extends StatelessWidget {
                         ],
                       ),
                       const SizedBox(height: 24),
-                      Row(
+                      Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
+                          Row(
+                            children: [
+                              const Icon(
+                                Icons.calendar_month,
+                                size: 20,
+                              ),
+                              const SizedBox(width: 5),
+                              Text(
+                                '${date} - ${dueDate}',
+                                style: greyTextStyle.copyWith(
+                                  fontSize: 13,
+                                  color: const Color(0xff4F4F4F),
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
                           Row(
                             children: [
                               const Icon(
@@ -140,22 +161,6 @@ class DetailEvent extends StatelessWidget {
                               const SizedBox(width: 5),
                               Text(
                                 '${timeBegin} WIB - ${timeEnd} WIB',
-                                style: greyTextStyle.copyWith(
-                                  fontSize: 13,
-                                  color: const Color(0xff4F4F4F),
-                                ),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              const Icon(
-                                Icons.calendar_month,
-                                size: 20,
-                              ),
-                              const SizedBox(width: 5),
-                              Text(
-                                '$date',
                                 style: greyTextStyle.copyWith(
                                   fontSize: 13,
                                   color: const Color(0xff4F4F4F),

@@ -3,12 +3,14 @@ import 'package:get/get.dart';
 import 'package:sipera_app/models/public/achievement_model.dart' as am;
 import 'package:sipera_app/models/public/article_model.dart' as arm;
 import 'package:sipera_app/models/public/event_model.dart' as em;
+import 'package:sipera_app/models/public/slider_model.dart' as slm;
 import 'package:sipera_app/models/public/statistic_model.dart' as sm;
 import 'package:sipera_app/services/public/public_service.dart';
 
 class PublicController extends GetxController {
   RxBool isDone = false.obs;
   RxBool articleStatus = false.obs;
+  RxBool sliderStatus = false.obs;
   RxBool articleFetchStatus = false.obs;
   RxBool eventStatus = false.obs;
   RxBool achievementStatus = false.obs;
@@ -18,18 +20,21 @@ class PublicController extends GetxController {
   RxList<arm.Data>? listArticle = <arm.Data>[].obs;
   Rx<arm.ArticleModel>? articleResult = arm.ArticleModel().obs;
   Rx<sm.StatisticModel>? statisticResult = sm.StatisticModel().obs;
-
+  Rx<slm.SliderModel>? sliderResult = slm.SliderModel().obs;
+  var indexSlider = 0.obs;
   Rx<em.EventModel>? eventResult = em.EventModel().obs;
 
   Rx<am.AchievementModel>? achievementResult = am.AchievementModel().obs;
   RxList<em.Data>? listEvent = <em.Data>[].obs;
   RxList<am.Data>? listAchievement = <am.Data>[].obs;
+  RxList<slm.Slider>? listSlider = <slm.Slider>[].obs;
   RxInt currentPage = 0.obs;
   RxInt lastPage = 0.obs;
   fetchAllData() async {
     try {
       isDone = false.obs;
       await getStatisticSports();
+      await getSliderData();
       await getArticleData('', '1');
       if (kDebugMode) {
         print('berhasil 1');
@@ -42,6 +47,8 @@ class PublicController extends GetxController {
       if (kDebugMode) {
         print('berhasil finish');
       }
+
+      print('done slider');
       isDone = true.obs;
     } catch (e) {
       isDone = false.obs;
@@ -81,6 +88,24 @@ class PublicController extends GetxController {
       }
     } catch (e) {
       articleStatus.value = false;
+    }
+  }
+
+  Future getSliderData() async {
+    try {
+      sliderStatus.value = false;
+      slm.SliderModel? sliderModel = await PublicService().getSliderData();
+
+      if (sliderModel == null) {
+        return;
+      } else {
+        sliderResult?.value = sliderModel;
+        listSlider?.value = sliderModel.results!.slider!;
+
+        sliderStatus.value = true;
+      }
+    } catch (e) {
+      sliderStatus.value = false;
     }
   }
 

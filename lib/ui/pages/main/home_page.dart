@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:sipera_app/controllers/public_controller.dart';
@@ -11,8 +12,9 @@ import '../detail_news_page.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
+  CarouselController carouselController = CarouselController();
   final publicC = Get.find<PublicController>();
-
+  int indexSlider = -1;
   @override
   Widget build(BuildContext context) {
     Widget iconHeader({required String total, required String title}) {
@@ -635,18 +637,172 @@ class HomePage extends StatelessWidget {
       );
     }
 
+    Widget indicator(int index) {
+      print('ini indicator ${publicC.indexSlider}');
+      return Container(
+        margin: EdgeInsets.only(right: 6),
+        width: 10,
+        height: 10,
+        decoration: BoxDecoration(
+            color: (index == publicC.indexSlider)
+                ? greenCA
+                : greenCC.withOpacity(0.5),
+            shape: BoxShape.circle),
+      );
+    }
+
+    Widget sliderCard() {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(
+            height: 30,
+          ),
+          Obx(() {
+            if (publicC.sliderStatus.isTrue) {
+              if (publicC.listSlider!.isNotEmpty) {
+                return CarouselSlider(
+                  items: [
+                    ...publicC.listSlider!.map((e) {
+                      return Container(
+                        margin: const EdgeInsets.symmetric(
+                            vertical: 10, horizontal: 22),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: [
+                              BoxShadow(
+                                offset: Offset(2, 5),
+                                blurRadius: 5,
+                                spreadRadius: 0,
+                                color: blackC.withOpacity(0.1),
+                              )
+                            ]),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child: FadeInImage(
+                              width: double.infinity,
+                              height: double.infinity,
+                              fadeInCurve: Curves.easeInExpo,
+                              fadeOutCurve: Curves.easeOutExpo,
+                              placeholder: const AssetImage(
+                                  "assets/no_image_available.webp"),
+                              image: NetworkImage('${e.imgSlider}'),
+                              imageErrorBuilder: (context, error, stackTrace) {
+                                return Image.asset(
+                                  "assets/no_image_available.webp",
+                                  fit: BoxFit.cover,
+                                  width: double.infinity,
+                                );
+                              },
+                              fit: BoxFit.cover),
+                        ),
+                      );
+                    }).toList(),
+                  ],
+                  carouselController: carouselController,
+                  options: CarouselOptions(
+                    onPageChanged: (index, reason) {
+                      print('ini index $index');
+                      publicC.indexSlider.value = index;
+                      indexSlider = index;
+                    },
+                    autoPlayInterval: Duration(seconds: 5),
+                    autoPlay: true,
+                    enlargeCenterPage: true,
+                    viewportFraction: 1,
+                    aspectRatio: 2,
+                    initialPage: 2,
+                  ),
+                );
+              } else {
+                return Center(
+                  child: Text(
+                    'Data tidak ditemukan',
+                    style: blackTextStyle.copyWith(
+                      fontSize: 20,
+                    ),
+                  ),
+                );
+              }
+            } else {
+              return CarouselSlider(
+                items: [
+                  Shimmer.fromColors(
+                    baseColor: const Color(0xffE1E1E1),
+                    highlightColor: whiteC,
+                    child: Container(
+                      margin: const EdgeInsets.symmetric(
+                          vertical: 10, horizontal: 22),
+                      decoration: BoxDecoration(
+                        color: const Color(0xffE1E1E1),
+                        borderRadius: BorderRadius.circular(10),
+                        boxShadow: [
+                          BoxShadow(
+                            offset: Offset(0, 5),
+                            blurRadius: 5,
+                            spreadRadius: 0,
+                            color: blackC.withOpacity(0.1),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+                carouselController: carouselController,
+                options: CarouselOptions(
+                  autoPlayInterval: Duration(seconds: 5),
+                  autoPlay: false,
+                  enlargeCenterPage: true,
+                  viewportFraction: 1,
+                  aspectRatio: 2,
+                  initialPage: 0,
+                ),
+              );
+            }
+          }),
+          SizedBox(
+            height: 14,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 22),
+            child: Obx(() {
+              if (publicC.sliderStatus.isTrue) {
+                if (publicC.listSlider!.isNotEmpty) {
+                  return Row(
+                    children: [
+                      ...publicC.listSlider!.map((e) {
+                        if (indexSlider < publicC.listSlider!.length) {
+                          indexSlider++;
+                          print(indexSlider);
+                        } else {
+                          indexSlider = 0;
+                        }
+                        return indicator(0);
+                      }).toList(),
+                    ],
+                  );
+                } else {
+                  return SizedBox();
+                }
+              } else {
+                return Container(
+                  margin: EdgeInsets.only(right: 6),
+                  width: 10,
+                  height: 10,
+                  decoration: BoxDecoration(
+                      color: greenCC.withOpacity(0.5), shape: BoxShape.circle),
+                );
+              }
+            }),
+          ),
+        ],
+      );
+    }
+
     return SafeArea(
       child: RefreshIndicator(
         color: greenCB,
         onRefresh: () async {
-          // Get.dialog(
-          //   Center(
-          //     child: CircularProgressIndicator(
-          //       color: greenCB,
-          //     ),
-          //   ),
-          //   barrierDismissible: false,
-          // );
           await publicC.fetchAllData();
 
           if (publicC.isDone.isTrue) {
@@ -708,6 +864,7 @@ class HomePage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               header(),
+              sliderCard(),
               latestNews(),
               newAchievement(),
             ],

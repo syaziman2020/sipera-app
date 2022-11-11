@@ -136,12 +136,14 @@ class _EventPageState extends State<EventPage> {
                                           title: '${e.judul}',
                                           location: '${e.lokasi}',
                                           date:
-                                              '${e.tanggal!.split('-').reversed.join('/')}',
+                                              '${e.tanggal!.split('-').reversed.join('/') ?? ''}',
                                           timeBegin:
-                                              '${e.waktuMulai!.substring(0, e.waktuMulai!.length - 3)}',
+                                              '${e.waktuMulai!.substring(0, e.waktuMulai!.length - 3) ?? ''}',
                                           timeEnd:
-                                              '${e.waktuSelesai!.substring(0, e.waktuSelesai!.length - 3)}',
+                                              '${e.waktuSelesai!.substring(0, e.waktuSelesai!.length - 3) ?? ''}',
                                           imageUrl: '${e.imgEvent}',
+                                          dueDate:
+                                              '${e.tanggalSelesai!.split('-').reversed.join('/') ?? ''}',
                                         ),
                                       );
                                     },

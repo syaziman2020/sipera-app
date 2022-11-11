@@ -121,6 +121,7 @@ class Data {
   int? id;
   String? judul;
   String? tanggal;
+  String? tanggalSelesai;
   String? waktuMulai;
   String? waktuSelesai;
   String? lokasi;
@@ -133,6 +134,7 @@ class Data {
       {this.id,
       this.judul,
       this.tanggal,
+      this.tanggalSelesai,
       this.waktuMulai,
       this.waktuSelesai,
       this.lokasi,
@@ -145,6 +147,7 @@ class Data {
     id = json['id'];
     judul = json['judul'];
     tanggal = json['tanggal'];
+    tanggalSelesai = json['tanggal_selesai'];
     waktuMulai = json['waktu_mulai'];
     waktuSelesai = json['waktu_selesai'];
     lokasi = json['lokasi'];
@@ -159,6 +162,7 @@ class Data {
     data['id'] = id;
     data['judul'] = judul;
     data['tanggal'] = tanggal;
+    data['tanggal_selesai'] = tanggalSelesai;
     data['waktu_mulai'] = waktuMulai;
     data['waktu_selesai'] = waktuSelesai;
     data['lokasi'] = lokasi;
