@@ -10,7 +10,7 @@ import '../main_url.dart';
 class GraphicService {
   final MainUrl _mainUrl = MainUrl();
   Dio dio = Dio();
-  final storage = new FlutterSecureStorage();
+  final storage = const FlutterSecureStorage();
   Future<gatlet.GraphicAtlet?> getGraphicAtlet() async {
     try {
       if (_mainUrl.getToken().isEmpty) {

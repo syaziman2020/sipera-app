@@ -48,7 +48,9 @@ class PublicController extends GetxController {
         print('berhasil finish');
       }
 
-      print('done slider');
+      if (kDebugMode) {
+        print('done slider');
+      }
       isDone = true.obs;
     } catch (e) {
       isDone = false.obs;

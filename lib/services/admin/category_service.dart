@@ -12,7 +12,7 @@ import '../main_url.dart';
 class CategoryService {
   final MainUrl _mainUrl = MainUrl();
   Dio dio = Dio();
-  final storage = FlutterSecureStorage();
+  final storage = const FlutterSecureStorage();
 
   Future<atmin.AtletAdmin?> getAtletAdmin() async {
     try {

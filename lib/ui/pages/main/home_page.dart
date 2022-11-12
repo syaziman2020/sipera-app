@@ -9,33 +9,93 @@ import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
 import '../detail_achievement_page.dart';
 import '../detail_news_page.dart';
+import 'package:collection/collection.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
   CarouselController carouselController = CarouselController();
   final publicC = Get.find<PublicController>();
-  int indexSlider = -1;
+
   @override
   Widget build(BuildContext context) {
-    Widget iconHeader({required String total, required String title}) {
+    Widget iconHeader(
+        {required String total, required String title, required String icon}) {
       return SizedBox(
         width: 50,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
-              width: 50,
-              height: 50,
-              decoration: BoxDecoration(
-                color: whiteC,
-                borderRadius: BorderRadius.circular(10),
-                border: Border.all(color: const Color(0xffC4C4C4), width: 1),
-              ),
-              child: Center(
-                child: Text(
-                  '$total',
-                  style: blackTextStyle.copyWith(
-                    fontWeight: semiBold,
+            GestureDetector(
+              onTap: () {
+                Get.defaultDialog(
+                  barrierDismissible: false,
+                  title: 'Jumlah $title',
+                  titleStyle: blackTextStyle.copyWith(
+                      fontWeight: semiBold, fontSize: 18),
+                  titlePadding: const EdgeInsets.only(top: 15, bottom: 20),
+                  radius: 10,
+                  contentPadding: const EdgeInsets.symmetric(horizontal: 22),
+                  content: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.supervisor_account,
+                            color: greenCA,
+                            size: 32,
+                          ),
+                          const SizedBox(
+                            width: 5,
+                          ),
+                          Text(
+                            '${total}',
+                            textAlign: TextAlign.center,
+                            style: blackTextStyle.copyWith(
+                              fontSize: 30,
+                              fontWeight: semiBold,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  confirm: Container(
+                    margin: const EdgeInsets.only(bottom: 15),
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Get.back();
+                      },
+                      style: buttonStyle().copyWith(
+                        padding: MaterialStateProperty.all(
+                          const EdgeInsets.symmetric(vertical: 13),
+                        ),
+                      ),
+                      child: Text(
+                        'Oke!!',
+                        style: whiteTextStyle.copyWith(
+                          fontWeight: semiBold,
+                          fontSize: 13,
+                        ),
+                      ),
+                    ),
+                  ),
+                );
+              },
+              child: Container(
+                width: 50,
+                height: 50,
+                padding: EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: whiteC,
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(color: const Color(0xffC4C4C4), width: 1),
+                ),
+                child: Center(
+                  child: Image.asset(
+                    icon,
+                    fit: BoxFit.cover,
                   ),
                 ),
               ),
@@ -91,25 +151,25 @@ class HomePage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         iconHeader(
-                          total:
-                              '${publicC.statisticResult!.value.results!.atlet}',
-                          title: 'Atlet',
-                        ),
+                            total:
+                                '${publicC.statisticResult!.value.results!.atlet}',
+                            title: 'Atlet',
+                            icon: 'assets/athlete.png'),
                         iconHeader(
-                          total:
-                              '${publicC.statisticResult!.value.results!.pelatih}',
-                          title: 'Pelatih',
-                        ),
+                            total:
+                                '${publicC.statisticResult!.value.results!.pelatih}',
+                            title: 'Pelatih',
+                            icon: 'assets/pelatih.png'),
                         iconHeader(
-                          total:
-                              '${publicC.statisticResult!.value.results!.guru}',
-                          title: 'Guru Olahraga',
-                        ),
+                            total:
+                                '${publicC.statisticResult!.value.results!.guru}',
+                            title: 'Guru Olahraga',
+                            icon: 'assets/guru.png'),
                         iconHeader(
-                          total:
-                              '${publicC.statisticResult!.value.results!.wasit}',
-                          title: 'Wasit',
-                        ),
+                            total:
+                                '${publicC.statisticResult!.value.results!.wasit}',
+                            title: 'Wasit',
+                            icon: 'assets/wasit.png'),
                       ],
                     );
                   } else {
@@ -638,13 +698,12 @@ class HomePage extends StatelessWidget {
     }
 
     Widget indicator(int index) {
-      print('ini indicator ${publicC.indexSlider}');
       return Container(
         margin: EdgeInsets.only(right: 6),
         width: 10,
         height: 10,
         decoration: BoxDecoration(
-            color: (index == publicC.indexSlider)
+            color: (index == publicC.indexSlider.value)
                 ? greenCA
                 : greenCC.withOpacity(0.5),
             shape: BoxShape.circle),
@@ -677,24 +736,61 @@ class HomePage extends StatelessWidget {
                                 color: blackC.withOpacity(0.1),
                               )
                             ]),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
-                          child: FadeInImage(
-                              width: double.infinity,
-                              height: double.infinity,
-                              fadeInCurve: Curves.easeInExpo,
-                              fadeOutCurve: Curves.easeOutExpo,
-                              placeholder: const AssetImage(
-                                  "assets/no_image_available.webp"),
-                              image: NetworkImage('${e.imgSlider}'),
-                              imageErrorBuilder: (context, error, stackTrace) {
-                                return Image.asset(
-                                  "assets/no_image_available.webp",
-                                  fit: BoxFit.cover,
+                        child: Stack(
+                          children: [
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: FadeInImage(
                                   width: double.infinity,
-                                );
-                              },
-                              fit: BoxFit.cover),
+                                  height: double.infinity,
+                                  fadeInCurve: Curves.easeInExpo,
+                                  fadeOutCurve: Curves.easeOutExpo,
+                                  placeholder: const AssetImage(
+                                      "assets/no_image_available.webp"),
+                                  image: NetworkImage('${e.imgSlider}'),
+                                  imageErrorBuilder:
+                                      (context, error, stackTrace) {
+                                    return Image.asset(
+                                      "assets/no_image_available.webp",
+                                      fit: BoxFit.cover,
+                                      width: double.infinity,
+                                    );
+                                  },
+                                  fit: BoxFit.cover),
+                            ),
+                            Align(
+                              alignment: Alignment.bottomCenter,
+                              child: Container(
+                                padding: EdgeInsets.fromLTRB(10, 0, 10, 8),
+                                alignment: Alignment.bottomCenter,
+                                width: double.infinity,
+                                height: Get.height * 0.06,
+                                decoration: BoxDecoration(
+                                  gradient: LinearGradient(
+                                    colors: [
+                                      Colors.transparent,
+                                      blackC.withOpacity(0.6),
+                                      blackC.withOpacity(0.8)
+                                    ],
+                                    begin: Alignment.topCenter,
+                                    end: Alignment.bottomCenter,
+                                  ),
+                                  borderRadius: BorderRadius.only(
+                                    bottomLeft: Radius.circular(10),
+                                    bottomRight: Radius.circular(10),
+                                  ),
+                                ),
+                                child: Text(
+                                  '${e.judul}',
+                                  overflow: TextOverflow.ellipsis,
+                                  style: whiteTextStyle.copyWith(
+                                    fontSize: 13,
+                                    fontWeight: medium,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       );
                     }).toList(),
@@ -702,9 +798,7 @@ class HomePage extends StatelessWidget {
                   carouselController: carouselController,
                   options: CarouselOptions(
                     onPageChanged: (index, reason) {
-                      print('ini index $index');
                       publicC.indexSlider.value = index;
-                      indexSlider = index;
                     },
                     autoPlayInterval: Duration(seconds: 5),
                     autoPlay: true,
@@ -716,10 +810,20 @@ class HomePage extends StatelessWidget {
                 );
               } else {
                 return Center(
-                  child: Text(
-                    'Data tidak ditemukan',
-                    style: blackTextStyle.copyWith(
-                      fontSize: 20,
+                  child: Container(
+                    margin: const EdgeInsets.symmetric(
+                        vertical: 10, horizontal: 22),
+                    decoration: BoxDecoration(
+                      color: const Color(0xffE1E1E1),
+                      borderRadius: BorderRadius.circular(10),
+                      boxShadow: [
+                        BoxShadow(
+                          offset: Offset(0, 5),
+                          blurRadius: 5,
+                          spreadRadius: 0,
+                          color: blackC.withOpacity(0.1),
+                        )
+                      ],
                     ),
                   ),
                 );
@@ -770,14 +874,8 @@ class HomePage extends StatelessWidget {
                 if (publicC.listSlider!.isNotEmpty) {
                   return Row(
                     children: [
-                      ...publicC.listSlider!.map((e) {
-                        if (indexSlider < publicC.listSlider!.length) {
-                          indexSlider++;
-                          print(indexSlider);
-                        } else {
-                          indexSlider = 0;
-                        }
-                        return indicator(0);
+                      ...publicC.listSlider!.mapIndexed((index, element) {
+                        return indicator(index);
                       }).toList(),
                     ],
                   );
