@@ -50,26 +50,27 @@ class CardAchievement extends StatelessWidget {
             const SizedBox(
               width: 10,
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  style: blackTextStyle.copyWith(
-                    fontWeight: medium,
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(title,
+                      style: blackTextStyle.copyWith(
+                        fontWeight: medium,
+                      ),
+                      overflow: TextOverflow.ellipsis),
+                  const SizedBox(
+                    height: 6,
                   ),
-                ),
-                const SizedBox(
-                  height: 6,
-                ),
-                Text(
-                  name,
-                  style: greyTextStyle.copyWith(
-                    fontSize: 12,
-                    fontWeight: medium,
-                  ),
-                )
-              ],
+                  Text(
+                    name,
+                    style: greyTextStyle.copyWith(
+                      fontSize: 12,
+                      fontWeight: medium,
+                    ),
+                  )
+                ],
+              ),
             ),
           ],
         ),

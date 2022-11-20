@@ -346,7 +346,9 @@ class HomePage extends StatelessWidget {
                           const EdgeInsets.only(left: 22, top: 4, bottom: 5),
                       scrollDirection: Axis.horizontal,
                       shrinkWrap: true,
-                      itemCount: 5,
+                      itemCount: (publicC.listArticle!.length < 5)
+                          ? publicC.listArticle!.length
+                          : 5,
                       itemBuilder: (context, index) {
                         return CardNews(
                           onTap: () {
@@ -591,7 +593,9 @@ class HomePage extends StatelessWidget {
                   physics: const NeverScrollableScrollPhysics(),
                   scrollDirection: Axis.vertical,
                   shrinkWrap: true,
-                  itemCount: 5,
+                  itemCount: (publicC.listAchievement!.length < 5)
+                      ? publicC.listAchievement!.length
+                      : 5,
                   itemBuilder: (context, index) {
                     return CardAchievement(
                       imageUrl: '${publicC.listAchievement![index].foto}',

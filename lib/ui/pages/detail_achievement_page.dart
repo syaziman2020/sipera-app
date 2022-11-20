@@ -56,8 +56,7 @@ class DetailAchievement extends StatelessWidget {
                   Align(
                     alignment: Alignment.bottomCenter,
                     child: Container(
-                      padding:
-                          EdgeInsets.only(top: Get.height * 0.04, left: 22),
+                      padding: EdgeInsets.only(left: 22),
                       width: double.infinity,
                       margin: EdgeInsets.only(top: Get.height * 0.26),
                       decoration: BoxDecoration(
@@ -71,25 +70,31 @@ class DetailAchievement extends StatelessWidget {
                           ],
                         ),
                       ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Text(
-                            '$achieveName',
-                            style: whiteTextStyle.copyWith(
-                              fontSize: 20,
-                              fontWeight: semiBold,
-                            ),
+                      child: Center(
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                '$achieveName',
+                                style: whiteTextStyle.copyWith(
+                                  fontSize: 20,
+                                  fontWeight: semiBold,
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 3,
+                              ),
+                              Text(
+                                '$category',
+                                style: whiteTextStyle,
+                              )
+                            ],
                           ),
-                          const SizedBox(
-                            height: 3,
-                          ),
-                          Text(
-                            '$category',
-                            style: whiteTextStyle,
-                          )
-                        ],
+                        ),
                       ),
                     ),
                   ),
