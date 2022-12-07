@@ -39,14 +39,17 @@ class DetailEvent extends StatelessWidget {
                   SizedBox(
                     height: Get.height * 0.812,
                     child: FadeInImage(
+                        width: Get.width,
+                        height: double.infinity,
                         fadeInCurve: Curves.easeInExpo,
                         fadeOutCurve: Curves.easeOutExpo,
-                        placeholder:
-                            const AssetImage("assets/noimage_portrait.png"),
+                        placeholder: const AssetImage(
+                          "assets/no_image_e.png",
+                        ),
                         image: NetworkImage('$imageUrl'),
                         imageErrorBuilder: (context, error, stackTrace) {
                           return Image.asset(
-                            "assets/noimage_portrait.png",
+                            "assets/no_image_e.png",
                             fit: BoxFit.cover,
                           );
                         },

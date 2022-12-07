@@ -72,7 +72,7 @@ class GraphicAtlet extends StatelessWidget {
                           ),
                         ),
                         alignment: BarChartAlignment.spaceAround,
-                        minY: 1,
+                        minY: 0,
                         titlesData: FlTitlesData(
                           topTitles: AxisTitles(
                             drawBehindEverything: false,
@@ -297,7 +297,7 @@ class GraphicAtlet extends StatelessWidget {
                         ),
                       ),
                       alignment: BarChartAlignment.spaceAround,
-                      minY: 1,
+                      minY: 0,
                       titlesData: FlTitlesData(
                         rightTitles: AxisTitles(drawBehindEverything: true),
                         topTitles: AxisTitles(drawBehindEverything: true),

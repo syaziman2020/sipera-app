@@ -46,11 +46,11 @@ class CardNews extends StatelessWidget {
                   fadeInCurve: Curves.easeInExpo,
                   fadeOutCurve: Curves.easeOutExpo,
                   placeholder:
-                      const AssetImage("assets/no_image_available.webp"),
+                      const AssetImage("assets/no_image_available.png"),
                   image: NetworkImage('$imageUrl'),
                   imageErrorBuilder: (context, error, stackTrace) {
                     return Image.asset(
-                      "assets/no_image_available.webp",
+                      "assets/no_image_available.png",
                       fit: BoxFit.cover,
                     );
                   },

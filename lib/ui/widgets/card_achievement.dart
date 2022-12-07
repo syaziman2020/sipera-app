@@ -36,12 +36,11 @@ class CardAchievement extends StatelessWidget {
                   height: 56,
                   fadeInCurve: Curves.easeInExpo,
                   fadeOutCurve: Curves.easeOutExpo,
-                  placeholder:
-                      const AssetImage("assets/no_image_available.webp"),
+                  placeholder: const AssetImage("assets/no_achievement.png"),
                   image: NetworkImage('$imageUrl'),
                   imageErrorBuilder: (context, error, stackTrace) {
                     return Image.asset(
-                      "assets/no_image_available.webp",
+                      "assets/no_achievement.png",
                       fit: BoxFit.cover,
                     );
                   },

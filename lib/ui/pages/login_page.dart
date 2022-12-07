@@ -24,9 +24,12 @@ class LoginPage extends StatelessWidget {
           SizedBox(
             height: size.height / 15,
           ),
-          Image.asset(
-            'assets/logo.png',
-            width: Get.width * 0.4,
+          Padding(
+            padding: const EdgeInsets.only(bottom: 20, top: 50),
+            child: Image.asset(
+              'assets/crop_logo.png',
+              width: Get.width * 0.4,
+            ),
           ),
           Text(
             "Masuk Sebagai Admin",

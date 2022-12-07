@@ -79,7 +79,7 @@ class _SplashPageState extends State<SplashPage> {
       body: Center(
         child: Image.asset(
           'assets/logo.png',
-          width: Get.width * 0.4,
+          width: Get.width * 0.7,
           fit: BoxFit.cover,
         ),
       ),

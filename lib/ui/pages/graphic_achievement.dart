@@ -71,7 +71,7 @@ class GraphicAchievement extends StatelessWidget {
                             ),
                           ),
                           alignment: BarChartAlignment.spaceAround,
-                          minY: 5,
+                          minY: 0,
                           titlesData: FlTitlesData(
                             topTitles: AxisTitles(drawBehindEverything: false),
                             rightTitles:
@@ -298,7 +298,7 @@ class GraphicAchievement extends StatelessWidget {
                         ),
                       ),
                       alignment: BarChartAlignment.spaceAround,
-                      minY: 1,
+                      minY: 0,
                       titlesData: FlTitlesData(
                         rightTitles: AxisTitles(drawBehindEverything: false),
                         topTitles: AxisTitles(drawBehindEverything: false),
