@@ -10,7 +10,9 @@ import '../main_url.dart';
 class PublicService {
   final MainUrl _mainUrl = MainUrl();
   Dio dio = Dio();
+
   Future<sm.StatisticModel?> getStatisticData() async {
+    dio.options.receiveTimeout = 20000;
     try {
       final response = await dio.get(
         "${_mainUrl.mainUrl}/statistik",
@@ -30,6 +32,7 @@ class PublicService {
 
   Future<am.AchievementModel?> getAchievementData(
       String? search, String? page) async {
+    dio.options.receiveTimeout = 20000;
     try {
       final response = await dio.get(
         "${_mainUrl.mainUrl}/prestasi?page=$page&cp=${search ?? ''}",
@@ -48,6 +51,7 @@ class PublicService {
   }
 
   Future<slm.SliderModel?> getSliderData() async {
+    dio.options.receiveTimeout = 20000;
     try {
       final response = await dio.get(
         "${_mainUrl.mainUrl}/slider",
@@ -65,6 +69,7 @@ class PublicService {
   }
 
   Future<arm.ArticleModel?> getArticleData(String? search, String? page) async {
+    dio.options.receiveTimeout = 20000;
     try {
       final response = await dio.get(
         "${_mainUrl.mainUrl}/artikel?page=${page ?? ''}&judul=${search ?? ''}",
@@ -83,6 +88,7 @@ class PublicService {
   }
 
   Future<em.EventModel> getEventData(String? search, String? page) async {
+    dio.options.receiveTimeout = 20000;
     try {
       final response = await dio.get(
         "${_mainUrl.mainUrl}/event?page=${page ?? ''}&judul=${search ?? ''}",

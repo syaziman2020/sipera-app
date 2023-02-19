@@ -209,8 +209,8 @@ class _EventPageState extends State<EventPage> {
   }) {
     // Check Scroll Position
     if (scrollNotification is ScrollEndNotification &&
-        _scrollController.position.maxScrollExtent ==
-            _scrollController.offset) {
+        _scrollController.position.pixels ==
+            _scrollController.position.maxScrollExtent) {
       // Set More Loading = true
       if (onLoad == true) {
         return false;

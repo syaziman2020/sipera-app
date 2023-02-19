@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:sipera_app/models/public/article_model.dart';
 
 import '../../shared/theme.dart';
 
 class NewsTile extends StatelessWidget {
   final String date;
   final int id;
-
+  List<KategoriArtikel> category = [];
   final String imageurl;
   final String title;
   final Function() onTap;
-  const NewsTile({
+  NewsTile({
     Key? key,
     required this.date,
     required this.id,
     required this.imageurl,
     required this.title,
     required this.onTap,
+    required this.category,
   }) : super(key: key);
 
   @override
@@ -23,12 +25,6 @@ class NewsTile extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Container(
-          margin: const EdgeInsets.only(top: 12, bottom: 12),
-          width: double.infinity,
-          color: const Color(0xffE0E0E0),
-          height: 1,
-        ),
         InkWell(
           overlayColor: MaterialStateProperty.all(Colors.transparent),
           onTap: onTap,
@@ -69,6 +65,41 @@ class NewsTile extends StatelessWidget {
                                 fontWeight: medium,
                               ),
                             ),
+                            const SizedBox(
+                              height: 5,
+                            ),
+                            (category.isNotEmpty)
+                                ? Wrap(
+                                    direction: Axis.horizontal,
+                                    crossAxisAlignment:
+                                        WrapCrossAlignment.start,
+                                    children: [
+                                      ...category.map(
+                                        (e) => Container(
+                                          margin: const EdgeInsets.only(
+                                              right: 5, bottom: 5),
+                                          padding: const EdgeInsets.all(5),
+                                          decoration: BoxDecoration(
+                                              color: const Color(0xff8DEEB5)
+                                                  .withOpacity(0.7),
+                                              borderRadius:
+                                                  BorderRadius.circular(7)),
+                                          child: FittedBox(
+                                            fit: BoxFit.scaleDown,
+                                            child: Center(
+                                              child: Text(
+                                                '${e.masterArtikel?.kategoriArtikel ?? 'Olahraga'}',
+                                                style: greenTextStyle.copyWith(
+                                                    fontSize: 12,
+                                                    fontWeight: medium),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  )
+                                : const SizedBox()
                           ],
                         ),
                       ],
@@ -78,7 +109,7 @@ class NewsTile extends StatelessWidget {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(7),
                   child: FadeInImage(
-                      height: 80,
+                      height: 120,
                       width: 100,
                       fadeInCurve: Curves.easeInExpo,
                       fadeOutCurve: Curves.easeOutExpo,
@@ -96,6 +127,12 @@ class NewsTile extends StatelessWidget {
               ],
             ),
           ),
+        ),
+        Container(
+          margin: const EdgeInsets.only(top: 12, bottom: 12),
+          width: double.infinity,
+          color: const Color(0xffE0E0E0),
+          height: 1,
         ),
       ],
     );

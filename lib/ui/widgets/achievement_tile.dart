@@ -5,11 +5,13 @@ class AchievementTile extends StatelessWidget {
   final String title;
   final String born;
   final String imagePeople;
+  final String kelamin;
   const AchievementTile({
     Key? key,
     required this.title,
     required this.born,
     required this.imagePeople,
+    required this.kelamin,
   }) : super(key: key);
 
   @override
@@ -61,6 +63,7 @@ class AchievementTile extends StatelessWidget {
               children: [
                 Text(
                   title,
+                  overflow: TextOverflow.ellipsis,
                   style: blackTextStyle.copyWith(
                     fontWeight: medium,
                     fontSize: 15,
@@ -71,10 +74,25 @@ class AchievementTile extends StatelessWidget {
                 ),
                 Text(
                   born,
+                  overflow: TextOverflow.ellipsis,
                   style: greyTextStyle.copyWith(
                     fontWeight: light,
                   ),
-                )
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                Text(
+                  (kelamin == '1')
+                      ? 'Laki-laki'
+                      : (kelamin == '2')
+                          ? 'Perempuan'
+                          : '',
+                  overflow: TextOverflow.ellipsis,
+                  style: greyTextStyle.copyWith(
+                    fontWeight: light,
+                  ),
+                ),
               ],
             ),
           ),

@@ -48,10 +48,10 @@ class AllArtikel {
   int? lastPage;
   String? lastPageUrl;
   List<Links>? links;
-  String? nextPageUrl;
+  dynamic nextPageUrl;
   String? path;
   int? perPage;
-  String? prevPageUrl;
+  dynamic prevPageUrl;
   int? to;
   int? total;
 
@@ -123,14 +123,15 @@ class Data {
   int? id;
   String? judul;
   String? tanggal;
-  String? idUser;
-  String? statusArtikel;
+  int? idUser;
+  int? statusArtikel;
   String? isiArtikel;
   String? imgArtikel;
   String? slug;
-  String? counter;
+  int? counter;
   String? createdAt;
   String? updatedAt;
+  List<KategoriArtikel>? kategoriArtikel;
 
   Data(
       {this.id,
@@ -143,7 +144,8 @@ class Data {
       this.slug,
       this.counter,
       this.createdAt,
-      this.updatedAt});
+      this.updatedAt,
+      this.kategoriArtikel});
 
   Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -157,6 +159,12 @@ class Data {
     counter = json['counter'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
+    if (json['kategori_artikel'] != null) {
+      kategoriArtikel = <KategoriArtikel>[];
+      json['kategori_artikel'].forEach((v) {
+        kategoriArtikel!.add(KategoriArtikel.fromJson(v));
+      });
+    }
   }
 
   Map<String, dynamic> toJson() {
@@ -170,6 +178,77 @@ class Data {
     data['img_artikel'] = imgArtikel;
     data['slug'] = slug;
     data['counter'] = counter;
+    data['created_at'] = createdAt;
+    data['updated_at'] = updatedAt;
+    if (kategoriArtikel != null) {
+      data['kategori_artikel'] =
+          kategoriArtikel!.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
+}
+
+class KategoriArtikel {
+  int? id;
+  int? idArtikel;
+  int? idKategoriArtikel;
+  String? createdAt;
+  String? updatedAt;
+  MasterArtikel? masterArtikel;
+
+  KategoriArtikel(
+      {this.id,
+      this.idArtikel,
+      this.idKategoriArtikel,
+      this.createdAt,
+      this.updatedAt,
+      this.masterArtikel});
+
+  KategoriArtikel.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    idArtikel = json['id_artikel'];
+    idKategoriArtikel = json['id_kategori_artikel'];
+    createdAt = json['created_at'];
+    updatedAt = json['updated_at'];
+    masterArtikel = json['master_artikel'] != null
+        ? MasterArtikel.fromJson(json['master_artikel'])
+        : null;
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['id_artikel'] = idArtikel;
+    data['id_kategori_artikel'] = idKategoriArtikel;
+    data['created_at'] = createdAt;
+    data['updated_at'] = updatedAt;
+    if (masterArtikel != null) {
+      data['master_artikel'] = masterArtikel!.toJson();
+    }
+    return data;
+  }
+}
+
+class MasterArtikel {
+  int? id;
+  String? kategoriArtikel;
+  String? createdAt;
+  String? updatedAt;
+
+  MasterArtikel(
+      {this.id, this.kategoriArtikel, this.createdAt, this.updatedAt});
+
+  MasterArtikel.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    kategoriArtikel = json['kategori_artikel'];
+    createdAt = json['created_at'];
+    updatedAt = json['updated_at'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['kategori_artikel'] = kategoriArtikel;
     data['created_at'] = createdAt;
     data['updated_at'] = updatedAt;
     return data;

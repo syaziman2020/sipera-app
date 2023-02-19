@@ -21,17 +21,20 @@ class AchievementModel {
 }
 
 class Results {
+  String? link;
   Prestasi? prestasi;
 
-  Results({this.prestasi});
+  Results({this.link, this.prestasi});
 
   Results.fromJson(Map<String, dynamic> json) {
+    link = json['link'];
     prestasi =
         json['prestasi'] != null ? Prestasi.fromJson(json['prestasi']) : null;
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
+    data['link'] = link;
     if (prestasi != null) {
       data['prestasi'] = prestasi!.toJson();
     }
@@ -50,7 +53,7 @@ class Prestasi {
   String? nextPageUrl;
   String? path;
   int? perPage;
-  String? prevPageUrl;
+  dynamic prevPageUrl;
   int? to;
   int? total;
 
@@ -120,38 +123,110 @@ class Prestasi {
 
 class Data {
   int? id;
-  String? namaPrestasi;
-  String? idAtlet;
-  String? idCabor;
+  String? namaLomba;
+  String? namaPerwakilan;
+  int? jenisPerlombaan;
+  int? medaliEmas;
+  int? medaliPerak;
+  int? medaliPerunggu;
+  int? idCabor;
   String? foto;
   String? tahun;
   String? createdAt;
   String? updatedAt;
-  Cabor? cabor;
-  Atlet? atlet;
+  List<PrestasiAtlet>? prestasiAtlet;
 
   Data(
       {this.id,
+      this.namaLomba,
+      this.namaPerwakilan,
+      this.jenisPerlombaan,
+      this.medaliEmas,
+      this.medaliPerak,
+      this.medaliPerunggu,
+      this.idCabor,
+      this.foto,
+      this.tahun,
+      this.createdAt,
+      this.updatedAt,
+      this.prestasiAtlet});
+
+  Data.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    namaLomba = json['nama_lomba'];
+    namaPerwakilan = json['nama_perwakilan'];
+    jenisPerlombaan = json['jenis_perlombaan'];
+    medaliEmas = json['medali_emas'];
+    medaliPerak = json['medali_perak'];
+    medaliPerunggu = json['medali_perunggu'];
+    idCabor = json['id_cabor'];
+    foto = json['foto'];
+    tahun = json['tahun'];
+    createdAt = json['created_at'];
+    updatedAt = json['updated_at'];
+    if (json['prestasi_atlet'] != null) {
+      prestasiAtlet = <PrestasiAtlet>[];
+      json['prestasi_atlet'].forEach((v) {
+        prestasiAtlet!.add(PrestasiAtlet.fromJson(v));
+      });
+    }
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['nama_lomba'] = namaLomba;
+    data['nama_perwakilan'] = namaPerwakilan;
+    data['jenis_perlombaan'] = jenisPerlombaan;
+    data['medali_emas'] = medaliEmas;
+    data['medali_perak'] = medaliPerak;
+    data['medali_perunggu'] = medaliPerunggu;
+    data['id_cabor'] = idCabor;
+    data['foto'] = foto;
+    data['tahun'] = tahun;
+    data['created_at'] = createdAt;
+    data['updated_at'] = updatedAt;
+    if (prestasiAtlet != null) {
+      data['prestasi_atlet'] = prestasiAtlet!.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
+}
+
+class PrestasiAtlet {
+  int? id;
+  String? namaPrestasi;
+  int? idPrestasiLomba;
+  int? idAtlet;
+  int? idCabor;
+  String? foto;
+  String? tahun;
+  String? createdAt;
+  String? updatedAt;
+  Atlet? atlet;
+
+  PrestasiAtlet(
+      {this.id,
       this.namaPrestasi,
+      this.idPrestasiLomba,
       this.idAtlet,
       this.idCabor,
       this.foto,
       this.tahun,
       this.createdAt,
       this.updatedAt,
-      this.cabor,
       this.atlet});
 
-  Data.fromJson(Map<String, dynamic> json) {
+  PrestasiAtlet.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     namaPrestasi = json['nama_prestasi'];
+    idPrestasiLomba = json['id_prestasi_lomba'];
     idAtlet = json['id_atlet'];
     idCabor = json['id_cabor'];
     foto = json['foto'];
     tahun = json['tahun'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
-    cabor = json['cabor'] != null ? Cabor.fromJson(json['cabor']) : null;
     atlet = json['atlet'] != null ? Atlet.fromJson(json['atlet']) : null;
   }
 
@@ -159,43 +234,16 @@ class Data {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['nama_prestasi'] = namaPrestasi;
+    data['id_prestasi_lomba'] = idPrestasiLomba;
     data['id_atlet'] = idAtlet;
     data['id_cabor'] = idCabor;
     data['foto'] = foto;
     data['tahun'] = tahun;
     data['created_at'] = createdAt;
     data['updated_at'] = updatedAt;
-    if (cabor != null) {
-      data['cabor'] = cabor!.toJson();
-    }
     if (atlet != null) {
       data['atlet'] = atlet!.toJson();
     }
-    return data;
-  }
-}
-
-class Cabor {
-  int? id;
-  String? namaCabor;
-  String? createdAt;
-  String? updatedAt;
-
-  Cabor({this.id, this.namaCabor, this.createdAt, this.updatedAt});
-
-  Cabor.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    namaCabor = json['nama_cabor'];
-    createdAt = json['created_at'];
-    updatedAt = json['updated_at'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
-    data['nama_cabor'] = namaCabor;
-    data['created_at'] = createdAt;
-    data['updated_at'] = updatedAt;
     return data;
   }
 }
@@ -204,26 +252,27 @@ class Atlet {
   int? id;
   String? nik;
   String? nama;
-  String? jenisKelamin;
+  int? jenisKelamin;
   String? tempatLahir;
   String? tanggalLahir;
-  String? idAgama;
-  String? disabilitas;
-  String? idProvinsi;
-  String? idKabupaten;
-  String? idKecamatan;
-  String? idDesa;
+  int? idAgama;
+  int? disabilitas;
+  int? idProvinsi;
+  int? idKabupaten;
+  int? idKecamatan;
+  int? idDesa;
   String? alamat;
   String? noHp;
   String? email;
-  String? idCabor;
+  int? idCabor;
   String? tanggalBergabung;
-  String? penyakit;
-  String? idPendidikan;
-  String? idStatus;
+  dynamic penyakit;
+  int? idPendidikan;
+  int? idStatus;
   String? foto;
   String? lat;
   String? lon;
+  int? verifikasi;
   String? createdAt;
   String? updatedAt;
 
@@ -251,6 +300,7 @@ class Atlet {
       this.foto,
       this.lat,
       this.lon,
+      this.verifikasi,
       this.createdAt,
       this.updatedAt});
 
@@ -278,6 +328,7 @@ class Atlet {
     foto = json['foto'];
     lat = json['lat'];
     lon = json['lon'];
+    verifikasi = json['verifikasi'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
   }
@@ -307,6 +358,7 @@ class Atlet {
     data['foto'] = foto;
     data['lat'] = lat;
     data['lon'] = lon;
+    data['verifikasi'] = verifikasi;
     data['created_at'] = createdAt;
     data['updated_at'] = updatedAt;
     return data;

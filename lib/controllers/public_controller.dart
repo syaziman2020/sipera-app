@@ -27,6 +27,7 @@ class PublicController extends GetxController {
   Rx<am.AchievementModel>? achievementResult = am.AchievementModel().obs;
   RxList<em.Data>? listEvent = <em.Data>[].obs;
   RxList<am.Data>? listAchievement = <am.Data>[].obs;
+
   RxList<slm.Slider>? listSlider = <slm.Slider>[].obs;
   RxInt currentPage = 0.obs;
   RxInt lastPage = 0.obs;
@@ -176,7 +177,7 @@ class PublicController extends GetxController {
         }
       }
     } catch (e) {
-      rethrow;
+      eventFetchStatus.value = false;
     }
   }
 
@@ -202,7 +203,7 @@ class PublicController extends GetxController {
         }
       }
     } catch (e) {
-      achievementStatus(false);
+      achievementFetchStatus.value = false;
     }
   }
 
@@ -221,7 +222,7 @@ class PublicController extends GetxController {
         achievementStatus.value = true;
       }
     } catch (e) {
-      achievementFetchStatus(false);
+      achievementStatus.value = false;
     }
   }
 }

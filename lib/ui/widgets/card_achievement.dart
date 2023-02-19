@@ -6,6 +6,9 @@ class CardAchievement extends StatelessWidget {
   final String imageUrl;
   final String title;
   final String name;
+  final String first;
+  final String second;
+  final String third;
   final Function() onTap;
   const CardAchievement({
     Key? key,
@@ -13,6 +16,9 @@ class CardAchievement extends StatelessWidget {
     required this.title,
     required this.name,
     required this.onTap,
+    required this.first,
+    required this.second,
+    required this.third,
   }) : super(key: key);
 
   @override
@@ -67,7 +73,71 @@ class CardAchievement extends StatelessWidget {
                       fontSize: 12,
                       fontWeight: medium,
                     ),
-                  )
+                  ),
+                  const SizedBox(
+                    height: 6,
+                  ),
+                  Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(right: 20),
+                        child: Row(
+                          children: [
+                            Image.asset(
+                              'assets/first.png',
+                              height: 24,
+                              fit: BoxFit.cover,
+                            ),
+                            Text(
+                              first,
+                              style: greyTextStyle.copyWith(
+                                fontSize: 12,
+                                fontWeight: medium,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 20),
+                        child: Row(
+                          children: [
+                            Image.asset(
+                              'assets/second.png',
+                              height: 24,
+                              fit: BoxFit.cover,
+                            ),
+                            Text(
+                              second,
+                              style: greyTextStyle.copyWith(
+                                fontSize: 12,
+                                fontWeight: medium,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 20),
+                        child: Row(
+                          children: [
+                            Image.asset(
+                              'assets/third.png',
+                              height: 24,
+                              fit: BoxFit.cover,
+                            ),
+                            Text(
+                              third,
+                              style: greyTextStyle.copyWith(
+                                fontSize: 12,
+                                fontWeight: medium,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 ],
               ),
             ),

@@ -12,8 +12,10 @@ import '../detail_news_page.dart';
 import 'package:collection/collection.dart';
 
 class HomePage extends StatelessWidget {
-  HomePage({Key? key}) : super(key: key);
+  HomePage({super.key});
+
   CarouselController carouselController = CarouselController();
+
   final publicC = Get.find<PublicController>();
 
   @override
@@ -86,7 +88,7 @@ class HomePage extends StatelessWidget {
               child: Container(
                 width: 50,
                 height: 50,
-                padding: EdgeInsets.all(8),
+                padding: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
                   color: whiteC,
                   borderRadius: BorderRadius.circular(10),
@@ -337,41 +339,35 @@ class HomePage extends StatelessWidget {
               if (publicC.articleStatus.isTrue) {
                 if (publicC.articleResult!.value.results!.allArtikel!.data!
                     .isNotEmpty) {
-                  return ConstrainedBox(
-                    constraints:
-                        BoxConstraints(maxHeight: 300, maxWidth: Get.width),
-                    child: ListView.builder(
-                      physics: const ClampingScrollPhysics(),
-                      padding:
-                          const EdgeInsets.only(left: 22, top: 4, bottom: 5),
-                      scrollDirection: Axis.horizontal,
-                      shrinkWrap: true,
-                      itemCount: (publicC.listArticle!.length < 5)
-                          ? publicC.listArticle!.length
-                          : 5,
-                      itemBuilder: (context, index) {
-                        return CardNews(
-                          onTap: () {
-                            Get.to(
-                              () => DetailNews(
-                                  date:
-                                      '${DateFormat("d MMMM yyyy").format(DateTime.parse(publicC.listArticle![index].tanggal!))}',
-                                  id: publicC.listArticle![index].id!,
-                                  description:
-                                      '${publicC.listArticle![index].isiArtikel}',
-                                  imageUrl:
-                                      '${publicC.listArticle![index].imgArtikel}',
-                                  title:
-                                      '${publicC.listArticle![index].judul}'),
-                            );
-                          },
-                          imageUrl:
-                              '${(publicC.listArticle![index].imgArtikel)}',
-                          date:
-                              '${publicC.listArticle![index].tanggal!.split('-').reversed.join('/')}',
-                          title: '${publicC.listArticle![index].judul}',
-                        );
-                      },
+                  return SingleChildScrollView(
+                    padding: const EdgeInsets.only(left: 22, top: 4, bottom: 5),
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        ...publicC.listArticle!.sublist(0, 5).map(
+                              (e) => CardNews(
+                                listCategory: e.kategoriArtikel,
+                                onTap: () {
+                                  Get.to(
+                                    () => DetailNews(
+                                        category: e.kategoriArtikel,
+                                        date:
+                                            '${DateFormat("d MMMM yyyy").format(DateTime.parse(e.tanggal!))}',
+                                        id: e.id!,
+                                        description: '${e.isiArtikel}',
+                                        imageUrl: '${e.imgArtikel}',
+                                        title: '${e.judul}'),
+                                  );
+                                },
+                                imageUrl: '${(e.imgArtikel)}',
+                                date:
+                                    '${e.tanggal!.split('-').reversed.join('/')}',
+                                title: '${e.judul}',
+                              ),
+                            ),
+                      ],
                     ),
                   );
                 } else {
@@ -598,27 +594,35 @@ class HomePage extends StatelessWidget {
                       : 5,
                   itemBuilder: (context, index) {
                     return CardAchievement(
+                      first:
+                          '${publicC.listAchievement![index].medaliEmas ?? 0}',
+                      second:
+                          '${publicC.listAchievement![index].medaliPerak ?? 0}',
+                      third:
+                          '${publicC.listAchievement![index].medaliPerunggu ?? 0}',
                       imageUrl: '${publicC.listAchievement![index].foto}',
-                      title: '${publicC.listAchievement![index].namaPrestasi}',
-                      name:
-                          '${publicC.listAchievement![index].cabor!.namaCabor}',
+                      title: '${publicC.listAchievement![index].namaLomba}',
+                      name: '${publicC.listAchievement![index].namaPerwakilan}',
                       onTap: () {
                         Get.to(
                           () => DetailAchievement(
+                            first:
+                                '${publicC.listAchievement![index].medaliEmas ?? 0}',
+                            second:
+                                '${publicC.listAchievement![index].medaliPerak ?? 0}',
+                            third:
+                                '${publicC.listAchievement![index].medaliPerunggu ?? 0}',
+                            link:
+                                '${publicC.achievementResult!.value.results!.link}',
                             achieveName:
-                                '${publicC.listAchievement![index].namaPrestasi}',
-                            bornPlace:
-                                '${publicC.listAchievement![index].atlet!.tempatLahir}',
-                            name:
-                                '${publicC.listAchievement![index].atlet!.nama}',
+                                '${publicC.listAchievement![index].namaLomba}',
                             imageUrlAchieve:
                                 '${publicC.listAchievement![index].foto}',
-                            imageUrlAtlet:
-                                '${publicC.listAchievement![index].atlet!.foto}',
-                            date:
-                                '${publicC.listAchievement![index].atlet!.tanggalLahir!.split('-').reversed.join('/')}',
+                            listPrestasiAtlet:
+                                publicC.listAchievement![index].prestasiAtlet ??
+                                    [],
                             category:
-                                '${publicC.listAchievement![index].cabor!.namaCabor}',
+                                '${publicC.listAchievement![index].namaPerwakilan}',
                           ),
                         );
                       },
@@ -703,7 +707,7 @@ class HomePage extends StatelessWidget {
 
     Widget indicator(int index) {
       return Container(
-        margin: EdgeInsets.only(right: 6),
+        margin: const EdgeInsets.only(right: 6),
         width: 10,
         height: 10,
         decoration: BoxDecoration(
@@ -718,7 +722,7 @@ class HomePage extends StatelessWidget {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(
+          const SizedBox(
             height: 30,
           ),
           Obx(() {
@@ -734,7 +738,7 @@ class HomePage extends StatelessWidget {
                             borderRadius: BorderRadius.circular(10),
                             boxShadow: [
                               BoxShadow(
-                                offset: Offset(2, 5),
+                                offset: const Offset(2, 5),
                                 blurRadius: 5,
                                 spreadRadius: 0,
                                 color: blackC.withOpacity(0.1),
@@ -765,7 +769,8 @@ class HomePage extends StatelessWidget {
                             Align(
                               alignment: Alignment.bottomCenter,
                               child: Container(
-                                padding: EdgeInsets.fromLTRB(10, 0, 10, 8),
+                                padding:
+                                    const EdgeInsets.fromLTRB(10, 0, 10, 8),
                                 alignment: Alignment.bottomCenter,
                                 width: double.infinity,
                                 height: Get.height * 0.06,
@@ -773,13 +778,13 @@ class HomePage extends StatelessWidget {
                                   gradient: LinearGradient(
                                     colors: [
                                       Colors.transparent,
-                                      blackC.withOpacity(0.6),
-                                      blackC.withOpacity(0.8)
+                                      blackC.withOpacity(0.24),
+                                      blackC.withOpacity(0.6)
                                     ],
                                     begin: Alignment.topCenter,
                                     end: Alignment.bottomCenter,
                                   ),
-                                  borderRadius: BorderRadius.only(
+                                  borderRadius: const BorderRadius.only(
                                     bottomLeft: Radius.circular(10),
                                     bottomRight: Radius.circular(10),
                                   ),
@@ -804,7 +809,7 @@ class HomePage extends StatelessWidget {
                     onPageChanged: (index, reason) {
                       publicC.indexSlider.value = index;
                     },
-                    autoPlayInterval: Duration(seconds: 5),
+                    autoPlayInterval: const Duration(seconds: 5),
                     autoPlay: true,
                     enlargeCenterPage: true,
                     viewportFraction: 1,
@@ -822,7 +827,7 @@ class HomePage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10),
                       boxShadow: [
                         BoxShadow(
-                          offset: Offset(0, 5),
+                          offset: const Offset(0, 5),
                           blurRadius: 5,
                           spreadRadius: 0,
                           color: blackC.withOpacity(0.1),
@@ -846,7 +851,7 @@ class HomePage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10),
                         boxShadow: [
                           BoxShadow(
-                            offset: Offset(0, 5),
+                            offset: const Offset(0, 5),
                             blurRadius: 5,
                             spreadRadius: 0,
                             color: blackC.withOpacity(0.1),
@@ -858,7 +863,7 @@ class HomePage extends StatelessWidget {
                 ],
                 carouselController: carouselController,
                 options: CarouselOptions(
-                  autoPlayInterval: Duration(seconds: 5),
+                  autoPlayInterval: const Duration(seconds: 5),
                   autoPlay: false,
                   enlargeCenterPage: true,
                   viewportFraction: 1,
@@ -868,7 +873,7 @@ class HomePage extends StatelessWidget {
               );
             }
           }),
-          SizedBox(
+          const SizedBox(
             height: 14,
           ),
           Padding(
@@ -884,11 +889,11 @@ class HomePage extends StatelessWidget {
                     ],
                   );
                 } else {
-                  return SizedBox();
+                  return const SizedBox();
                 }
               } else {
                 return Container(
-                  margin: EdgeInsets.only(right: 6),
+                  margin: const EdgeInsets.only(right: 6),
                   width: 10,
                   height: 10,
                   decoration: BoxDecoration(

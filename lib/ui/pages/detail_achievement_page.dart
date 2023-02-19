@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sipera_app/controllers/public_controller.dart';
+import 'package:sipera_app/models/public/achievement_model.dart';
 import 'package:sipera_app/shared/theme.dart';
 import 'package:get/get.dart';
 import 'package:sipera_app/ui/widgets/achievement_tile.dart';
@@ -7,22 +8,25 @@ import 'package:sipera_app/ui/widgets/achievement_tile.dart';
 class DetailAchievement extends StatelessWidget {
   DetailAchievement({
     Key? key,
+    required this.link,
     required this.achieveName,
-    required this.bornPlace,
     required this.category,
-    required this.date,
     required this.imageUrlAchieve,
-    required this.imageUrlAtlet,
-    required this.name,
+    required this.listPrestasiAtlet,
+    required this.first,
+    required this.second,
+    required this.third,
   }) : super(key: key);
 
   final String imageUrlAchieve;
-  final String imageUrlAtlet;
+  final String link;
   final String achieveName;
-  final String name;
+  final String first;
+  final String second;
+  final String third;
+  final List<PrestasiAtlet> listPrestasiAtlet;
+
   final String category;
-  final String date;
-  final String bornPlace;
 
   final publicC = Get.find<PublicController>();
 
@@ -56,7 +60,7 @@ class DetailAchievement extends StatelessWidget {
                   Align(
                     alignment: Alignment.bottomCenter,
                     child: Container(
-                      padding: EdgeInsets.only(left: 22),
+                      padding: const EdgeInsets.only(left: 22),
                       width: double.infinity,
                       margin: EdgeInsets.only(top: Get.height * 0.26),
                       decoration: BoxDecoration(
@@ -152,11 +156,86 @@ class DetailAchievement extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 15),
-                      AchievementTile(
-                        title: '$name',
-                        born: '${bornPlace}, ${date}',
-                        imagePeople: '$imageUrlAtlet',
+                      Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(right: 30),
+                            child: Row(
+                              children: [
+                                Image.asset(
+                                  'assets/first.png',
+                                  height: 30,
+                                  fit: BoxFit.cover,
+                                ),
+                                Text(
+                                  first,
+                                  style: greyTextStyle.copyWith(
+                                    fontSize: 14,
+                                    fontWeight: medium,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(right: 30),
+                            child: Row(
+                              children: [
+                                Image.asset(
+                                  'assets/second.png',
+                                  height: 30,
+                                  fit: BoxFit.cover,
+                                ),
+                                Text(
+                                  second,
+                                  style: greyTextStyle.copyWith(
+                                    fontSize: 14,
+                                    fontWeight: medium,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(right: 30),
+                            child: Row(
+                              children: [
+                                Image.asset(
+                                  'assets/third.png',
+                                  height: 30,
+                                  fit: BoxFit.cover,
+                                ),
+                                Text(
+                                  third,
+                                  style: greyTextStyle.copyWith(
+                                    fontSize: 14,
+                                    fontWeight: medium,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
                       ),
+                      const SizedBox(height: 15),
+                      (listPrestasiAtlet.isEmpty || listPrestasiAtlet == null)
+                          ? const SizedBox()
+                          : Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                ...listPrestasiAtlet.map(
+                                  (e) => AchievementTile(
+                                    kelamin: '${e.atlet?.jenisKelamin ?? 0}',
+                                    title: '${e.atlet?.nama ?? '-'}',
+                                    born:
+                                        '${e.atlet?.tempatLahir ?? '-'}, ${e.atlet?.tanggalLahir!.split('-').reversed.join('/') ?? '-'}',
+                                    imagePeople:
+                                        '$link${e.atlet?.foto ?? 'https://cdn-icons-png.flaticon.com/512/3112/3112993.png'}',
+                                  ),
+                                ),
+                              ],
+                            ),
                     ],
                   ),
                 ),

@@ -94,6 +94,12 @@ class _NewsPageState extends State<NewsPage> {
           const SizedBox(
             height: 10,
           ),
+          Container(
+            margin: const EdgeInsets.only(top: 12, bottom: 12),
+            width: double.infinity,
+            color: const Color(0xffE0E0E0),
+            height: 1,
+          ),
           Expanded(
             child: Obx(
               () {
@@ -125,9 +131,11 @@ class _NewsPageState extends State<NewsPage> {
                               ...publicC.listArticle!
                                   .map(
                                     (e) => NewsTile(
+                                      category: e.kategoriArtikel ?? [],
                                       onTap: () {
                                         Get.to(
                                           () => DetailNews(
+                                              category: e.kategoriArtikel ?? [],
                                               date:
                                                   '${DateFormat("d MMMM yyyy").format(DateTime.parse(e.tanggal!))}',
                                               id: e.id!,
@@ -199,8 +207,8 @@ class _NewsPageState extends State<NewsPage> {
   }) {
     // Check Scroll Position
     if (scrollNotification is ScrollEndNotification &&
-        _scrollController.position.maxScrollExtent ==
-            _scrollController.offset) {
+        _scrollController.position.pixels ==
+            _scrollController.position.maxScrollExtent) {
       // Set More Loading = true
       if (onLoad == true) {
         return false;

@@ -130,30 +130,31 @@ class _AchievementPageState extends State<AchievementPage> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              ...publicC.listAchievement!
-                                  .map(
-                                    (e) => CardAchievement(
-                                      imageUrl: '${e.foto}',
-                                      title: '${e.namaPrestasi}',
-                                      name: '${e.cabor!.namaCabor}',
-                                      onTap: () {
-                                        Get.to(
-                                          () => DetailAchievement(
-                                            achieveName: '${e.namaPrestasi}',
-                                            bornPlace:
-                                                '${e.atlet!.tempatLahir}',
-                                            name: '${e.atlet!.nama}',
-                                            imageUrlAchieve: '${e.foto}',
-                                            imageUrlAtlet: '${e.atlet!.foto}',
-                                            date:
-                                                '${e.atlet!.tanggalLahir!.split('-').reversed.join('/')}',
-                                            category: '${e.cabor!.namaCabor}',
-                                          ),
-                                        );
-                                      },
-                                    ),
-                                  )
-                                  .toList(),
+                              ...publicC.listAchievement!.map((e) {
+                                return CardAchievement(
+                                  first: '${e.medaliEmas ?? 0}',
+                                  second: '${e.medaliPerak ?? 0}',
+                                  third: '${e.medaliPerunggu ?? 0}',
+                                  imageUrl: '${e.foto}',
+                                  title: '${e.namaLomba}',
+                                  name: '${e.namaPerwakilan}',
+                                  onTap: () {
+                                    Get.to(
+                                      () => DetailAchievement(
+                                        first: '${e.medaliEmas ?? 0}',
+                                        second: '${e.medaliPerak ?? 0}',
+                                        third: '${e.medaliPerunggu ?? 0}',
+                                        link:
+                                            '${publicC.achievementResult!.value.results!.link}',
+                                        achieveName: '${e.namaLomba}',
+                                        imageUrlAchieve: '${e.foto}',
+                                        listPrestasiAtlet: e.prestasiAtlet!,
+                                        category: '${e.namaPerwakilan}',
+                                      ),
+                                    );
+                                  },
+                                );
+                              }).toList(),
                               (publicC.achievementResult!.value.results!
                                           .prestasi!.currentPage! <
                                       publicC.achievementResult!.value.results!
@@ -206,19 +207,20 @@ class _AchievementPageState extends State<AchievementPage> {
     required int lastPage,
   }) {
     // Check Scroll Position
+
     if (scrollNotification is ScrollEndNotification &&
-        _scrollController.position.extentAfter == _scrollController.offset) {
+        _scrollController.position.pixels ==
+            _scrollController.position.maxScrollExtent) {
       // Set More Loading = true
       if (onLoad == true) {
         return false;
       }
       onLoad = true;
+
       // More Posts
       if (page != lastPage) {
         publicC.refetchAchievement('', (page + 1).toString()).then(
           (value) {
-            // Set More Loading = false
-
             setState(() {
               searchController.clear();
               onLoad = false;
