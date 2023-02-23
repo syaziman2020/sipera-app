@@ -46,7 +46,7 @@ class Results {
 
 class SaranaPrasarana {
   String? jenisLapangan;
-  int? total;
+  String? total;
 
   SaranaPrasarana({this.jenisLapangan, this.total});
 

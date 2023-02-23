@@ -59,7 +59,7 @@ class StatisticAtletAdmin extends StatelessWidget {
                         index,
                         CardStatistic(
                           category: '${e.namaCabor}',
-                          total: e.total! ?? 0,
+                          total: (int.parse(e.total!)) ?? 0,
                         ),
                       ),
                     )

@@ -7,14 +7,14 @@ class AchievementModel {
   AchievementModel.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     results =
-        json['results'] != null ? Results.fromJson(json['results']) : null;
+        json['results'] != null ? new Results.fromJson(json['results']) : null;
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['status'] = status;
-    if (results != null) {
-      data['results'] = results!.toJson();
+    data['status'] = this.status;
+    if (this.results != null) {
+      data['results'] = this.results!.toJson();
     }
     return data;
   }
@@ -28,15 +28,16 @@ class Results {
 
   Results.fromJson(Map<String, dynamic> json) {
     link = json['link'];
-    prestasi =
-        json['prestasi'] != null ? Prestasi.fromJson(json['prestasi']) : null;
+    prestasi = json['prestasi'] != null
+        ? new Prestasi.fromJson(json['prestasi'])
+        : null;
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['link'] = link;
-    if (prestasi != null) {
-      data['prestasi'] = prestasi!.toJson();
+    data['link'] = this.link;
+    if (this.prestasi != null) {
+      data['prestasi'] = this.prestasi!.toJson();
     }
     return data;
   }
@@ -53,7 +54,7 @@ class Prestasi {
   String? nextPageUrl;
   String? path;
   int? perPage;
-  dynamic prevPageUrl;
+  String? prevPageUrl;
   int? to;
   int? total;
 
@@ -77,7 +78,7 @@ class Prestasi {
     if (json['data'] != null) {
       data = <Data>[];
       json['data'].forEach((v) {
-        data!.add(Data.fromJson(v));
+        data!.add(new Data.fromJson(v));
       });
     }
     firstPageUrl = json['first_page_url'];
@@ -87,7 +88,7 @@ class Prestasi {
     if (json['links'] != null) {
       links = <Links>[];
       json['links'].forEach((v) {
-        links!.add(Links.fromJson(v));
+        links!.add(new Links.fromJson(v));
       });
     }
     nextPageUrl = json['next_page_url'];
@@ -100,23 +101,23 @@ class Prestasi {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['current_page'] = currentPage;
+    data['current_page'] = this.currentPage;
     if (this.data != null) {
       data['data'] = this.data!.map((v) => v.toJson()).toList();
     }
-    data['first_page_url'] = firstPageUrl;
-    data['from'] = from;
-    data['last_page'] = lastPage;
-    data['last_page_url'] = lastPageUrl;
-    if (links != null) {
-      data['links'] = links!.map((v) => v.toJson()).toList();
+    data['first_page_url'] = this.firstPageUrl;
+    data['from'] = this.from;
+    data['last_page'] = this.lastPage;
+    data['last_page_url'] = this.lastPageUrl;
+    if (this.links != null) {
+      data['links'] = this.links!.map((v) => v.toJson()).toList();
     }
-    data['next_page_url'] = nextPageUrl;
-    data['path'] = path;
-    data['per_page'] = perPage;
-    data['prev_page_url'] = prevPageUrl;
-    data['to'] = to;
-    data['total'] = total;
+    data['next_page_url'] = this.nextPageUrl;
+    data['path'] = this.path;
+    data['per_page'] = this.perPage;
+    data['prev_page_url'] = this.prevPageUrl;
+    data['to'] = this.to;
+    data['total'] = this.total;
     return data;
   }
 }
@@ -125,11 +126,11 @@ class Data {
   int? id;
   String? namaLomba;
   String? namaPerwakilan;
-  int? jenisPerlombaan;
-  int? medaliEmas;
-  int? medaliPerak;
-  int? medaliPerunggu;
-  int? idCabor;
+  String? jenisPerlombaan;
+  String? medaliEmas;
+  String? medaliPerak;
+  String? medaliPerunggu;
+  String? idCabor;
   String? foto;
   String? tahun;
   String? createdAt;
@@ -167,27 +168,28 @@ class Data {
     if (json['prestasi_atlet'] != null) {
       prestasiAtlet = <PrestasiAtlet>[];
       json['prestasi_atlet'].forEach((v) {
-        prestasiAtlet!.add(PrestasiAtlet.fromJson(v));
+        prestasiAtlet!.add(new PrestasiAtlet.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
-    data['nama_lomba'] = namaLomba;
-    data['nama_perwakilan'] = namaPerwakilan;
-    data['jenis_perlombaan'] = jenisPerlombaan;
-    data['medali_emas'] = medaliEmas;
-    data['medali_perak'] = medaliPerak;
-    data['medali_perunggu'] = medaliPerunggu;
-    data['id_cabor'] = idCabor;
-    data['foto'] = foto;
-    data['tahun'] = tahun;
-    data['created_at'] = createdAt;
-    data['updated_at'] = updatedAt;
-    if (prestasiAtlet != null) {
-      data['prestasi_atlet'] = prestasiAtlet!.map((v) => v.toJson()).toList();
+    data['id'] = this.id;
+    data['nama_lomba'] = this.namaLomba;
+    data['nama_perwakilan'] = this.namaPerwakilan;
+    data['jenis_perlombaan'] = this.jenisPerlombaan;
+    data['medali_emas'] = this.medaliEmas;
+    data['medali_perak'] = this.medaliPerak;
+    data['medali_perunggu'] = this.medaliPerunggu;
+    data['id_cabor'] = this.idCabor;
+    data['foto'] = this.foto;
+    data['tahun'] = this.tahun;
+    data['created_at'] = this.createdAt;
+    data['updated_at'] = this.updatedAt;
+    if (this.prestasiAtlet != null) {
+      data['prestasi_atlet'] =
+          this.prestasiAtlet!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -196,9 +198,9 @@ class Data {
 class PrestasiAtlet {
   int? id;
   String? namaPrestasi;
-  int? idPrestasiLomba;
-  int? idAtlet;
-  int? idCabor;
+  String? idPrestasiLomba;
+  String? idAtlet;
+  String? idCabor;
   String? foto;
   String? tahun;
   String? createdAt;
@@ -227,22 +229,22 @@ class PrestasiAtlet {
     tahun = json['tahun'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
-    atlet = json['atlet'] != null ? Atlet.fromJson(json['atlet']) : null;
+    atlet = json['atlet'] != null ? new Atlet.fromJson(json['atlet']) : null;
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
-    data['nama_prestasi'] = namaPrestasi;
-    data['id_prestasi_lomba'] = idPrestasiLomba;
-    data['id_atlet'] = idAtlet;
-    data['id_cabor'] = idCabor;
-    data['foto'] = foto;
-    data['tahun'] = tahun;
-    data['created_at'] = createdAt;
-    data['updated_at'] = updatedAt;
-    if (atlet != null) {
-      data['atlet'] = atlet!.toJson();
+    data['id'] = this.id;
+    data['nama_prestasi'] = this.namaPrestasi;
+    data['id_prestasi_lomba'] = this.idPrestasiLomba;
+    data['id_atlet'] = this.idAtlet;
+    data['id_cabor'] = this.idCabor;
+    data['foto'] = this.foto;
+    data['tahun'] = this.tahun;
+    data['created_at'] = this.createdAt;
+    data['updated_at'] = this.updatedAt;
+    if (this.atlet != null) {
+      data['atlet'] = this.atlet!.toJson();
     }
     return data;
   }
@@ -252,27 +254,27 @@ class Atlet {
   int? id;
   String? nik;
   String? nama;
-  int? jenisKelamin;
+  String? jenisKelamin;
   String? tempatLahir;
   String? tanggalLahir;
-  int? idAgama;
-  int? disabilitas;
-  int? idProvinsi;
-  int? idKabupaten;
-  int? idKecamatan;
-  int? idDesa;
+  String? idAgama;
+  String? disabilitas;
+  String? idProvinsi;
+  String? idKabupaten;
+  String? idKecamatan;
+  String? idDesa;
   String? alamat;
   String? noHp;
   String? email;
-  int? idCabor;
+  String? idCabor;
   String? tanggalBergabung;
-  dynamic penyakit;
-  int? idPendidikan;
-  int? idStatus;
+  Null? penyakit;
+  String? idPendidikan;
+  String? idStatus;
   String? foto;
   String? lat;
   String? lon;
-  int? verifikasi;
+  String? verifikasi;
   String? createdAt;
   String? updatedAt;
 
@@ -335,32 +337,32 @@ class Atlet {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
-    data['nik'] = nik;
-    data['nama'] = nama;
-    data['jenis_kelamin'] = jenisKelamin;
-    data['tempat_lahir'] = tempatLahir;
-    data['tanggal_lahir'] = tanggalLahir;
-    data['id_agama'] = idAgama;
-    data['disabilitas'] = disabilitas;
-    data['id_provinsi'] = idProvinsi;
-    data['id_kabupaten'] = idKabupaten;
-    data['id_kecamatan'] = idKecamatan;
-    data['id_desa'] = idDesa;
-    data['alamat'] = alamat;
-    data['no_hp'] = noHp;
-    data['email'] = email;
-    data['id_cabor'] = idCabor;
-    data['tanggal_bergabung'] = tanggalBergabung;
-    data['penyakit'] = penyakit;
-    data['id_pendidikan'] = idPendidikan;
-    data['id_status'] = idStatus;
-    data['foto'] = foto;
-    data['lat'] = lat;
-    data['lon'] = lon;
-    data['verifikasi'] = verifikasi;
-    data['created_at'] = createdAt;
-    data['updated_at'] = updatedAt;
+    data['id'] = this.id;
+    data['nik'] = this.nik;
+    data['nama'] = this.nama;
+    data['jenis_kelamin'] = this.jenisKelamin;
+    data['tempat_lahir'] = this.tempatLahir;
+    data['tanggal_lahir'] = this.tanggalLahir;
+    data['id_agama'] = this.idAgama;
+    data['disabilitas'] = this.disabilitas;
+    data['id_provinsi'] = this.idProvinsi;
+    data['id_kabupaten'] = this.idKabupaten;
+    data['id_kecamatan'] = this.idKecamatan;
+    data['id_desa'] = this.idDesa;
+    data['alamat'] = this.alamat;
+    data['no_hp'] = this.noHp;
+    data['email'] = this.email;
+    data['id_cabor'] = this.idCabor;
+    data['tanggal_bergabung'] = this.tanggalBergabung;
+    data['penyakit'] = this.penyakit;
+    data['id_pendidikan'] = this.idPendidikan;
+    data['id_status'] = this.idStatus;
+    data['foto'] = this.foto;
+    data['lat'] = this.lat;
+    data['lon'] = this.lon;
+    data['verifikasi'] = this.verifikasi;
+    data['created_at'] = this.createdAt;
+    data['updated_at'] = this.updatedAt;
     return data;
   }
 }
@@ -380,9 +382,9 @@ class Links {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['url'] = url;
-    data['label'] = label;
-    data['active'] = active;
+    data['url'] = this.url;
+    data['label'] = this.label;
+    data['active'] = this.active;
     return data;
   }
 }

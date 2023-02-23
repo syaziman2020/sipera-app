@@ -48,10 +48,10 @@ class AllArtikel {
   int? lastPage;
   String? lastPageUrl;
   List<Links>? links;
-  dynamic nextPageUrl;
+  Null? nextPageUrl;
   String? path;
   int? perPage;
-  dynamic prevPageUrl;
+  Null? prevPageUrl;
   int? to;
   int? total;
 
@@ -123,12 +123,12 @@ class Data {
   int? id;
   String? judul;
   String? tanggal;
-  int? idUser;
-  int? statusArtikel;
+  String? idUser;
+  String? statusArtikel;
   String? isiArtikel;
   String? imgArtikel;
   String? slug;
-  int? counter;
+  String? counter;
   String? createdAt;
   String? updatedAt;
   List<KategoriArtikel>? kategoriArtikel;
@@ -190,8 +190,8 @@ class Data {
 
 class KategoriArtikel {
   int? id;
-  int? idArtikel;
-  int? idKategoriArtikel;
+  String? idArtikel;
+  String? idKategoriArtikel;
   String? createdAt;
   String? updatedAt;
   MasterArtikel? masterArtikel;

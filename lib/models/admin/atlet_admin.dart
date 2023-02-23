@@ -53,7 +53,7 @@ class Results {
 
 class TotalAtletPerCabor {
   String? namaCabor;
-  int? total;
+  String? total;
 
   TotalAtletPerCabor({this.namaCabor, this.total});
 

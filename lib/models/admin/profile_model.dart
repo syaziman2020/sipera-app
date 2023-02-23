@@ -49,8 +49,8 @@ class Users {
   int? id;
   String? name;
   String? email;
-  int? idRole;
-  String? emailVerifiedAt;
+  String? idRole;
+  dynamic emailVerifiedAt;
   String? createdAt;
   String? updatedAt;
   RoleUser? roleUser;

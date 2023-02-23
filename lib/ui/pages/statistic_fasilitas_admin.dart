@@ -48,7 +48,7 @@ class StatisticFasilitasAdmin extends StatelessWidget {
                         index,
                         CardStatistic(
                           category: '${e.jenisLapangan}',
-                          total: e.total! ?? 0,
+                          total: int.parse(e.total!) ?? 0,
                         ),
                       ),
                     )

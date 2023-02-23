@@ -49,7 +49,7 @@ class Results {
 
 class TotalWasitPerCabor {
   String? namaCabor;
-  int? total;
+  String? total;
 
   TotalWasitPerCabor({this.namaCabor, this.total});
 

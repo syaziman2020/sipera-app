@@ -323,7 +323,7 @@ class GraphicAtlet extends StatelessWidget {
                               x: index,
                               barRods: [
                                 BarChartRodData(
-                                  toY: (element.total!).toDouble(),
+                                  toY: double.parse(element.total!),
                                   color: greenCB,
                                 )
                               ],
