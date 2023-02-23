@@ -1,5 +1,6 @@
 class MainUrl {
   String mainUrl = 'http://sipera.ketapangkab.go.id/api';
+  // String mainUrl = 'https://sipera.jasadesainsosmed.com/api';
   static String _token = '951|vTS0ve9DJDFCd9bMsWSYjvpnvKRCbJtvScCQUKmF';
 
   void setToken(String data) {

@@ -49,7 +49,7 @@ class Results {
 
 class TotalGuruOlahragaPerCabor {
   String? namaCabor;
-  String? total;
+  int? total;
 
   TotalGuruOlahragaPerCabor({this.namaCabor, this.total});
 

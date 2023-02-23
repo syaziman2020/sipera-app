@@ -33,6 +33,7 @@ class StatisticAtletAdmin extends StatelessWidget {
                 top: 15,
                 left: 22,
                 right: 22,
+                bottom: 15,
               ),
               crossAxisSpacing: 15,
               crossAxisCount: 3,
@@ -58,7 +59,7 @@ class StatisticAtletAdmin extends StatelessWidget {
                         index,
                         CardStatistic(
                           category: '${e.namaCabor}',
-                          total: int.tryParse(e.total!) ?? 0,
+                          total: e.total! ?? 0,
                         ),
                       ),
                     )

@@ -190,7 +190,7 @@ class Results {
 
 class Jan {
   String? cabangOlahraga;
-  String? total;
+  int? total;
 
   Jan({this.cabangOlahraga, this.total});
 
@@ -209,7 +209,7 @@ class Jan {
 
 class Feb {
   String? cabangOlahraga;
-  String? total;
+  int? total;
 
   Feb({this.cabangOlahraga, this.total});
 
@@ -228,7 +228,7 @@ class Feb {
 
 class Mar {
   String? cabangOlahraga;
-  String? total;
+  int? total;
 
   Mar({this.cabangOlahraga, this.total});
 
@@ -247,7 +247,7 @@ class Mar {
 
 class Apr {
   String? cabangOlahraga;
-  String? total;
+  int? total;
 
   Apr({this.cabangOlahraga, this.total});
 
@@ -266,7 +266,7 @@ class Apr {
 
 class Mei {
   String? cabangOlahraga;
-  String? total;
+  int? total;
 
   Mei({this.cabangOlahraga, this.total});
 
@@ -285,7 +285,7 @@ class Mei {
 
 class Jun {
   String? cabangOlahraga;
-  String? total;
+  int? total;
 
   Jun({this.cabangOlahraga, this.total});
 
@@ -304,7 +304,7 @@ class Jun {
 
 class Jul {
   String? cabangOlahraga;
-  String? total;
+  int? total;
 
   Jul({this.cabangOlahraga, this.total});
 
@@ -323,7 +323,7 @@ class Jul {
 
 class Ags {
   String? cabangOlahraga;
-  String? total;
+  int? total;
 
   Ags({this.cabangOlahraga, this.total});
 
@@ -342,7 +342,7 @@ class Ags {
 
 class Sep {
   String? cabangOlahraga;
-  String? total;
+  int? total;
 
   Sep({this.cabangOlahraga, this.total});
 
@@ -361,7 +361,7 @@ class Sep {
 
 class Okt {
   String? cabangOlahraga;
-  String? total;
+  int? total;
 
   Okt({this.cabangOlahraga, this.total});
 
@@ -380,7 +380,7 @@ class Okt {
 
 class Nov {
   String? cabangOlahraga;
-  String? total;
+  int? total;
 
   Nov({this.cabangOlahraga, this.total});
 
@@ -399,7 +399,7 @@ class Nov {
 
 class Des {
   String? cabangOlahraga;
-  String? total;
+  int? total;
 
   Des({this.cabangOlahraga, this.total});
 
@@ -417,8 +417,8 @@ class Des {
 }
 
 class PerTahun {
-  String? year;
-  String? total;
+  int? year;
+  int? total;
 
   PerTahun({this.year, this.total});
 

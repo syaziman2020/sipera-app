@@ -49,7 +49,7 @@ class Users {
   int? id;
   String? name;
   String? email;
-  String? idRole;
+  int? idRole;
   String? emailVerifiedAt;
   String? createdAt;
   String? updatedAt;

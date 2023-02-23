@@ -46,18 +46,18 @@ class Results {
 
 class SaranaPrasarana {
   String? jenisLapangan;
-  String? total;
+  int? total;
 
   SaranaPrasarana({this.jenisLapangan, this.total});
 
   SaranaPrasarana.fromJson(Map<String, dynamic> json) {
-    jenisLapangan = json['jenis_lapangan'];
+    jenisLapangan = json['jenis_prasarana'];
     total = json['total'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['jenis_lapangan'] = jenisLapangan;
+    data['jenis_prasarana'] = jenisLapangan;
     data['total'] = total;
     return data;
   }

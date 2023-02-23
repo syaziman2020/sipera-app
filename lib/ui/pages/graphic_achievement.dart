@@ -325,7 +325,7 @@ class GraphicAchievement extends StatelessWidget {
                               x: index,
                               barRods: [
                                 BarChartRodData(
-                                  toY: double.parse(element.total!),
+                                  toY: (element.total!).toDouble(),
                                   color: greenCB,
                                 )
                               ],

@@ -134,8 +134,9 @@ class AuthController extends GetxController {
       isLogin.value = true;
       return isLogin.value;
     } catch (e) {
-      isLogin.value = false;
-      return isLogin.value;
+      // isLogin.value = false;
+      // return isLogin.value;
+      rethrow;
     }
   }
 
@@ -188,35 +189,35 @@ class AuthController extends GetxController {
           RxList<gralet.Jan>? listJanAtlet = <gralet.Jan>[].obs;
           listJanAtlet.value = graphicAtletModel.results!.jan!;
           for (var atlet in listJanAtlet) {
-            jumlahJanAtlet += int.parse(atlet.total!);
+            jumlahJanAtlet += (atlet.total!);
           }
         }
         if (graphicAtletModel.results!.feb!.isNotEmpty) {
           RxList<gralet.Feb>? listFebAtlet = <gralet.Feb>[].obs;
           listFebAtlet.value = graphicAtletModel.results!.feb!;
           for (var atlet in listFebAtlet) {
-            jumlahFebAtlet += int.parse(atlet.total!);
+            jumlahFebAtlet += (atlet.total!);
           }
         }
         if (graphicAtletModel.results!.mar!.isNotEmpty) {
           RxList<gralet.Mar>? listMarAtlet = <gralet.Mar>[].obs;
           listMarAtlet.value = graphicAtletModel.results!.mar!;
           for (var atlet in listMarAtlet) {
-            jumlahMarAtlet += int.parse(atlet.total!);
+            jumlahMarAtlet += (atlet.total!);
           }
         }
         if (graphicAtletModel.results!.apr!.isNotEmpty) {
           RxList<gralet.Apr>? listAprAtlet = <gralet.Apr>[].obs;
           listAprAtlet.value = graphicAtletModel.results!.apr!;
           for (var atlet in listAprAtlet) {
-            jumlahAprAtlet += int.parse(atlet.total!);
+            jumlahAprAtlet += (atlet.total!);
           }
         }
         if (graphicAtletModel.results!.mei!.isNotEmpty) {
           RxList<gralet.Mei>? listMeiAtlet = <gralet.Mei>[].obs;
           listMeiAtlet.value = graphicAtletModel.results!.mei!;
           for (var atlet in listMeiAtlet) {
-            jumlahMayAtlet += int.parse(atlet.total!);
+            jumlahMayAtlet += (atlet.total!);
           }
           if (kDebugMode) {
             print(jumlahMayAtlet);
@@ -226,21 +227,21 @@ class AuthController extends GetxController {
           RxList<gralet.Jun>? listJunAtlet = <gralet.Jun>[].obs;
           listJunAtlet.value = graphicAtletModel.results!.jun!;
           for (var atlet in listJunAtlet) {
-            jumlahJunAtlet += int.parse(atlet.total!);
+            jumlahJunAtlet += (atlet.total!);
           }
         }
         if (graphicAtletModel.results!.jul!.isNotEmpty) {
           RxList<gralet.Jul>? listJulAtlet = <gralet.Jul>[].obs;
           listJulAtlet.value = graphicAtletModel.results!.jul!;
           for (var atlet in listJulAtlet) {
-            jumlahJulAtlet += int.parse(atlet.total!);
+            jumlahJulAtlet += (atlet.total!);
           }
         }
         if (graphicAtletModel.results!.ags!.isNotEmpty) {
           RxList<gralet.Ags>? listAugAtlet = <gralet.Ags>[].obs;
           listAugAtlet.value = graphicAtletModel.results!.ags!;
           for (var atlet in listAugAtlet) {
-            jumlahAugAtlet += int.parse(atlet.total!);
+            jumlahAugAtlet += (atlet.total!);
           }
           if (kDebugMode) {
             print(jumlahAugAtlet);
@@ -250,7 +251,7 @@ class AuthController extends GetxController {
           RxList<gralet.Sep>? listSepAtlet = <gralet.Sep>[].obs;
           listSepAtlet.value = graphicAtletModel.results!.sep!;
           for (var atlet in listSepAtlet) {
-            jumlahSepAtlet += int.parse(atlet.total!);
+            jumlahSepAtlet += (atlet.total!);
           }
           if (kDebugMode) {
             print(jumlahSepAtlet);
@@ -260,21 +261,21 @@ class AuthController extends GetxController {
           RxList<gralet.Okt>? listOctAtlet = <gralet.Okt>[].obs;
           listOctAtlet.value = graphicAtletModel.results!.okt!;
           for (var atlet in listOctAtlet) {
-            jumlahOctAtlet += int.parse(atlet.total!);
+            jumlahOctAtlet += (atlet.total!);
           }
         }
         if (graphicAtletModel.results!.nov!.isNotEmpty) {
           RxList<gralet.Nov>? listNovAtlet = <gralet.Nov>[].obs;
           listNovAtlet.value = graphicAtletModel.results!.nov!;
           for (var atlet in listNovAtlet) {
-            jumlahNovAtlet += int.parse(atlet.total!);
+            jumlahNovAtlet += (atlet.total!);
           }
         }
         if (graphicAtletModel.results!.des!.isNotEmpty) {
           RxList<gralet.Des>? listDesAtlet = <gralet.Des>[].obs;
           listDesAtlet.value = graphicAtletModel.results!.des!;
           for (var atlet in listDesAtlet) {
-            jumlahDesAtlet += int.parse(atlet.total!);
+            jumlahDesAtlet += (atlet.total!);
           }
         }
         jumlahUmur.value = (graphicAtletModel.results!.anak! +
@@ -305,84 +306,84 @@ class AuthController extends GetxController {
           RxList<grasi.Jan>? listJanPrestasi = <grasi.Jan>[].obs;
           listJanPrestasi.value = graphicAchievementModel.results!.jan!;
           for (var prestasi in listJanPrestasi) {
-            jumlahJanPrestasi += int.parse(prestasi.total!);
+            jumlahJanPrestasi += prestasi.total!;
           }
         }
         if (graphicAchievementModel.results!.feb!.isNotEmpty) {
           RxList<grasi.Feb>? listFebPrestasi = <grasi.Feb>[].obs;
           listFebPrestasi.value = graphicAchievementModel.results!.feb!;
           for (var prestasi in listFebPrestasi) {
-            jumlahFebPrestasi += int.parse(prestasi.total!);
+            jumlahFebPrestasi += prestasi.total!;
           }
         }
         if (graphicAchievementModel.results!.mar!.isNotEmpty) {
           RxList<grasi.Mar>? listMarPrestasi = <grasi.Mar>[].obs;
           listMarPrestasi.value = graphicAchievementModel.results!.mar!;
           for (var prestasi in listMarPrestasi) {
-            jumlahMarPrestasi += int.parse(prestasi.total!);
+            jumlahMarPrestasi += prestasi.total!;
           }
         }
         if (graphicAchievementModel.results!.apr!.isNotEmpty) {
           RxList<grasi.Apr>? listAprPrestasi = <grasi.Apr>[].obs;
           listAprPrestasi.value = graphicAchievementModel.results!.apr!;
           for (var prestasi in listAprPrestasi) {
-            jumlahAprPrestasi += int.parse(prestasi.total!);
+            jumlahAprPrestasi += prestasi.total!;
           }
         }
         if (graphicAchievementModel.results!.mei!.isNotEmpty) {
           RxList<grasi.Mei>? listMeiPrestasi = <grasi.Mei>[].obs;
           listMeiPrestasi.value = graphicAchievementModel.results!.mei!;
           for (var prestasi in listMeiPrestasi) {
-            jumlahMayPrestasi += int.parse(prestasi.total!);
+            jumlahMayPrestasi += prestasi.total!;
           }
         }
         if (graphicAchievementModel.results!.jun!.isNotEmpty) {
           RxList<grasi.Jun>? listJunPrestasi = <grasi.Jun>[].obs;
           listJunPrestasi.value = graphicAchievementModel.results!.jun!;
           for (var prestasi in listJunPrestasi) {
-            jumlahJunPrestasi += int.parse(prestasi.total!);
+            jumlahJunPrestasi += prestasi.total!;
           }
         }
         if (graphicAchievementModel.results!.jul!.isNotEmpty) {
           RxList<grasi.Jul>? listJulPrestasi = <grasi.Jul>[].obs;
           listJulPrestasi.value = graphicAchievementModel.results!.jul!;
           for (var prestasi in listJulPrestasi) {
-            jumlahJulPrestasi += int.parse(prestasi.total!);
+            jumlahJulPrestasi += prestasi.total!;
           }
         }
         if (graphicAchievementModel.results!.ags!.isNotEmpty) {
           RxList<grasi.Ags>? listAgsPrestasi = <grasi.Ags>[].obs;
           listAgsPrestasi.value = graphicAchievementModel.results!.ags!;
           for (var prestasi in listAgsPrestasi) {
-            jumlahAugPrestasi += int.parse(prestasi.total!);
+            jumlahAugPrestasi += prestasi.total!;
           }
         }
         if (graphicAchievementModel.results!.sep!.isNotEmpty) {
           RxList<grasi.Sep>? listSepPrestasi = <grasi.Sep>[].obs;
           listSepPrestasi.value = graphicAchievementModel.results!.sep!;
           for (var prestasi in listSepPrestasi) {
-            jumlahSepPrestasi += int.parse(prestasi.total!);
+            jumlahSepPrestasi += prestasi.total!;
           }
         }
         if (graphicAchievementModel.results!.okt!.isNotEmpty) {
           RxList<grasi.Okt>? listOktPrestasi = <grasi.Okt>[].obs;
           listOktPrestasi.value = graphicAchievementModel.results!.okt!;
           for (var prestasi in listOktPrestasi) {
-            jumlahOctPrestasi += int.parse(prestasi.total!);
+            jumlahOctPrestasi += prestasi.total!;
           }
         }
         if (graphicAchievementModel.results!.nov!.isNotEmpty) {
           RxList<grasi.Nov>? listNovPrestasi = <grasi.Nov>[].obs;
           listNovPrestasi.value = graphicAchievementModel.results!.nov!;
           for (var prestasi in listNovPrestasi) {
-            jumlahNovPrestasi += int.parse(prestasi.total!);
+            jumlahNovPrestasi += prestasi.total!;
           }
         }
         if (graphicAchievementModel.results!.des!.isNotEmpty) {
           RxList<grasi.Des>? listDesPrestasi = <grasi.Des>[].obs;
           listDesPrestasi.value = graphicAchievementModel.results!.des!;
           for (var prestasi in listDesPrestasi) {
-            jumlahDesPrestasi += int.parse(prestasi.total!);
+            jumlahDesPrestasi += prestasi.total!;
           }
         }
 

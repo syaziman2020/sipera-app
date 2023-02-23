@@ -323,7 +323,7 @@ class GraphicAtlet extends StatelessWidget {
                               x: index,
                               barRods: [
                                 BarChartRodData(
-                                  toY: double.parse(element.total!),
+                                  toY: (element.total!).toDouble(),
                                   color: greenCB,
                                 )
                               ],
@@ -340,8 +340,11 @@ class GraphicAtlet extends StatelessWidget {
               ),
               Padding(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 22, vertical: 20),
+                    const EdgeInsets.symmetric(horizontal: 22, vertical: 30),
                 child: title('Grafik Berdasarkan Umur'),
+              ),
+              SizedBox(
+                height: 10,
               ),
               AspectRatio(
                 aspectRatio: 1.5,

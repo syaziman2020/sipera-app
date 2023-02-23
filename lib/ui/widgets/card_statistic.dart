@@ -56,6 +56,7 @@ class CardStatistic extends StatelessWidget {
             ),
             Text(
               category,
+              textAlign: TextAlign.center,
               style: whiteTextStyle.copyWith(
                 fontSize: 12,
                 fontWeight: medium,

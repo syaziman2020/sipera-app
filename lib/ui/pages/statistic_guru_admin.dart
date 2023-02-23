@@ -55,7 +55,7 @@ class StatisticGuruAdmin extends StatelessWidget {
                         index,
                         CardStatistic(
                           category: '${e.namaCabor}',
-                          total: int.tryParse(e.total!) ?? 0,
+                          total: e.total! ?? 0,
                         ),
                       ),
                     )
