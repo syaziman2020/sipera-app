@@ -342,33 +342,61 @@ class HomePage extends StatelessWidget {
                   return SingleChildScrollView(
                     padding: const EdgeInsets.only(left: 22, top: 4, bottom: 5),
                     scrollDirection: Axis.horizontal,
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        ...publicC.listArticle!.sublist(0, 5).map(
-                              (e) => CardNews(
-                                listCategory: e.kategoriArtikel,
-                                onTap: () {
-                                  Get.to(
-                                    () => DetailNews(
-                                        category: e.kategoriArtikel,
-                                        date:
-                                            '${DateFormat("d MMMM yyyy").format(DateTime.parse(e.tanggal!))}',
-                                        id: e.id!,
-                                        description: '${e.isiArtikel}',
-                                        imageUrl: '${e.imgArtikel}',
-                                        title: '${e.judul}'),
-                                  );
-                                },
-                                imageUrl: '${(e.imgArtikel)}',
-                                date:
-                                    '${e.tanggal!.split('-').reversed.join('/')}',
-                                title: '${e.judul}',
+                    child: (publicC.listArticle!.length < 5)
+                        ? Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              ...publicC.listArticle!.map(
+                                (e) => CardNews(
+                                  listCategory: e.kategoriArtikel,
+                                  onTap: () {
+                                    Get.to(
+                                      () => DetailNews(
+                                          category: e.kategoriArtikel,
+                                          date:
+                                              '${DateFormat("d MMMM yyyy").format(DateTime.parse(e.tanggal!))}',
+                                          id: e.id!,
+                                          description: '${e.isiArtikel}',
+                                          imageUrl: '${e.imgArtikel}',
+                                          title: '${e.judul}'),
+                                    );
+                                  },
+                                  imageUrl: '${(e.imgArtikel)}',
+                                  date:
+                                      '${e.tanggal!.split('-').reversed.join('/')}',
+                                  title: '${e.judul}',
+                                ),
                               ),
-                            ),
-                      ],
-                    ),
+                            ],
+                          )
+                        : Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              ...publicC.listArticle!.sublist(0, 5).map(
+                                    (e) => CardNews(
+                                      listCategory: e.kategoriArtikel,
+                                      onTap: () {
+                                        Get.to(
+                                          () => DetailNews(
+                                              category: e.kategoriArtikel,
+                                              date:
+                                                  '${DateFormat("d MMMM yyyy").format(DateTime.parse(e.tanggal!))}',
+                                              id: e.id!,
+                                              description: '${e.isiArtikel}',
+                                              imageUrl: '${e.imgArtikel}',
+                                              title: '${e.judul}'),
+                                        );
+                                      },
+                                      imageUrl: '${(e.imgArtikel)}',
+                                      date:
+                                          '${e.tanggal!.split('-').reversed.join('/')}',
+                                      title: '${e.judul}',
+                                    ),
+                                  ),
+                            ],
+                          ),
                   );
                 } else {
                   return Center(
