@@ -134,9 +134,9 @@ class AuthController extends GetxController {
       isLogin.value = true;
       return isLogin.value;
     } catch (e) {
-      // isLogin.value = false;
-      // return isLogin.value;
-      rethrow;
+      isLogin.value = false;
+      return isLogin.value;
+      // rethrow;
     }
   }
 
